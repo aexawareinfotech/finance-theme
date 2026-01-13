@@ -21,6 +21,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Animate on Scroll
     initScrollAnimations();
+
+    // Search Overlay
+    initSearchOverlay();
 });
 
 /**
@@ -257,4 +260,58 @@ function throttle(func, limit) {
             setTimeout(() => inThrottle = false, limit);
         }
     };
+}
+
+/**
+ * Search Overlay Toggle
+ */
+function initSearchOverlay() {
+    const searchToggle = document.getElementById('search-toggle');
+    const searchOverlay = document.getElementById('search-overlay');
+    const searchClose = document.getElementById('search-close');
+    const searchInput = document.getElementById('search-field');
+
+    if (!searchToggle || !searchOverlay) return;
+
+    function openSearch() {
+        searchOverlay.classList.add('active');
+        searchOverlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+
+        // Focus the input after animation
+        setTimeout(() => {
+            if (searchInput) searchInput.focus();
+        }, 100);
+    }
+
+    function closeSearch() {
+        searchOverlay.classList.remove('active');
+        searchOverlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+
+        // Return focus to toggle button
+        searchToggle.focus();
+    }
+
+    // Toggle button click
+    searchToggle.addEventListener('click', openSearch);
+
+    // Close button click
+    if (searchClose) {
+        searchClose.addEventListener('click', closeSearch);
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && searchOverlay.classList.contains('active')) {
+            closeSearch();
+        }
+    });
+
+    // Close when clicking outside the form
+    searchOverlay.addEventListener('click', function (e) {
+        if (e.target === searchOverlay) {
+            closeSearch();
+        }
+    });
 }

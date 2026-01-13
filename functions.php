@@ -203,7 +203,115 @@ add_action('admin_init', 'flavor_check_required_plugin');
  */
 function flavor_customize_register($wp_customize): void
 {
-    // Company Info Section
+    // ========================================
+    // HEADER SETTINGS SECTION
+    // ========================================
+    $wp_customize->add_section('flavor_header_settings', [
+        'title' => __('Header Settings', 'flavor'),
+        'priority' => 25,
+    ]);
+
+    // Show Search
+    $wp_customize->add_setting('flavor_show_search', [
+        'default' => true,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ]);
+    $wp_customize->add_control('flavor_show_search', [
+        'label' => __('Show Search Icon', 'flavor'),
+        'section' => 'flavor_header_settings',
+        'type' => 'checkbox',
+    ]);
+
+    // Show CTA Button
+    $wp_customize->add_setting('flavor_show_cta', [
+        'default' => true,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ]);
+    $wp_customize->add_control('flavor_show_cta', [
+        'label' => __('Show CTA Button', 'flavor'),
+        'section' => 'flavor_header_settings',
+        'type' => 'checkbox',
+    ]);
+
+    // CTA Button Text
+    $wp_customize->add_setting('flavor_cta_text', [
+        'default' => 'Apply Now',
+        'sanitize_callback' => 'sanitize_text_field',
+    ]);
+    $wp_customize->add_control('flavor_cta_text', [
+        'label' => __('CTA Button Text', 'flavor'),
+        'section' => 'flavor_header_settings',
+        'type' => 'text',
+    ]);
+
+    // CTA Button URL
+    $wp_customize->add_setting('flavor_cta_url', [
+        'default' => '/apply',
+        'sanitize_callback' => 'esc_url_raw',
+    ]);
+    $wp_customize->add_control('flavor_cta_url', [
+        'label' => __('CTA Button URL', 'flavor'),
+        'section' => 'flavor_header_settings',
+        'type' => 'url',
+    ]);
+
+    // ========================================
+    // FOOTER SETTINGS SECTION
+    // ========================================
+    $wp_customize->add_section('flavor_footer_settings', [
+        'title' => __('Footer Settings', 'flavor'),
+        'priority' => 45,
+    ]);
+
+    // Footer Logo
+    $wp_customize->add_setting('flavor_footer_logo', [
+        'default' => '',
+        'sanitize_callback' => 'absint',
+    ]);
+    $wp_customize->add_control(new WP_Customize_Media_Control($wp_customize, 'flavor_footer_logo', [
+        'label' => __('Footer Logo', 'flavor'),
+        'section' => 'flavor_footer_settings',
+        'mime_type' => 'image',
+        'description' => __('Leave empty to use site logo', 'flavor'),
+    ]));
+
+    // Footer Tagline
+    $wp_customize->add_setting('flavor_footer_tagline', [
+        'default' => 'Get the funding you need, when you need it. Fair Go Finance provides fast, flexible loans for all Australians.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ]);
+    $wp_customize->add_control('flavor_footer_tagline', [
+        'label' => __('Footer Tagline', 'flavor'),
+        'section' => 'flavor_footer_settings',
+        'type' => 'textarea',
+    ]);
+
+    // Copyright Text
+    $wp_customize->add_setting('flavor_copyright', [
+        'default' => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ]);
+    $wp_customize->add_control('flavor_copyright', [
+        'label' => __('Custom Copyright Text', 'flavor'),
+        'section' => 'flavor_footer_settings',
+        'type' => 'text',
+        'description' => __('Leave empty for default: © [Year] [Site Name]. All rights reserved.', 'flavor'),
+    ]);
+
+    // Show License Section
+    $wp_customize->add_setting('flavor_show_license', [
+        'default' => true,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ]);
+    $wp_customize->add_control('flavor_show_license', [
+        'label' => __('Show ASIC/AFCA License Section', 'flavor'),
+        'section' => 'flavor_footer_settings',
+        'type' => 'checkbox',
+    ]);
+
+    // ========================================
+    // COMPANY INFO SECTION
+    // ========================================
     $wp_customize->add_section('flavor_company_info', [
         'title' => __('Company Information', 'flavor'),
         'priority' => 30,
@@ -242,7 +350,9 @@ function flavor_customize_register($wp_customize): void
         'type' => 'text',
     ]);
 
-    // Compliance Section
+    // ========================================
+    // COMPLIANCE SECTION
+    // ========================================
     $wp_customize->add_section('flavor_compliance', [
         'title' => __('Compliance & Licensing', 'flavor'),
         'priority' => 35,
@@ -272,7 +382,9 @@ function flavor_customize_register($wp_customize): void
         'description' => __('Your AFCA membership number', 'flavor'),
     ]);
 
-    // Social Media Section
+    // ========================================
+    // SOCIAL MEDIA SECTION
+    // ========================================
     $wp_customize->add_section('flavor_social', [
         'title' => __('Social Media', 'flavor'),
         'priority' => 40,

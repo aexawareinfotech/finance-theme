@@ -79,15 +79,29 @@ if (!defined('ABSPATH')) {
                     ?>
                 </nav>
 
-                <!-- Header CTA -->
-                <div class="header-cta">
-                    <a href="<?php echo esc_url(home_url('/apply')); ?>" class="btn btn-primary">
-                        <?php esc_html_e('Apply Now', 'flavor'); ?>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </a>
+                <!-- Header Actions (Search + CTA) -->
+                <div class="header-actions">
+                    <?php if (get_theme_mod('flavor_show_search', true)): ?>
+                        <button class="search-toggle" id="search-toggle"
+                            aria-label="<?php esc_attr_e('Open Search', 'flavor'); ?>">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8" />
+                                <path d="m21 21-4.35-4.35" />
+                            </svg>
+                        </button>
+                    <?php endif; ?>
+
+                    <?php if (get_theme_mod('flavor_show_cta', true)): ?>
+                        <a href="<?php echo esc_url(home_url(get_theme_mod('flavor_cta_url', '/apply'))); ?>"
+                            class="btn btn-primary header-cta-btn">
+                            <?php echo esc_html(get_theme_mod('flavor_cta_text', 'Apply Now')); ?>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                    <?php endif; ?>
                 </div>
 
                 <!-- Mobile Menu Toggle -->
@@ -100,6 +114,35 @@ if (!defined('ABSPATH')) {
                 </button>
             </div>
         </div>
+
+        <!-- Search Overlay -->
+        <?php if (get_theme_mod('flavor_show_search', true)): ?>
+            <div class="search-overlay" id="search-overlay" aria-hidden="true">
+                <div class="search-overlay-inner">
+                    <button class="search-close" id="search-close"
+                        aria-label="<?php esc_attr_e('Close Search', 'flavor'); ?>">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M18 6L6 18M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <form role="search" method="get" class="search-form" action="<?php echo esc_url(home_url('/')); ?>">
+                        <label class="screen-reader-text"
+                            for="search-field"><?php esc_html_e('Search for:', 'flavor'); ?></label>
+                        <input type="search" id="search-field" class="search-input"
+                            placeholder="<?php esc_attr_e('Search...', 'flavor'); ?>"
+                            value="<?php echo get_search_query(); ?>" name="s" autofocus>
+                        <button type="submit" class="search-submit">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8" />
+                                <path d="m21 21-4.35-4.35" />
+                            </svg>
+                            <span class="screen-reader-text"><?php esc_html_e('Search', 'flavor'); ?></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        <?php endif; ?>
 
         <!-- Mobile Menu -->
         <nav class="mobile-menu" id="mobile-menu" aria-label="<?php esc_attr_e('Mobile Navigation', 'flavor'); ?>">

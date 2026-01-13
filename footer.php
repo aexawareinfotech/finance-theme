@@ -30,9 +30,13 @@ $instagram = get_theme_mod('flavor_instagram', '');
                 <!-- Brand Column -->
                 <div class="footer-brand">
                     <a href="<?php echo esc_url(home_url('/')); ?>" class="footer-logo">
-                        <?php if (has_custom_logo()): ?>
-                            <?php the_custom_logo(); ?>
-                        <?php else: ?>
+                        <?php
+                        $footer_logo_id = get_theme_mod('flavor_footer_logo', '');
+                        if ($footer_logo_id) {
+                            echo wp_get_attachment_image($footer_logo_id, 'medium', false, ['class' => 'footer-logo-img']);
+                        } elseif (has_custom_logo()) {
+                            the_custom_logo();
+                        } else { ?>
                             <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect width="40" height="40" rx="10" fill="#39d25d" />
                                 <path d="M12 20c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8" stroke="#fff" stroke-width="3"
@@ -42,10 +46,10 @@ $instagram = get_theme_mod('flavor_instagram', '');
                             <span>
                                 <?php bloginfo('name'); ?>
                             </span>
-                        <?php endif; ?>
+                        <?php } ?>
                     </a>
                     <p>
-                        <?php esc_html_e('Get the funding you need, when you need it. Fair Go Finance provides fast, flexible loans for all Australians.', 'flavor'); ?>
+                        <?php echo esc_html(get_theme_mod('flavor_footer_tagline', 'Get the funding you need, when you need it. Fair Go Finance provides fast, flexible loans for all Australians.')); ?>
                     </p>
 
                     <!-- Social Links -->
@@ -195,6 +199,7 @@ $instagram = get_theme_mod('flavor_instagram', '');
     </div>
 
     <!-- License/Compliance Section -->
+    <?php if (get_theme_mod('flavor_show_license', true)): ?>
     <div class="footer-license">
         <div class="container">
             <h3 class="license-title">
@@ -214,17 +219,25 @@ $instagram = get_theme_mod('flavor_instagram', '');
             </div>
         </div>
     </div>
+    <?php endif; ?>
 
     <!-- Footer Bottom -->
     <div class="footer-bottom">
         <div class="container">
             <div class="footer-bottom-inner">
                 <p class="copyright">
-                    <?php printf(
-                        esc_html__('© %1$s %2$s. All rights reserved.', 'flavor'),
-                        date('Y'),
-                        get_bloginfo('name')
-                    ); ?>
+                    <?php 
+                    $custom_copyright = get_theme_mod('flavor_copyright', '');
+                    if ($custom_copyright) {
+                        echo esc_html($custom_copyright);
+                    } else {
+                        printf(
+                            esc_html__('© %1$s %2$s. All rights reserved.', 'flavor'),
+                            date('Y'),
+                            get_bloginfo('name')
+                        );
+                    }
+                    ?>
                 </p>
                 <nav class="legal-links" aria-label="<?php esc_attr_e('Legal Links', 'flavor'); ?>">
                     <?php
