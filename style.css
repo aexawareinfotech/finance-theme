@@ -65,6 +65,10 @@ Finance Theme by Aexaware Infotech - Professional WordPress theme for loan and f
     --warning: #ffc400;
     --info: #1a4e50;
 
+    /* Extended Palette */
+    --moccasin: #ffe3b7;
+    --honeydew-light: rgba(235, 250, 239, 0.5);
+
     /* Typography */
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-heading: 'Outfit', 'Inter', sans-serif;
@@ -604,7 +608,7 @@ p:last-child {
     align-items: center;
     padding-top: 90px;
     padding-bottom: var(--space-12);
-    background: linear-gradient(135deg, rgba(0, 55, 75, 0.85) 0%, rgba(0, 75, 100, 0.75) 100%),
+    background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-400) 100%),
         url('assets/images/hero-bg.webp');
     background-size: cover;
     background-position: center;
@@ -1020,7 +1024,7 @@ p:last-child {
    PROCESS SECTION
    ============================================ */
 .process-section {
-    background: #e8f5f0;
+    background: var(--accent-300);
     position: relative;
     overflow: hidden;
 }
@@ -1189,23 +1193,23 @@ p:last-child {
 }
 
 .process-icon-1 {
-    background: #e3f2fd;
-    color: #1565c0;
+    background: var(--accent-400);
+    color: var(--accent-700);
 }
 
 .process-icon-2 {
-    background: #e8f5e9;
-    color: #2e7d32;
+    background: var(--accent-300);
+    color: var(--primary-700);
 }
 
 .process-icon-3 {
-    background: #fff3e0;
+    background: var(--moccasin);
     color: #ef6c00;
 }
 
 .process-icon-4 {
-    background: #fce4ec;
-    color: #c2185b;
+    background: var(--accent-400);
+    color: var(--accent-600);
 }
 
 .process-step h3 {
@@ -1337,7 +1341,7 @@ p:last-child {
 }
 
 .loan-table-header-medium {
-    background: linear-gradient(135deg, #0a2540 0%, #1a365d 100%);
+    background: linear-gradient(135deg, var(--primary-900) 0%, var(--primary-700) 100%);
 }
 
 .loan-table-body {
@@ -1403,18 +1407,18 @@ p:last-child {
 }
 
 .weekly-repayment-small {
-    background: linear-gradient(135deg, #f9a825 0%, #f57c00 100%);
+    background: linear-gradient(135deg, var(--warning) 0%, #f57c00 100%);
 }
 
 .weekly-repayment-medium {
-    background: linear-gradient(135deg, #1a365d 0%, #0a2540 100%);
+    background: linear-gradient(135deg, var(--primary-700) 0%, var(--primary-900) 100%);
 }
 
 /* ============================================
    TRUSTED BY AUSTRALIANS SECTION
    ============================================ */
 .australia-section {
-    background: #faf7f2;
+    background: var(--gray-100);
 }
 
 .australia-grid {
