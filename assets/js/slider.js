@@ -64,14 +64,18 @@ function initLoanSlider() {
         }
     }
 
-    // Update dots
-    function updateDots() {
-        if (!dotsContainer) return;
+    // Update progress bar
+    function updateProgressBar() {
+        const progressBar = document.getElementById('slider-progress');
+        if (!progressBar) return;
 
-        const dots = dotsContainer.querySelectorAll('.slider-dot');
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === currentIndex);
-        });
+        const maxIndex = getMaxIndex();
+        const progress = maxIndex === 0 ? 100 : (currentIndex / maxIndex) * 100;
+
+        // Ensure minimum visibility of bar
+        const finalProgress = Math.max(15, Math.min(100, progress + 15));
+
+        progressBar.style.width = `${finalProgress}%`;
     }
 
     // Go to specific slide
@@ -92,7 +96,7 @@ function initLoanSlider() {
         prevTranslate = translateX;
 
         updateButtonStates();
-        updateDots();
+        updateProgressBar();
     }
 
     // Update button states
@@ -198,12 +202,12 @@ function initLoanSlider() {
         resizeTimer = setTimeout(function () {
             const maxIndex = getMaxIndex();
             if (currentIndex > maxIndex) currentIndex = maxIndex;
-            createDots();
+            updateProgressBar();
             updateSliderPosition(false);
         }, 100);
     });
 
     // Initialize
-    createDots();
+    updateProgressBar();
     updateButtonStates();
 }
