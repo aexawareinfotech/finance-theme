@@ -194,40 +194,23 @@ $instagram = get_theme_mod('flavor_instagram', '');
         </div>
     </div>
 
-    <!-- Compliance Bar -->
-    <div class="footer-compliance">
+    <!-- License/Compliance Section -->
+    <div class="footer-license">
         <div class="container">
-            <div class="compliance-inner">
-                <div class="compliance-badge">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="20" cy="20" r="18" stroke="#39d25d" stroke-width="2" />
-                        <path d="M12 20l5 5 11-11" stroke="#39d25d" stroke-width="2.5" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                    <span>
-                        <?php esc_html_e('Licensed by ASIC', 'flavor'); ?>
-                        <?php if ($asic_number): ?>
-                            <br><small>
-                                <?php printf(esc_html__('ACL: %s', 'flavor'), esc_html($asic_number)); ?>
-                            </small>
-                        <?php endif; ?>
-                    </span>
-                </div>
-                <div class="compliance-badge">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="20" cy="20" r="18" stroke="#39d25d" stroke-width="2" />
-                        <path d="M20 12v8l5 3" stroke="#39d25d" stroke-width="2.5" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                    <span>
-                        <?php esc_html_e('Member of AFCA', 'flavor'); ?>
-                        <?php if ($afca_number): ?>
-                            <br><small>
-                                <?php printf(esc_html__('Member: %s', 'flavor'), esc_html($afca_number)); ?>
-                            </small>
-                        <?php endif; ?>
-                    </span>
-                </div>
+            <h3 class="license-title">
+                <?php esc_html_e('Licensed by ASIC', 'flavor'); ?> · <?php esc_html_e('Member of AFCA', 'flavor'); ?>
+            </h3>
+            <div class="license-logos">
+                <a href="https://asic.gov.au" target="_blank" rel="noopener noreferrer" class="license-logo">
+                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/asic-logo.png'); ?>"
+                        alt="<?php esc_attr_e('ASIC - Australian Securities & Investments Commission', 'flavor'); ?>"
+                        loading="lazy">
+                </a>
+                <a href="https://afca.org.au" target="_blank" rel="noopener noreferrer" class="license-logo">
+                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/afca-logo.png'); ?>"
+                        alt="<?php esc_attr_e('AFCA - Australian Financial Complaints Authority', 'flavor'); ?>"
+                        loading="lazy">
+                </a>
             </div>
         </div>
     </div>

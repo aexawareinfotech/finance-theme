@@ -202,70 +202,243 @@ $latest_posts = flavor_get_latest_posts(3);
 
 <!-- Process Section -->
 <section class="section process-section" id="process">
+    <!-- Decorative Swirl -->
+    <div class="process-swirl">
+        <svg viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 0C100 0 20 80 20 160C20 240 100 200 100 280C100 360 180 400 180 400"
+                stroke="var(--primary-600)" stroke-width="12" stroke-linecap="round" fill="none" />
+        </svg>
+    </div>
+
     <div class="container">
-        <div class="section-header">
-            <h2>
-                <?php esc_html_e('Our Process', 'flavor'); ?>
-            </h2>
-            <p>
-                <?php esc_html_e('How Fair Go Finance works - quick, easy, and transparent.', 'flavor'); ?>
-            </p>
+        <div class="process-hero-grid">
+            <!-- Left: Image -->
+            <div class="process-image-wrapper">
+                <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/process-image.jpg'); ?>"
+                    alt="<?php esc_attr_e('How Fair Go Finance works', 'flavor'); ?>" loading="lazy">
+            </div>
+
+            <!-- Right: Content -->
+            <div class="process-content">
+                <span class="process-label">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                    </svg>
+                    <?php esc_html_e('Our Process', 'flavor'); ?>
+                </span>
+                <h2 class="process-title">
+                    <?php esc_html_e('How Fair Go Finance works', 'flavor'); ?>
+                </h2>
+                <p class="process-description">
+                    <?php esc_html_e('Our personal loan rates are customised to you and your circumstances. And we\'ve got loans for just about anything you need. Learn how much you could borrow and what the repayments could be.', 'flavor'); ?>
+                </p>
+                <div class="process-buttons">
+                    <a href="#process-steps" class="btn btn-outline">
+                        <?php esc_html_e('How it works', 'flavor'); ?>
+                    </a>
+                    <a href="<?php echo esc_url(home_url('/calculator')); ?>" class="btn btn-outline">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="4" y="2" width="16" height="20" rx="2" />
+                            <line x1="8" y1="6" x2="16" y2="6" />
+                            <line x1="8" y1="10" x2="16" y2="10" />
+                            <line x1="8" y1="14" x2="12" y2="14" />
+                            <line x1="8" y1="18" x2="12" y2="18" />
+                        </svg>
+                        <?php esc_html_e('Calculate Repayments', 'flavor'); ?>
+                    </a>
+                </div>
+            </div>
         </div>
 
-        <div class="process-grid">
+        <!-- Process Steps Grid -->
+        <div class="process-grid" id="process-steps">
             <!-- Step 1 -->
             <div class="process-step">
-                <div class="process-number">1</div>
-                <h3>
-                    <?php esc_html_e('Apply Now', 'flavor'); ?>
-                </h3>
-                <p>
-                    <?php esc_html_e('Our online application takes just six minutes to complete.', 'flavor'); ?>
-                </p>
+                <div class="process-icon process-icon-1">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                        <path d="M9 12l2 2 4-4" />
+                    </svg>
+                </div>
+                <h3><?php esc_html_e('Apply now', 'flavor'); ?></h3>
+                <p><?php esc_html_e('Our online application takes just six minutes to complete.', 'flavor'); ?></p>
             </div>
 
             <!-- Step 2 -->
             <div class="process-step">
-                <div class="process-number">2</div>
-                <h3>
-                    <?php esc_html_e('Accept Our Offer', 'flavor'); ?>
-                </h3>
-                <p>
-                    <?php esc_html_e('We send you the loan terms. You accept with a secure SMS code. It couldn\'t be easier.', 'flavor'); ?>
+                <div class="process-icon process-icon-2">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                        <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
+                    </svg>
+                </div>
+                <h3><?php esc_html_e('Accept our offer', 'flavor'); ?></h3>
+                <p><?php esc_html_e('We send you the loan terms. You accept with a secure SMS code. It couldn\'t be easier.', 'flavor'); ?>
                 </p>
             </div>
 
             <!-- Step 3 -->
             <div class="process-step">
-                <div class="process-number">3</div>
-                <h3>
-                    <?php esc_html_e('Get Your Funds', 'flavor'); ?>
-                </h3>
-                <p>
-                    <?php esc_html_e('Our real-time funding means your funds are in your account on the same day.', 'flavor'); ?>
+                <div class="process-icon process-icon-3">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 6v6l4 2" />
+                    </svg>
+                </div>
+                <h3><?php esc_html_e('Get your funds', 'flavor'); ?></h3>
+                <p><?php esc_html_e('Our real-time funding means your funds are in your account on the same day.', 'flavor'); ?>
                 </p>
             </div>
 
             <!-- Step 4 -->
             <div class="process-step">
-                <div class="process-number">4</div>
-                <h3>
-                    <?php esc_html_e('Stay Supported', 'flavor'); ?>
-                </h3>
-                <p>
-                    <?php esc_html_e('We stick around to help with repayments, questions and credit score boosts.', 'flavor'); ?>
+                <div class="process-icon process-icon-4">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+                    </svg>
+                </div>
+                <h3><?php esc_html_e('Stay supported', 'flavor'); ?></h3>
+                <p><?php esc_html_e('We stick around to help with repayments, questions and credit score boosts.', 'flavor'); ?>
                 </p>
             </div>
         </div>
+</section>
 
-        <div class="text-center" style="margin-top: var(--space-10);">
-            <a href="<?php echo esc_url(home_url('/apply')); ?>" class="btn btn-primary btn-lg">
-                <?php esc_html_e('Start Your Application', 'flavor'); ?>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-            </a>
+<!-- Loan Comparison Section -->
+<section class="section comparison-section" id="loan-examples">
+    <div class="container">
+        <h2 class="comparison-title">
+            <?php esc_html_e('Fair Go Loans Examples', 'flavor'); ?><sup>2</sup>
+        </h2>
+
+        <div class="comparison-grid">
+            <!-- Left: Phone Mockup + Benefits -->
+            <div class="comparison-phone">
+                <div class="phone-wrapper">
+                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/phone-mockup.png'); ?>"
+                        alt="<?php esc_attr_e('Fair Go Finance App', 'flavor'); ?>" loading="lazy">
+                </div>
+                <ul class="comparison-benefits">
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M9 12l2 2 4-4" />
+                        </svg>
+                        <?php esc_html_e('Borrow between $500 to $5,000', 'flavor'); ?>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M9 12l2 2 4-4" />
+                        </svg>
+                        <?php esc_html_e('Flexible payment terms', 'flavor'); ?>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M9 12l2 2 4-4" />
+                        </svg>
+                        <?php esc_html_e('No hidden fees payout early to reduce total repayment amount', 'flavor'); ?>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M9 12l2 2 4-4" />
+                        </svg>
+                        <?php esc_html_e('Money in 60 minutes* of contract acceptance', 'flavor'); ?>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Right: Loan Tables -->
+            <div class="comparison-tables">
+                <!-- Small Loan -->
+                <div class="loan-table">
+                    <div class="loan-table-header loan-table-header-small">
+                        <h4><?php esc_html_e('Small Loan', 'flavor'); ?></h4>
+                        <p><?php esc_html_e('Loan amount: $500 – $2,000 | Loan term: 16 days – 12 months | Fees: 20% establishment + 4% monthly (flat) | Other fees and charges may apply.', 'flavor'); ?>
+                        </p>
+                    </div>
+                    <div class="loan-table-body">
+                        <h5><?php esc_html_e('Example', 'flavor'); ?></h5>
+                        <table>
+                            <tr>
+                                <td><?php esc_html_e('Repayments', 'flavor'); ?></td>
+                                <td><strong><?php esc_html_e('Weekly', 'flavor'); ?></strong></td>
+                            </tr>
+                            <tr>
+                                <td><?php esc_html_e('Loan Amount', 'flavor'); ?></td>
+                                <td><strong>$1,000</strong></td>
+                            </tr>
+                            <tr>
+                                <td><?php esc_html_e('Term', 'flavor'); ?></td>
+                                <td><strong><?php esc_html_e('28 weeks', 'flavor'); ?></strong></td>
+                            </tr>
+                            <tr>
+                                <td><?php esc_html_e('Establishment fee', 'flavor'); ?></td>
+                                <td><strong>$200</strong></td>
+                            </tr>
+                            <tr>
+                                <td><?php esc_html_e('Total monthly fee (over 28 weeks)', 'flavor'); ?></td>
+                                <td><strong>$280</strong></td>
+                            </tr>
+                            <tr class="total-row">
+                                <td><?php esc_html_e('Total repayable', 'flavor'); ?></td>
+                                <td><strong>$1,480</strong></td>
+                            </tr>
+                        </table>
+                        <div class="weekly-repayment weekly-repayment-small">
+                            <span><?php esc_html_e('Weekly repayment', 'flavor'); ?></span>
+                            <strong>$70.00</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medium Loan -->
+                <div class="loan-table">
+                    <div class="loan-table-header loan-table-header-medium">
+                        <h4><?php esc_html_e('Medium Loan', 'flavor'); ?></h4>
+                        <p><?php esc_html_e('Loan amount: $2,001 – $5,000 | Loan term: 9 weeks – 24 months | Fees: up to $400 establishment fee | Interest: up to 47.80% p.a| Other fees and charges may apply.', 'flavor'); ?>
+                        </p>
+                    </div>
+                    <div class="loan-table-body">
+                        <h5><?php esc_html_e('Example', 'flavor'); ?></h5>
+                        <table>
+                            <tr>
+                                <td><?php esc_html_e('Repayments', 'flavor'); ?></td>
+                                <td><strong><?php esc_html_e('Weekly', 'flavor'); ?></strong></td>
+                            </tr>
+                            <tr>
+                                <td><?php esc_html_e('Loan Amount', 'flavor'); ?></td>
+                                <td><strong>$2,500</strong></td>
+                            </tr>
+                            <tr>
+                                <td><?php esc_html_e('Term', 'flavor'); ?></td>
+                                <td><strong><?php esc_html_e('28 Weeks', 'flavor'); ?></strong></td>
+                            </tr>
+                            <tr>
+                                <td><?php esc_html_e('Establishment fee', 'flavor'); ?></td>
+                                <td><strong>$400</strong></td>
+                            </tr>
+                            <tr>
+                                <td><?php esc_html_e('Total interest (over 28 weeks)', 'flavor'); ?></td>
+                                <td><strong>$394.74</strong></td>
+                            </tr>
+                            <tr class="total-row">
+                                <td><?php esc_html_e('Total repayable', 'flavor'); ?></td>
+                                <td><strong>$3,289</strong></td>
+                            </tr>
+                        </table>
+                        <div class="weekly-repayment weekly-repayment-medium">
+                            <span><?php esc_html_e('Weekly repayment', 'flavor'); ?></span>
+                            <strong>$117.67</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>

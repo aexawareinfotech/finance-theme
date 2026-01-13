@@ -115,3 +115,40 @@ function initMobileMenu() {
 - Focus visible styles with `:focus-visible`
 - `aria-expanded`, `aria-controls` for interactive elements
 - `prefers-reduced-motion` media query support
+
+### Import/Dependency Management
+- PHP: Use `require_once` for theme core files, `require` for conditional includes
+- JavaScript: Import only what's needed, avoid wildcard imports
+- Order: WordPress deps first, then theme assets, then third-party libraries
+- Use `FINANCE_THEME_DIR` and `FINANCE_THEME_URI` constants for paths
+
+### Naming Conventions
+- Classes: PascalCase (e.g., `Finance_Calculator`, `Custom_Post_Type`)
+- Functions: snake_case (e.g., `flavor_get_loan_types()`, `finance_render_stars()`)
+- Variables: snake_case (e.g., `$loan_amount`, `$interest_rate`)
+- Constants: UPPER_SNAKE_CASE (e.g., `FINANCE_THEME_VERSION`)
+- Hooks: `flavor_{action_name}` or `finance_{filter_name}`
+- Post types: snake_case singular (e.g., `loan_type`, `testimonial`)
+- Meta keys: Prefix with `_` (e.g., `_loan_icon`, `_testimonial_rating`)
+- CSS classes: BEM-style with theme prefix (e.g., `.flavor-btn--primary`)
+
+### Code Formatting
+- PHP: 4 spaces for indentation,PSR-12 style brackets
+- JavaScript: 4 spaces, max 100 characters per line
+- CSS: Alphabetical property order within rule sets
+- Use trailing commas in multi-line arrays and objects
+- Blank line between related code blocks, no extra blank lines
+
+### Type Safety
+- PHP: Strict types declared at file top, return types on all functions
+- Use union types sparingly, prefer specific types where possible
+- JavaScript: JSDoc for function params and returns, no `any` type
+- Type numeric inputs explicitly: `(int)` or `(float)` casting
+- Validate array structure before accessing nested values
+
+### Security Practices
+- Sanitize ALL user input: `sanitize_text_field()`, `esc_html()`, `esc_attr()`
+- Escape output: `esc_html__()`, `esc_url()`, `esc_attr()`
+- Use nonces for AJAX and form submissions
+- Check user capabilities: `current_user_can()` before privileged actions
+- Escape database queries: `$wpdb->prepare()` with placeholder syntax
