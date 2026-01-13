@@ -1,0 +1,23 @@
+{
+    "name": "finance-theme",
+    "version": "1.0.0",
+    "description": "Finance Theme by Aexaware Infotech",
+    "private": true,
+    "scripts": {
+        "release": "semantic-release"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/aexawareinfotech/finance-theme.git"
+    },
+    "author": "Aexaware Infotech",
+    "license": "GPL-2.0-or-later",
+    "devDependencies": {
+        "@semantic-release/commit-analyzer": "^11.1.0",
+        "@semantic-release/exec": "^6.0.3",
+        "@semantic-release/git": "^10.0.1",
+        "@semantic-release/github": "^9.2.6",
+        "@semantic-release/release-notes-generator": "^12.1.0",
+        "semantic-release": "^22.0.12"
+    }
+}
