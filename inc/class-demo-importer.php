@@ -14,6 +14,8 @@ if (!defined('ABSPATH')) {
 class Finance_Theme_Demo_Importer
 {
     private $loan_types = [];
+    private $testimonials = [];
+    private $faqs = [];
 
     public function __construct()
     {
@@ -78,6 +80,58 @@ class Finance_Theme_Demo_Importer
                 'image' => 'large-loans.jpg',
             ],
         ];
+
+        // Define testimonials data
+        $this->testimonials = [
+            [
+                'title' => 'Great Service!',
+                'content' => 'Fair Go Finance helped me when I needed it most. The process was quick and easy.',
+                'loan_type' => 'Emergency Loans',
+                'rating' => 5
+            ],
+            [
+                'title' => 'Highly Recommended',
+                'content' => 'I was able to pay for my wedding expenses without stress. Thank you!',
+                'loan_type' => 'Wedding Loans',
+                'rating' => 5
+            ],
+            [
+                'title' => 'Fast Approval',
+                'content' => 'Exceptional service and fast approval time. Very happy with the outcome.',
+                'loan_type' => 'Car Repairs',
+                'rating' => 4
+            ],
+            [
+                'title' => 'Friendly Team',
+                'content' => 'The team was very helpful and explained everything clearly. Would recommend.',
+                'loan_type' => 'Education Loans',
+                'rating' => 5
+            ],
+        ];
+
+        // Define FAQs data
+        $this->faqs = [
+            [
+                'title' => 'How long does the application take?',
+                'content' => 'Our online application takes less than 5 minutes to complete.'
+            ],
+            [
+                'title' => 'When will I get the money?',
+                'content' => 'Most customers receive their funds within 24 hours of approval.'
+            ],
+            [
+                'title' => 'What documents do I need?',
+                'content' => 'You will need 100 points of ID and your recent bank statements.'
+            ],
+            [
+                'title' => 'Can I pay out my loan early?',
+                'content' => 'Yes, you can pay out your loan early at any time without penalty.'
+            ],
+            [
+                'title' => 'Do you perform credit checks?',
+                'content' => 'Yes, we perform credit checks as part of our responsible lending obligations.'
+            ],
+        ];
     }
 
     /**
@@ -101,22 +155,23 @@ class Finance_Theme_Demo_Importer
     {
         ?>
         <div class="wrap">
-            <h1>
-                <?php echo esc_html(get_admin_page_title()); ?>
-            </h1>
+            <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
 
             <div class="card" style="max-width: 600px; padding: 20px; margin-top: 20px;">
-                <h2>
-                    <?php esc_html_e('Import Demo Content', 'finance-theme'); ?>
-                </h2>
-                <p>
-                    <?php esc_html_e('Click the button below to import the demo loan types. This will create editable content in the "Loan Types" section and import images to your Media Library.', 'finance-theme'); ?>
+                <h2><?php esc_html_e('Import Demo Content', 'flavor'); ?></h2>
+                <p><?php esc_html_e('Click the button below to import the demo content. This will create editable posts for:', 'flavor'); ?>
                 </p>
+                <ul style="list-style: disc; margin-left: 20px; margin-bottom: 20px;">
+                    <li><?php esc_html_e('Loan Types (with images)', 'flavor'); ?></li>
+                    <li><?php esc_html_e('Testimonials', 'flavor'); ?></li>
+                    <li><?php esc_html_e('FAQs', 'flavor'); ?></li>
+                </ul>
+                <p><?php esc_html_e('NOTE: Please ensure you run this only once to avoid duplicate content.', 'flavor'); ?></p>
 
                 <form method="post" action="">
                     <?php wp_nonce_field('finance_theme_import_demo', 'finance_theme_import_nonce'); ?>
                     <input type="hidden" name="finance_theme_action" value="import_demo">
-                    <?php submit_button(__('Import Demo Data', 'finance-theme'), 'primary'); ?>
+                    <?php submit_button(__('Import All Demo Data', 'flavor'), 'primary'); ?>
                 </form>
             </div>
         </div>
@@ -142,30 +197,33 @@ class Finance_Theme_Demo_Importer
 
         $count = 0;
 
+        // Import Loan Types
         foreach ($this->loan_types as $loan) {
-            // Check if post already exists
-            $exists = get_posts([
-                'post_type' => 'loan_type',
-                'title' => $loan['title'],
-                'posts_per_page' => 1,
-                'post_status' => 'any'
-            ]);
-
-            if (!empty($exists)) {
-                continue;
+            if ($this->create_post_if_not_exists($loan['title'], $loan['description'], 'loan_type')) {
+                // We need the ID to attach image.
+                $post = get_page_by_title($loan['title'], OBJECT, 'loan_type');
+                if ($post) {
+                    $this->sideload_image($post->ID, $loan['image']);
+                    $count++;
+                }
             }
+        }
 
-            // Create post
-            $post_id = wp_insert_post([
-                'post_title' => $loan['title'],
-                'post_content' => $loan['description'], // Using description as content
-                'post_excerpt' => $loan['description'],
-                'post_type' => 'loan_type',
-                'post_status' => 'publish',
-            ]);
+        // Import Testimonials
+        foreach ($this->testimonials as $testimonial) {
+            if ($this->create_post_if_not_exists($testimonial['title'], $testimonial['content'], 'testimonial')) {
+                $post = get_page_by_title($testimonial['title'], OBJECT, 'testimonial');
+                if ($post) {
+                    update_post_meta($post->ID, '_testimonial_rating', $testimonial['rating']);
+                    update_post_meta($post->ID, '_testimonial_loan_type', $testimonial['loan_type']);
+                    $count++;
+                }
+            }
+        }
 
-            if (!is_wp_error($post_id)) {
-                $this->sideload_image($post_id, $loan['image']);
+        // Import FAQs
+        foreach ($this->faqs as $faq) {
+            if ($this->create_post_if_not_exists($faq['title'], $faq['content'], 'faq')) {
                 $count++;
             }
         }
@@ -173,12 +231,38 @@ class Finance_Theme_Demo_Importer
         add_action('admin_notices', function () use ($count) {
             ?>
             <div class="notice notice-success is-dismissible">
-                <p>
-                    <?php echo sprintf(esc_html__('Successfully imported %d loan types!', 'finance-theme'), $count); ?>
+                <p><?php echo sprintf(esc_html__('Successfully processed import! %d items checked/created.', 'flavor'), $count); ?>
                 </p>
             </div>
             <?php
         });
+    }
+
+    /**
+     * Helper to create post if it doesn't exist
+     */
+    private function create_post_if_not_exists($title, $content, $type)
+    {
+        $exists = get_posts([
+            'post_type' => $type,
+            'title' => $title,
+            'posts_per_page' => 1,
+            'post_status' => 'any'
+        ]);
+
+        if (!empty($exists)) {
+            return false;
+        }
+
+        $post_id = wp_insert_post([
+            'post_title' => $title,
+            'post_content' => $content,
+            'post_excerpt' => ($type === 'loan_type') ? $content : '',
+            'post_type' => $type,
+            'post_status' => 'publish',
+        ]);
+
+        return !is_wp_error($post_id);
     }
 
     /**
@@ -191,11 +275,6 @@ class Finance_Theme_Demo_Importer
         if (!file_exists($image_path)) {
             return;
         }
-
-        // Check if image is already attached to this post
-        // (Simplification: we just create new attachment for each import run if needed, 
-        // effectively duplicating images if user runs import multiple times, 
-        // but we prevent duplicate POSTS so it should be fine).
 
         $upload_dir = wp_upload_dir();
         $image_data = file_get_contents($image_path);
