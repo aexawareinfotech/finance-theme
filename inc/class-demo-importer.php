@@ -27,57 +27,57 @@ class Finance_Theme_Demo_Importer
             [
                 'title' => 'Emergency Loans',
                 'description' => 'Get yourself unstuck and borrow up to $10,000 for emergencies.',
-                'image' => 'emergency-loan.jpg',
+                'image' => 'emergency-loan.webp',
             ],
             [
                 'title' => 'Wedding Loans',
                 'description' => 'Spread the costs of your big day with a loan up to $10,000.',
-                'image' => 'wedding.jpg',
+                'image' => 'wedding.webp',
             ],
             [
                 'title' => 'Education Loans',
                 'description' => 'This smarter personal loan can help with all things related to studying.',
-                'image' => 'education.jpg',
+                'image' => 'education.webp',
             ],
             [
                 'title' => 'Travel Loans',
                 'description' => 'Take a well-deserved break with up to $10,000 for your adventure.',
-                'image' => 'online.jpg',
+                'image' => 'online.webp',
             ],
             [
                 'title' => 'Bond Loans',
                 'description' => 'Our 21-day interest-free bond loans lend a hand on moving day.',
-                'image' => 'bond-loan.jpg',
+                'image' => 'bond-loan.webp',
             ],
             [
                 'title' => 'Car Repairs',
                 'description' => 'Get your car back on the road quickly with repair financing.',
-                'image' => 'car-repairs.jpg',
+                'image' => 'car-repairs.webp',
             ],
             [
                 'title' => 'Household Bills',
                 'description' => 'Cover unexpected household expenses when you need it most.',
-                'image' => 'online.jpg', // Reusing online.jpg
+                'image' => 'online.webp', // Reusing online.webp
             ],
             [
                 'title' => 'Vet Loans',
                 'description' => 'Take care of your furry friends with quick vet expense financing.',
-                'image' => 'vet-loans.jpg',
+                'image' => 'vet-loans.webp',
             ],
             [
                 'title' => 'Cosmetic Loans',
                 'description' => 'Finance your cosmetic procedures with flexible payment options.',
-                'image' => 'cosmetic-surgery.jpg',
+                'image' => 'cosmetic-surgery.webp',
             ],
             [
                 'title' => 'Medium Loans',
                 'description' => 'Borrow between $2,001 to $5,000 for medium-sized expenses.',
-                'image' => 'medium-loans.jpg',
+                'image' => 'medium-loans.webp',
             ],
             [
                 'title' => 'Large Loans',
                 'description' => 'Access up to $50,000 for major purchases and investments.',
-                'image' => 'large-loans.jpg',
+                'image' => 'large-loans.webp',
             ],
         ];
 
@@ -166,7 +166,8 @@ class Finance_Theme_Demo_Importer
                     <li><?php esc_html_e('Testimonials', 'finance-theme'); ?></li>
                     <li><?php esc_html_e('FAQs', 'finance-theme'); ?></li>
                 </ul>
-                <p><?php esc_html_e('NOTE: Please ensure you run this only once to avoid duplicate content.', 'finance-theme'); ?></p>
+                <p><?php esc_html_e('NOTE: Please ensure you run this only once to avoid duplicate content.', 'finance-theme'); ?>
+                </p>
 
                 <form method="post" action="">
                     <?php wp_nonce_field('finance_theme_import_demo', 'finance_theme_import_nonce'); ?>
@@ -276,8 +277,15 @@ class Finance_Theme_Demo_Importer
             return;
         }
 
+        // Initialize WP_Filesystem
+        global $wp_filesystem;
+        if (!function_exists('WP_Filesystem')) {
+            require_once ABSPATH . 'wp-admin/includes/file.php';
+        }
+        WP_Filesystem();
+
         $upload_dir = wp_upload_dir();
-        $image_data = file_get_contents($image_path);
+        $image_data = $wp_filesystem->get_contents($image_path);
 
         if ($image_data === false) {
             return;
@@ -286,8 +294,8 @@ class Finance_Theme_Demo_Importer
         $filename_base = basename($filename);
         $file = $upload_dir['path'] . '/' . $filename_base;
 
-        // Save file to uploads directory
-        file_put_contents($file, $image_data);
+        // Save file to uploads directory using WP Filesystem API
+        $wp_filesystem->put_contents($file, $image_data, FS_CHMOD_FILE);
 
         $wp_filetype = wp_check_filetype($filename, null);
 
@@ -300,7 +308,7 @@ class Finance_Theme_Demo_Importer
 
         $attach_id = wp_insert_attachment($attachment, $file, $post_id);
 
-        require_once(ABSPATH . 'wp-admin/includes/image.php');
+        require_once ABSPATH . 'wp-admin/includes/image.php';
 
         $attach_data = wp_generate_attachment_metadata($attach_id, $file);
         wp_update_attachment_metadata($attach_id, $attach_data);

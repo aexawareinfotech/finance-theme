@@ -108,57 +108,57 @@ $latest_posts = flavor_get_latest_posts(3);
                     [
                         'title' => 'Emergency Loans',
                         'description' => 'Get yourself unstuck and borrow up to $10,000 for emergencies.',
-                        'image' => get_template_directory_uri() . '/assets/images/loans/emergency-loan.jpg',
+                        'image' => get_template_directory_uri() . '/assets/images/loans/emergency-loan.webp',
                     ],
                     [
                         'title' => 'Wedding Loans',
                         'description' => 'Spread the costs of your big day with a loan up to $10,000.',
-                        'image' => get_template_directory_uri() . '/assets/images/loans/wedding.jpg',
+                        'image' => get_template_directory_uri() . '/assets/images/loans/wedding.webp',
                     ],
                     [
                         'title' => 'Education Loans',
                         'description' => 'This smarter personal loan can help with all things related to studying.',
-                        'image' => get_template_directory_uri() . '/assets/images/loans/education.jpg',
+                        'image' => get_template_directory_uri() . '/assets/images/loans/education.webp',
                     ],
                     [
                         'title' => 'Travel Loans',
                         'description' => 'Take a well-deserved break with up to $10,000 for your adventure.',
-                        'image' => get_template_directory_uri() . '/assets/images/loans/online.jpg',
+                        'image' => get_template_directory_uri() . '/assets/images/loans/online.webp',
                     ],
                     [
                         'title' => 'Bond Loans',
                         'description' => 'Our 21-day interest-free bond loans lend a hand on moving day.',
-                        'image' => get_template_directory_uri() . '/assets/images/loans/bond-loan.jpg',
+                        'image' => get_template_directory_uri() . '/assets/images/loans/bond-loan.webp',
                     ],
                     [
                         'title' => 'Car Repairs',
                         'description' => 'Get your car back on the road quickly with repair financing.',
-                        'image' => get_template_directory_uri() . '/assets/images/loans/car-repairs.jpg',
+                        'image' => get_template_directory_uri() . '/assets/images/loans/car-repairs.webp',
                     ],
                     [
                         'title' => 'Household Bills',
                         'description' => 'Cover unexpected household expenses when you need it most.',
-                        'image' => get_template_directory_uri() . '/assets/images/loans/online.jpg',
+                        'image' => get_template_directory_uri() . '/assets/images/loans/online.webp',
                     ],
                     [
                         'title' => 'Vet Loans',
                         'description' => 'Take care of your furry friends with quick vet expense financing.',
-                        'image' => get_template_directory_uri() . '/assets/images/loans/vet-loans.jpg',
+                        'image' => get_template_directory_uri() . '/assets/images/loans/vet-loans.webp',
                     ],
                     [
                         'title' => 'Cosmetic Loans',
                         'description' => 'Finance your cosmetic procedures with flexible payment options.',
-                        'image' => get_template_directory_uri() . '/assets/images/loans/cosmetic-surgery.jpg',
+                        'image' => get_template_directory_uri() . '/assets/images/loans/cosmetic-surgery.webp',
                     ],
                     [
                         'title' => 'Medium Loans',
                         'description' => 'Borrow between $2,001 to $5,000 for medium-sized expenses.',
-                        'image' => get_template_directory_uri() . '/assets/images/loans/medium-loans.jpg',
+                        'image' => get_template_directory_uri() . '/assets/images/loans/medium-loans.webp',
                     ],
                     [
                         'title' => 'Large Loans',
                         'description' => 'Access up to $50,000 for major purchases and investments.',
-                        'image' => get_template_directory_uri() . '/assets/images/loans/large-loans.jpg',
+                        'image' => get_template_directory_uri() . '/assets/images/loans/large-loans.webp',
                     ],
                 ];
 
@@ -214,7 +214,7 @@ $latest_posts = flavor_get_latest_posts(3);
         <div class="process-hero-grid">
             <!-- Left: Image -->
             <div class="process-image-wrapper">
-                <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/process-image.jpg'); ?>"
+                <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/process-image.webp'); ?>"
                     alt="<?php esc_attr_e('How Fair Go Finance works', 'finance-theme'); ?>" loading="lazy">
             </div>
 
@@ -262,7 +262,8 @@ $latest_posts = flavor_get_latest_posts(3);
                     </svg>
                 </div>
                 <h3><?php esc_html_e('Apply now', 'finance-theme'); ?></h3>
-                <p><?php esc_html_e('Our online application takes just six minutes to complete.', 'finance-theme'); ?></p>
+                <p><?php esc_html_e('Our online application takes just six minutes to complete.', 'finance-theme'); ?>
+                </p>
             </div>
 
             <!-- Step 2 -->
