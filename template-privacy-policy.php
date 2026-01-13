@@ -17,10 +17,10 @@ get_header();
     <div class="container" style="max-width: 900px;">
         <header class="page-header" style="margin-bottom: var(--space-8);">
             <h1>
-                <?php esc_html_e('Privacy Policy', 'flavor'); ?>
+                <?php esc_html_e('Privacy Policy', 'finance-theme'); ?>
             </h1>
             <p style="color: var(--primary-600);">
-                <?php printf(esc_html__('Last updated: %s', 'flavor'), date('F j, Y')); ?>
+                <?php printf(esc_html__('Last updated: %s', 'finance-theme'), date('F j, Y')); ?>
             </p>
         </header>
 
@@ -33,7 +33,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('1. Introduction', 'flavor'); ?>
+                        <?php esc_html_e('1. Introduction', 'finance-theme'); ?>
                     </h2>
                     <p>
                         <?php echo esc_html(get_bloginfo('name')); ?> ("we", "us", "our") is committed to protecting your
@@ -44,7 +44,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('2. Information We Collect', 'flavor'); ?>
+                        <?php esc_html_e('2. Information We Collect', 'finance-theme'); ?>
                     </h2>
                     <p>We may collect personal information that you voluntarily provide to us when you:</p>
                     <ul style="margin: var(--space-4) 0; padding-left: var(--space-6); list-style: disc;">
@@ -60,7 +60,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('3. How We Use Your Information', 'flavor'); ?>
+                        <?php esc_html_e('3. How We Use Your Information', 'finance-theme'); ?>
                     </h2>
                     <p>We use the information we collect to:</p>
                     <ul style="margin: var(--space-4) 0; padding-left: var(--space-6); list-style: disc;">
@@ -75,7 +75,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('4. Disclosure of Your Information', 'flavor'); ?>
+                        <?php esc_html_e('4. Disclosure of Your Information', 'finance-theme'); ?>
                     </h2>
                     <p>We may share your information with:</p>
                     <ul style="margin: var(--space-4) 0; padding-left: var(--space-6); list-style: disc;">
@@ -89,7 +89,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('5. Your Rights Under Australian Privacy Law', 'flavor'); ?>
+                        <?php esc_html_e('5. Your Rights Under Australian Privacy Law', 'finance-theme'); ?>
                     </h2>
                     <p>Under the Australian Privacy Act 1988, you have the right to:</p>
                     <ul style="margin: var(--space-4) 0; padding-left: var(--space-6); list-style: disc;">
@@ -102,7 +102,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('6. Credit Reporting', 'flavor'); ?>
+                        <?php esc_html_e('6. Credit Reporting', 'finance-theme'); ?>
                     </h2>
                     <p>As an Australian Credit Licensee, we may disclose your credit information to credit reporting bodies.
                         This information includes your credit liability information, repayment history, and any defaults or
@@ -111,7 +111,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('7. Data Security', 'flavor'); ?>
+                        <?php esc_html_e('7. Data Security', 'finance-theme'); ?>
                     </h2>
                     <p>We implement appropriate technical and organisational measures to protect your personal information
                         against unauthorised access, alteration, disclosure, or destruction.</p>
@@ -119,7 +119,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('8. Contact Us', 'flavor'); ?>
+                        <?php esc_html_e('8. Contact Us', 'finance-theme'); ?>
                     </h2>
                     <p>If you have questions about this Privacy Policy or wish to exercise your rights, please contact us
                         at:</p>
@@ -136,7 +136,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('9. Complaints', 'flavor'); ?>
+                        <?php esc_html_e('9. Complaints', 'finance-theme'); ?>
                     </h2>
                     <p>If you are not satisfied with our response, you may lodge a complaint with:</p>
                     <p>

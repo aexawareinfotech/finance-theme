@@ -42,7 +42,7 @@ get_header();
                 <?php the_content(); ?>
                 <?php
                 wp_link_pages([
-                    'before' => '<div class="page-links">' . esc_html__('Pages:', 'flavor'),
+                    'before' => '<div class="page-links">' . esc_html__('Pages:', 'finance-theme'),
                     'after' => '</div>',
                 ]);
                 ?>
@@ -53,7 +53,7 @@ get_header();
                 <?php if (has_category()): ?>
                     <div class="post-categories" style="margin-bottom: var(--space-4);">
                         <strong>
-                            <?php esc_html_e('Categories:', 'flavor'); ?>
+                            <?php esc_html_e('Categories:', 'finance-theme'); ?>
                         </strong>
                         <?php the_category(', '); ?>
                     </div>
@@ -62,7 +62,7 @@ get_header();
                 <?php if (has_tag()): ?>
                     <div class="post-tags">
                         <strong>
-                            <?php esc_html_e('Tags:', 'flavor'); ?>
+                            <?php esc_html_e('Tags:', 'finance-theme'); ?>
                         </strong>
                         <?php the_tags('', ', ', ''); ?>
                     </div>
@@ -96,7 +96,7 @@ get_header();
     <div class="container">
         <div class="section-header">
             <h2>
-                <?php esc_html_e('Related Posts', 'flavor'); ?>
+                <?php esc_html_e('Related Posts', 'finance-theme'); ?>
             </h2>
         </div>
         <div class="blog-grid">

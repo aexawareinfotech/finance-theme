@@ -25,7 +25,9 @@ define('FLAVOR_URI', FINANCE_THEME_URI);
 // Include GitHub Updater for automatic updates
 require_once FINANCE_THEME_DIR . '/inc/class-github-updater.php';
 require_once FINANCE_THEME_DIR . '/inc/class-demo-importer.php';
-require_once FINANCE_THEME_DIR . '/inc/custom-post-types.php';
+
+// Note: Custom Post Types have been moved to the companion plugin
+// "Finance Theme - Custom Post Types" for WordPress.org compliance
 
 /**
  * Theme Setup
@@ -33,7 +35,7 @@ require_once FINANCE_THEME_DIR . '/inc/custom-post-types.php';
 function flavor_setup(): void
 {
     // Make theme available for translation
-    load_theme_textdomain('flavor', FLAVOR_DIR . '/languages');
+    load_theme_textdomain('finance-theme', FLAVOR_DIR . '/languages');
 
     // Add default posts and comments RSS feed links to head
     add_theme_support('automatic-feed-links');
@@ -60,9 +62,9 @@ function flavor_setup(): void
 
     // Register navigation menus
     register_nav_menus([
-        'primary' => esc_html__('Primary Menu', 'flavor'),
-        'footer' => esc_html__('Footer Menu', 'flavor'),
-        'legal' => esc_html__('Legal Links', 'flavor'),
+        'primary' => esc_html__('Primary Menu', 'finance-theme'),
+        'footer' => esc_html__('Footer Menu', 'finance-theme'),
+        'legal' => esc_html__('Legal Links', 'finance-theme'),
     ]);
 
     // Switch default core markup to valid HTML5
@@ -97,6 +99,16 @@ function flavor_setup(): void
     add_theme_support('custom-background', [
         'default-color' => 'ffffff',
     ]);
+
+    // Add support for custom header (recommended)
+    add_theme_support('custom-header', [
+        'default-image' => '',
+        'width' => 1920,
+        'height' => 400,
+        'flex-height' => true,
+        'flex-width' => true,
+        'header-text' => false,
+    ]);
 }
 add_action('after_setup_theme', 'flavor_setup');
 
@@ -105,7 +117,11 @@ add_action('after_setup_theme', 'flavor_setup');
  */
 function flavor_scripts(): void
 {
-    // Google Fonts
+    // Preconnect to Google Fonts for performance
+    echo '<link rel="preconnect" href="https://fonts.googleapis.com">';
+    echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>';
+
+    // Google Fonts with font-display swap for better performance
     wp_enqueue_style(
         'flavor-fonts',
         'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap',
@@ -158,9 +174,9 @@ add_action('wp_enqueue_scripts', 'flavor_scripts');
 function flavor_widgets_init(): void
 {
     register_sidebar([
-        'name' => esc_html__('Footer Widget 1', 'flavor'),
+        'name' => esc_html__('Footer Widget 1', 'finance-theme'),
         'id' => 'footer-1',
-        'description' => esc_html__('Add widgets here for footer column 1.', 'flavor'),
+        'description' => esc_html__('Add widgets here for footer column 1.', 'finance-theme'),
         'before_widget' => '<div id="%1$s" class="widget %2$s">',
         'after_widget' => '</div>',
         'before_title' => '<h4 class="widget-title">',
@@ -168,9 +184,9 @@ function flavor_widgets_init(): void
     ]);
 
     register_sidebar([
-        'name' => esc_html__('Footer Widget 2', 'flavor'),
+        'name' => esc_html__('Footer Widget 2', 'finance-theme'),
         'id' => 'footer-2',
-        'description' => esc_html__('Add widgets here for footer column 2.', 'flavor'),
+        'description' => esc_html__('Add widgets here for footer column 2.', 'finance-theme'),
         'before_widget' => '<div id="%1$s" class="widget %2$s">',
         'after_widget' => '</div>',
         'before_title' => '<h4 class="widget-title">',
@@ -178,6 +194,41 @@ function flavor_widgets_init(): void
     ]);
 }
 add_action('widgets_init', 'flavor_widgets_init');
+
+/**
+ * Register block styles for Gutenberg
+ */
+function flavor_register_block_styles(): void
+{
+    // Button block style
+    register_block_style('core/button', [
+        'name' => 'finance-primary',
+        'label' => __('Primary Button', 'finance-theme'),
+    ]);
+
+    register_block_style('core/button', [
+        'name' => 'finance-secondary',
+        'label' => __('Secondary Button', 'finance-theme'),
+    ]);
+
+    // Group block style
+    register_block_style('core/group', [
+        'name' => 'finance-card',
+        'label' => __('Card Style', 'finance-theme'),
+    ]);
+}
+add_action('init', 'flavor_register_block_styles');
+
+/**
+ * Register block pattern category
+ */
+function flavor_register_block_patterns(): void
+{
+    register_block_pattern_category('finance-theme', [
+        'label' => __('Finance Theme', 'finance-theme'),
+    ]);
+}
+add_action('init', 'flavor_register_block_patterns');
 
 /**
  * Display admin notice if companion plugin is not active
@@ -188,7 +239,7 @@ function flavor_check_required_plugin(): void
         add_action('admin_notices', function () {
             ?>
             <div class="notice notice-warning is-dismissible">
-                <p><?php esc_html_e('Fair Go Finance theme recommends activating the "Fair Go Finance - Custom Post Types" plugin for full functionality.', 'flavor'); ?>
+                <p><?php esc_html_e('Fair Go Finance theme recommends activating the "Fair Go Finance - Custom Post Types" plugin for full functionality.', 'finance-theme'); ?>
                 </p>
             </div>
             <?php
@@ -207,7 +258,7 @@ function flavor_customize_register($wp_customize): void
     // HEADER SETTINGS SECTION
     // ========================================
     $wp_customize->add_section('flavor_header_settings', [
-        'title' => __('Header Settings', 'flavor'),
+        'title' => __('Header Settings', 'finance-theme'),
         'priority' => 25,
     ]);
 
@@ -217,7 +268,7 @@ function flavor_customize_register($wp_customize): void
         'sanitize_callback' => 'wp_validate_boolean',
     ]);
     $wp_customize->add_control('flavor_show_search', [
-        'label' => __('Show Search Icon', 'flavor'),
+        'label' => __('Show Search Icon', 'finance-theme'),
         'section' => 'flavor_header_settings',
         'type' => 'checkbox',
     ]);
@@ -228,7 +279,7 @@ function flavor_customize_register($wp_customize): void
         'sanitize_callback' => 'wp_validate_boolean',
     ]);
     $wp_customize->add_control('flavor_show_cta', [
-        'label' => __('Show CTA Button', 'flavor'),
+        'label' => __('Show CTA Button', 'finance-theme'),
         'section' => 'flavor_header_settings',
         'type' => 'checkbox',
     ]);
@@ -239,7 +290,7 @@ function flavor_customize_register($wp_customize): void
         'sanitize_callback' => 'sanitize_text_field',
     ]);
     $wp_customize->add_control('flavor_cta_text', [
-        'label' => __('CTA Button Text', 'flavor'),
+        'label' => __('CTA Button Text', 'finance-theme'),
         'section' => 'flavor_header_settings',
         'type' => 'text',
     ]);
@@ -250,7 +301,7 @@ function flavor_customize_register($wp_customize): void
         'sanitize_callback' => 'esc_url_raw',
     ]);
     $wp_customize->add_control('flavor_cta_url', [
-        'label' => __('CTA Button URL', 'flavor'),
+        'label' => __('CTA Button URL', 'finance-theme'),
         'section' => 'flavor_header_settings',
         'type' => 'url',
     ]);
@@ -259,7 +310,7 @@ function flavor_customize_register($wp_customize): void
     // FOOTER SETTINGS SECTION
     // ========================================
     $wp_customize->add_section('flavor_footer_settings', [
-        'title' => __('Footer Settings', 'flavor'),
+        'title' => __('Footer Settings', 'finance-theme'),
         'priority' => 45,
     ]);
 
@@ -269,10 +320,10 @@ function flavor_customize_register($wp_customize): void
         'sanitize_callback' => 'absint',
     ]);
     $wp_customize->add_control(new WP_Customize_Media_Control($wp_customize, 'flavor_footer_logo', [
-        'label' => __('Footer Logo', 'flavor'),
+        'label' => __('Footer Logo', 'finance-theme'),
         'section' => 'flavor_footer_settings',
         'mime_type' => 'image',
-        'description' => __('Leave empty to use site logo', 'flavor'),
+        'description' => __('Leave empty to use site logo', 'finance-theme'),
     ]));
 
     // Footer Tagline
@@ -281,7 +332,7 @@ function flavor_customize_register($wp_customize): void
         'sanitize_callback' => 'sanitize_textarea_field',
     ]);
     $wp_customize->add_control('flavor_footer_tagline', [
-        'label' => __('Footer Tagline', 'flavor'),
+        'label' => __('Footer Tagline', 'finance-theme'),
         'section' => 'flavor_footer_settings',
         'type' => 'textarea',
     ]);
@@ -292,10 +343,10 @@ function flavor_customize_register($wp_customize): void
         'sanitize_callback' => 'sanitize_text_field',
     ]);
     $wp_customize->add_control('flavor_copyright', [
-        'label' => __('Custom Copyright Text', 'flavor'),
+        'label' => __('Custom Copyright Text', 'finance-theme'),
         'section' => 'flavor_footer_settings',
         'type' => 'text',
-        'description' => __('Leave empty for default: © [Year] [Site Name]. All rights reserved.', 'flavor'),
+        'description' => __('Leave empty for default: © [Year] [Site Name]. All rights reserved.', 'finance-theme'),
     ]);
 
     // Show License Section
@@ -304,7 +355,7 @@ function flavor_customize_register($wp_customize): void
         'sanitize_callback' => 'wp_validate_boolean',
     ]);
     $wp_customize->add_control('flavor_show_license', [
-        'label' => __('Show ASIC/AFCA License Section', 'flavor'),
+        'label' => __('Show ASIC/AFCA License Section', 'finance-theme'),
         'section' => 'flavor_footer_settings',
         'type' => 'checkbox',
     ]);
@@ -313,7 +364,7 @@ function flavor_customize_register($wp_customize): void
     // COMPANY INFO SECTION
     // ========================================
     $wp_customize->add_section('flavor_company_info', [
-        'title' => __('Company Information', 'flavor'),
+        'title' => __('Company Information', 'finance-theme'),
         'priority' => 30,
     ]);
 
@@ -323,7 +374,7 @@ function flavor_customize_register($wp_customize): void
         'sanitize_callback' => 'sanitize_text_field',
     ]);
     $wp_customize->add_control('flavor_phone', [
-        'label' => __('Phone Number', 'flavor'),
+        'label' => __('Phone Number', 'finance-theme'),
         'section' => 'flavor_company_info',
         'type' => 'text',
     ]);
@@ -334,7 +385,7 @@ function flavor_customize_register($wp_customize): void
         'sanitize_callback' => 'sanitize_email',
     ]);
     $wp_customize->add_control('flavor_email', [
-        'label' => __('Email Address', 'flavor'),
+        'label' => __('Email Address', 'finance-theme'),
         'section' => 'flavor_company_info',
         'type' => 'email',
     ]);
@@ -345,7 +396,7 @@ function flavor_customize_register($wp_customize): void
         'sanitize_callback' => 'sanitize_text_field',
     ]);
     $wp_customize->add_control('flavor_address', [
-        'label' => __('Address', 'flavor'),
+        'label' => __('Address', 'finance-theme'),
         'section' => 'flavor_company_info',
         'type' => 'text',
     ]);
@@ -354,7 +405,7 @@ function flavor_customize_register($wp_customize): void
     // COMPLIANCE SECTION
     // ========================================
     $wp_customize->add_section('flavor_compliance', [
-        'title' => __('Compliance & Licensing', 'flavor'),
+        'title' => __('Compliance & Licensing', 'finance-theme'),
         'priority' => 35,
     ]);
 
@@ -364,10 +415,10 @@ function flavor_customize_register($wp_customize): void
         'sanitize_callback' => 'sanitize_text_field',
     ]);
     $wp_customize->add_control('flavor_asic_number', [
-        'label' => __('ASIC Credit License Number', 'flavor'),
+        'label' => __('ASIC Credit License Number', 'finance-theme'),
         'section' => 'flavor_compliance',
         'type' => 'text',
-        'description' => __('Your Australian Credit License number', 'flavor'),
+        'description' => __('Your Australian Credit License number', 'finance-theme'),
     ]);
 
     // AFCA Membership Number
@@ -376,17 +427,17 @@ function flavor_customize_register($wp_customize): void
         'sanitize_callback' => 'sanitize_text_field',
     ]);
     $wp_customize->add_control('flavor_afca_number', [
-        'label' => __('AFCA Membership Number', 'flavor'),
+        'label' => __('AFCA Membership Number', 'finance-theme'),
         'section' => 'flavor_compliance',
         'type' => 'text',
-        'description' => __('Your AFCA membership number', 'flavor'),
+        'description' => __('Your AFCA membership number', 'finance-theme'),
     ]);
 
     // ========================================
     // SOCIAL MEDIA SECTION
     // ========================================
     $wp_customize->add_section('flavor_social', [
-        'title' => __('Social Media', 'flavor'),
+        'title' => __('Social Media', 'finance-theme'),
         'priority' => 40,
     ]);
 

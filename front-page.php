@@ -25,11 +25,11 @@ $latest_posts = flavor_get_latest_posts(3);
             <!-- Left Content -->
             <div class="hero-left">
                 <h1 class="hero-title">
-                    <?php esc_html_e('Need', 'flavor'); ?>
-                    <span class="text-accent"><?php esc_html_e('Money?', 'flavor'); ?></span>
+                    <?php esc_html_e('Need', 'finance-theme'); ?>
+                    <span class="text-accent"><?php esc_html_e('Money?', 'finance-theme'); ?></span>
                 </h1>
                 <p class="hero-subtitle">
-                    <?php esc_html_e('Get up to $50,000 paid within 60 min*', 'flavor'); ?>
+                    <?php esc_html_e('Get up to $50,000 paid within 60 min*', 'finance-theme'); ?>
                 </p>
 
                 <ul class="hero-features">
@@ -38,28 +38,28 @@ $latest_posts = flavor_get_latest_posts(3);
                             stroke-width="2.5">
                             <polyline points="20 6 9 17 4 12" />
                         </svg>
-                        <span><?php esc_html_e('Borrow from $2,000 to $50,000', 'flavor'); ?></span>
+                        <span><?php esc_html_e('Borrow from $2,000 to $50,000', 'finance-theme'); ?></span>
                     </li>
                     <li>
                         <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2.5">
                             <polyline points="20 6 9 17 4 12" />
                         </svg>
-                        <span><?php esc_html_e('Digital & Paperless Journey', 'flavor'); ?></span>
+                        <span><?php esc_html_e('Digital & Paperless Journey', 'finance-theme'); ?></span>
                     </li>
                     <li>
                         <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2.5">
                             <polyline points="20 6 9 17 4 12" />
                         </svg>
-                        <span><?php esc_html_e('Proudly Australian Lender', 'flavor'); ?></span>
+                        <span><?php esc_html_e('Proudly Australian Lender', 'finance-theme'); ?></span>
                     </li>
                     <li>
                         <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2.5">
                             <polyline points="20 6 9 17 4 12" />
                         </svg>
-                        <span><?php esc_html_e('Instant Decisions and Same-Day Cash', 'flavor'); ?></span>
+                        <span><?php esc_html_e('Instant Decisions and Same-Day Cash', 'finance-theme'); ?></span>
                     </li>
                 </ul>
             </div>
@@ -67,7 +67,7 @@ $latest_posts = flavor_get_latest_posts(3);
             <!-- Right Calculator Card -->
             <div class="hero-right">
                 <div class="calculator-card">
-                    <h3 class="calculator-title"><?php esc_html_e("I'd like to borrow", 'flavor'); ?></h3>
+                    <h3 class="calculator-title"><?php esc_html_e("I'd like to borrow", 'finance-theme'); ?></h3>
 
                     <div class="calculator-amount" id="loan-amount-display">$5,000</div>
 
@@ -81,11 +81,11 @@ $latest_posts = flavor_get_latest_posts(3);
                     </div>
 
                     <a href="<?php echo esc_url(home_url('/apply')); ?>" class="btn btn-primary btn-block">
-                        <?php esc_html_e('Apply Now', 'flavor'); ?>
+                        <?php esc_html_e('Apply Now', 'finance-theme'); ?>
                     </a>
                 </div>
 
-                <p class="hero-note"><?php esc_html_e('Online application in minutes!', 'flavor'); ?></p>
+                <p class="hero-note"><?php esc_html_e('Online application in minutes!', 'finance-theme'); ?></p>
             </div>
         </div>
     </div>
@@ -95,9 +95,9 @@ $latest_posts = flavor_get_latest_posts(3);
 <section class="section loan-types-section" id="loans">
     <div class="container">
         <div class="loan-types-header">
-            <h2><?php esc_html_e("Online Loans for all Life's Moments", 'flavor'); ?></h2>
+            <h2><?php esc_html_e("Online Loans for all Life's Moments", 'finance-theme'); ?></h2>
             <a href="<?php echo esc_url(home_url('/loans')); ?>" class="btn btn-outline-dark">
-                <?php esc_html_e('View All Personal Loans', 'flavor'); ?>
+                <?php esc_html_e('View All Personal Loans', 'finance-theme'); ?>
             </a>
         </div>
 
@@ -180,7 +180,7 @@ $latest_posts = flavor_get_latest_posts(3);
 
         <div class="slider-nav">
             <button class="slider-btn slider-btn-prev" id="slider-prev"
-                aria-label="<?php esc_attr_e('Previous', 'flavor'); ?>">
+                aria-label="<?php esc_attr_e('Previous', 'finance-theme'); ?>">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round">
                     <path d="M15 18l-6-6 6-6" />
@@ -190,7 +190,7 @@ $latest_posts = flavor_get_latest_posts(3);
                 <div class="slider-progress-bar" id="slider-progress"></div>
             </div>
             <button class="slider-btn slider-btn-next" id="slider-next"
-                aria-label="<?php esc_attr_e('Next', 'flavor'); ?>">
+                aria-label="<?php esc_attr_e('Next', 'finance-theme'); ?>">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round">
                     <path d="M9 18l6-6-6-6" />
@@ -215,7 +215,7 @@ $latest_posts = flavor_get_latest_posts(3);
             <!-- Left: Image -->
             <div class="process-image-wrapper">
                 <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/process-image.jpg'); ?>"
-                    alt="<?php esc_attr_e('How Fair Go Finance works', 'flavor'); ?>" loading="lazy">
+                    alt="<?php esc_attr_e('How Fair Go Finance works', 'finance-theme'); ?>" loading="lazy">
             </div>
 
             <!-- Right: Content -->
@@ -224,17 +224,17 @@ $latest_posts = flavor_get_latest_posts(3);
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                     </svg>
-                    <?php esc_html_e('Our Process', 'flavor'); ?>
+                    <?php esc_html_e('Our Process', 'finance-theme'); ?>
                 </span>
                 <h2 class="process-title">
-                    <?php esc_html_e('How Fair Go Finance works', 'flavor'); ?>
+                    <?php esc_html_e('How Fair Go Finance works', 'finance-theme'); ?>
                 </h2>
                 <p class="process-description">
-                    <?php esc_html_e('Our personal loan rates are customised to you and your circumstances. And we\'ve got loans for just about anything you need. Learn how much you could borrow and what the repayments could be.', 'flavor'); ?>
+                    <?php esc_html_e('Our personal loan rates are customised to you and your circumstances. And we\'ve got loans for just about anything you need. Learn how much you could borrow and what the repayments could be.', 'finance-theme'); ?>
                 </p>
                 <div class="process-buttons">
                     <a href="#process-steps" class="btn btn-outline">
-                        <?php esc_html_e('How it works', 'flavor'); ?>
+                        <?php esc_html_e('How it works', 'finance-theme'); ?>
                     </a>
                     <a href="<?php echo esc_url(home_url('/calculator')); ?>" class="btn btn-outline">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -245,7 +245,7 @@ $latest_posts = flavor_get_latest_posts(3);
                             <line x1="8" y1="14" x2="12" y2="14" />
                             <line x1="8" y1="18" x2="12" y2="18" />
                         </svg>
-                        <?php esc_html_e('Calculate Repayments', 'flavor'); ?>
+                        <?php esc_html_e('Calculate Repayments', 'finance-theme'); ?>
                     </a>
                 </div>
             </div>
@@ -261,8 +261,8 @@ $latest_posts = flavor_get_latest_posts(3);
                         <path d="M9 12l2 2 4-4" />
                     </svg>
                 </div>
-                <h3><?php esc_html_e('Apply now', 'flavor'); ?></h3>
-                <p><?php esc_html_e('Our online application takes just six minutes to complete.', 'flavor'); ?></p>
+                <h3><?php esc_html_e('Apply now', 'finance-theme'); ?></h3>
+                <p><?php esc_html_e('Our online application takes just six minutes to complete.', 'finance-theme'); ?></p>
             </div>
 
             <!-- Step 2 -->
@@ -273,8 +273,8 @@ $latest_posts = flavor_get_latest_posts(3);
                         <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
                     </svg>
                 </div>
-                <h3><?php esc_html_e('Accept our offer', 'flavor'); ?></h3>
-                <p><?php esc_html_e('We send you the loan terms. You accept with a secure SMS code. It couldn\'t be easier.', 'flavor'); ?>
+                <h3><?php esc_html_e('Accept our offer', 'finance-theme'); ?></h3>
+                <p><?php esc_html_e('We send you the loan terms. You accept with a secure SMS code. It couldn\'t be easier.', 'finance-theme'); ?>
                 </p>
             </div>
 
@@ -286,8 +286,8 @@ $latest_posts = flavor_get_latest_posts(3);
                         <path d="M12 6v6l4 2" />
                     </svg>
                 </div>
-                <h3><?php esc_html_e('Get your funds', 'flavor'); ?></h3>
-                <p><?php esc_html_e('Our real-time funding means your funds are in your account on the same day.', 'flavor'); ?>
+                <h3><?php esc_html_e('Get your funds', 'finance-theme'); ?></h3>
+                <p><?php esc_html_e('Our real-time funding means your funds are in your account on the same day.', 'finance-theme'); ?>
                 </p>
             </div>
 
@@ -300,8 +300,8 @@ $latest_posts = flavor_get_latest_posts(3);
                         <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
                     </svg>
                 </div>
-                <h3><?php esc_html_e('Stay supported', 'flavor'); ?></h3>
-                <p><?php esc_html_e('We stick around to help with repayments, questions and credit score boosts.', 'flavor'); ?>
+                <h3><?php esc_html_e('Stay supported', 'finance-theme'); ?></h3>
+                <p><?php esc_html_e('We stick around to help with repayments, questions and credit score boosts.', 'finance-theme'); ?>
                 </p>
             </div>
         </div>
@@ -311,7 +311,7 @@ $latest_posts = flavor_get_latest_posts(3);
 <section class="section comparison-section" id="loan-examples">
     <div class="container">
         <h2 class="comparison-title">
-            <?php esc_html_e('Fair Go Loans Examples', 'flavor'); ?><sup>2</sup>
+            <?php esc_html_e('Fair Go Loans Examples', 'finance-theme'); ?><sup>2</sup>
         </h2>
 
         <div class="comparison-grid">
@@ -319,7 +319,7 @@ $latest_posts = flavor_get_latest_posts(3);
             <div class="comparison-phone">
                 <div class="phone-wrapper">
                     <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/phone-mockup.png'); ?>"
-                        alt="<?php esc_attr_e('Fair Go Finance App', 'flavor'); ?>" loading="lazy">
+                        alt="<?php esc_attr_e('Fair Go Finance App', 'finance-theme'); ?>" loading="lazy">
                 </div>
                 <ul class="comparison-benefits">
                     <li>
@@ -327,28 +327,28 @@ $latest_posts = flavor_get_latest_posts(3);
                             <circle cx="12" cy="12" r="10" />
                             <path d="M9 12l2 2 4-4" />
                         </svg>
-                        <?php esc_html_e('Borrow between $500 to $5,000', 'flavor'); ?>
+                        <?php esc_html_e('Borrow between $500 to $5,000', 'finance-theme'); ?>
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                             <circle cx="12" cy="12" r="10" />
                             <path d="M9 12l2 2 4-4" />
                         </svg>
-                        <?php esc_html_e('Flexible payment terms', 'flavor'); ?>
+                        <?php esc_html_e('Flexible payment terms', 'finance-theme'); ?>
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                             <circle cx="12" cy="12" r="10" />
                             <path d="M9 12l2 2 4-4" />
                         </svg>
-                        <?php esc_html_e('No hidden fees payout early to reduce total repayment amount', 'flavor'); ?>
+                        <?php esc_html_e('No hidden fees payout early to reduce total repayment amount', 'finance-theme'); ?>
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                             <circle cx="12" cy="12" r="10" />
                             <path d="M9 12l2 2 4-4" />
                         </svg>
-                        <?php esc_html_e('Money in 60 minutes* of contract acceptance', 'flavor'); ?>
+                        <?php esc_html_e('Money in 60 minutes* of contract acceptance', 'finance-theme'); ?>
                     </li>
                 </ul>
             </div>
@@ -358,40 +358,40 @@ $latest_posts = flavor_get_latest_posts(3);
                 <!-- Small Loan -->
                 <div class="loan-table">
                     <div class="loan-table-header loan-table-header-small">
-                        <h4><?php esc_html_e('Small Loan', 'flavor'); ?></h4>
-                        <p><?php esc_html_e('Loan amount: $500 – $2,000 | Loan term: 16 days – 12 months | Fees: 20% establishment + 4% monthly (flat) | Other fees and charges may apply.', 'flavor'); ?>
+                        <h4><?php esc_html_e('Small Loan', 'finance-theme'); ?></h4>
+                        <p><?php esc_html_e('Loan amount: $500 – $2,000 | Loan term: 16 days – 12 months | Fees: 20% establishment + 4% monthly (flat) | Other fees and charges may apply.', 'finance-theme'); ?>
                         </p>
                     </div>
                     <div class="loan-table-body">
-                        <h5><?php esc_html_e('Example', 'flavor'); ?></h5>
+                        <h5><?php esc_html_e('Example', 'finance-theme'); ?></h5>
                         <table>
                             <tr>
-                                <td><?php esc_html_e('Repayments', 'flavor'); ?></td>
-                                <td><strong><?php esc_html_e('Weekly', 'flavor'); ?></strong></td>
+                                <td><?php esc_html_e('Repayments', 'finance-theme'); ?></td>
+                                <td><strong><?php esc_html_e('Weekly', 'finance-theme'); ?></strong></td>
                             </tr>
                             <tr>
-                                <td><?php esc_html_e('Loan Amount', 'flavor'); ?></td>
+                                <td><?php esc_html_e('Loan Amount', 'finance-theme'); ?></td>
                                 <td><strong>$1,000</strong></td>
                             </tr>
                             <tr>
-                                <td><?php esc_html_e('Term', 'flavor'); ?></td>
-                                <td><strong><?php esc_html_e('28 weeks', 'flavor'); ?></strong></td>
+                                <td><?php esc_html_e('Term', 'finance-theme'); ?></td>
+                                <td><strong><?php esc_html_e('28 weeks', 'finance-theme'); ?></strong></td>
                             </tr>
                             <tr>
-                                <td><?php esc_html_e('Establishment fee', 'flavor'); ?></td>
+                                <td><?php esc_html_e('Establishment fee', 'finance-theme'); ?></td>
                                 <td><strong>$200</strong></td>
                             </tr>
                             <tr>
-                                <td><?php esc_html_e('Total monthly fee (over 28 weeks)', 'flavor'); ?></td>
+                                <td><?php esc_html_e('Total monthly fee (over 28 weeks)', 'finance-theme'); ?></td>
                                 <td><strong>$280</strong></td>
                             </tr>
                             <tr class="total-row">
-                                <td><?php esc_html_e('Total repayable', 'flavor'); ?></td>
+                                <td><?php esc_html_e('Total repayable', 'finance-theme'); ?></td>
                                 <td><strong>$1,480</strong></td>
                             </tr>
                         </table>
                         <div class="weekly-repayment weekly-repayment-small">
-                            <span><?php esc_html_e('Weekly repayment', 'flavor'); ?></span>
+                            <span><?php esc_html_e('Weekly repayment', 'finance-theme'); ?></span>
                             <strong>$70.00</strong>
                         </div>
                     </div>
@@ -400,40 +400,40 @@ $latest_posts = flavor_get_latest_posts(3);
                 <!-- Medium Loan -->
                 <div class="loan-table">
                     <div class="loan-table-header loan-table-header-medium">
-                        <h4><?php esc_html_e('Medium Loan', 'flavor'); ?></h4>
-                        <p><?php esc_html_e('Loan amount: $2,001 – $5,000 | Loan term: 9 weeks – 24 months | Fees: up to $400 establishment fee | Interest: up to 47.80% p.a| Other fees and charges may apply.', 'flavor'); ?>
+                        <h4><?php esc_html_e('Medium Loan', 'finance-theme'); ?></h4>
+                        <p><?php esc_html_e('Loan amount: $2,001 – $5,000 | Loan term: 9 weeks – 24 months | Fees: up to $400 establishment fee | Interest: up to 47.80% p.a| Other fees and charges may apply.', 'finance-theme'); ?>
                         </p>
                     </div>
                     <div class="loan-table-body">
-                        <h5><?php esc_html_e('Example', 'flavor'); ?></h5>
+                        <h5><?php esc_html_e('Example', 'finance-theme'); ?></h5>
                         <table>
                             <tr>
-                                <td><?php esc_html_e('Repayments', 'flavor'); ?></td>
-                                <td><strong><?php esc_html_e('Weekly', 'flavor'); ?></strong></td>
+                                <td><?php esc_html_e('Repayments', 'finance-theme'); ?></td>
+                                <td><strong><?php esc_html_e('Weekly', 'finance-theme'); ?></strong></td>
                             </tr>
                             <tr>
-                                <td><?php esc_html_e('Loan Amount', 'flavor'); ?></td>
+                                <td><?php esc_html_e('Loan Amount', 'finance-theme'); ?></td>
                                 <td><strong>$2,500</strong></td>
                             </tr>
                             <tr>
-                                <td><?php esc_html_e('Term', 'flavor'); ?></td>
-                                <td><strong><?php esc_html_e('28 Weeks', 'flavor'); ?></strong></td>
+                                <td><?php esc_html_e('Term', 'finance-theme'); ?></td>
+                                <td><strong><?php esc_html_e('28 Weeks', 'finance-theme'); ?></strong></td>
                             </tr>
                             <tr>
-                                <td><?php esc_html_e('Establishment fee', 'flavor'); ?></td>
+                                <td><?php esc_html_e('Establishment fee', 'finance-theme'); ?></td>
                                 <td><strong>$400</strong></td>
                             </tr>
                             <tr>
-                                <td><?php esc_html_e('Total interest (over 28 weeks)', 'flavor'); ?></td>
+                                <td><?php esc_html_e('Total interest (over 28 weeks)', 'finance-theme'); ?></td>
                                 <td><strong>$394.74</strong></td>
                             </tr>
                             <tr class="total-row">
-                                <td><?php esc_html_e('Total repayable', 'flavor'); ?></td>
+                                <td><?php esc_html_e('Total repayable', 'finance-theme'); ?></td>
                                 <td><strong>$3,289</strong></td>
                             </tr>
                         </table>
                         <div class="weekly-repayment weekly-repayment-medium">
-                            <span><?php esc_html_e('Weekly repayment', 'flavor'); ?></span>
+                            <span><?php esc_html_e('Weekly repayment', 'finance-theme'); ?></span>
                             <strong>$117.67</strong>
                         </div>
                     </div>
@@ -448,14 +448,14 @@ $latest_posts = flavor_get_latest_posts(3);
     <div class="container">
         <div class="australia-grid">
             <div class="australia-content">
-                <h2><?php esc_html_e('Trusted by Australians', 'flavor'); ?></h2>
+                <h2><?php esc_html_e('Trusted by Australians', 'finance-theme'); ?></h2>
                 <p class="australia-intro">
                     <?php
                     $company_name = get_bloginfo('name');
                     $asic_number = get_theme_mod('flavor_asic_number', 'XXXXXX');
                     $afca_number = get_theme_mod('flavor_afca_number', 'XXXXXX');
                     printf(
-                        esc_html__('%s holds Australian Credit Licence %s and is a member of AFCA (%s). We provide straightforward loan options that put transparency, security, and responsible lending first.', 'flavor'),
+                        esc_html__('%s holds Australian Credit Licence %s and is a member of AFCA (%s). We provide straightforward loan options that put transparency, security, and responsible lending first.', 'finance-theme'),
                         esc_html($company_name),
                         esc_html($asic_number),
                         esc_html($afca_number)
@@ -469,14 +469,14 @@ $latest_posts = flavor_get_latest_posts(3);
                             stroke-width="2.5">
                             <polyline points=" 20 6 9 17 4 12" />
                         </svg>
-                        <span><?php esc_html_e('100% Australian owned', 'flavor'); ?></span>
+                        <span><?php esc_html_e('100% Australian owned', 'finance-theme'); ?></span>
                     </li>
                     <li>
                         <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2.5">
                             <polyline points="20 6 9 17 4 12" />
                         </svg>
-                        <span><?php esc_html_e('Bad Credit? No Problem.', 'flavor'); ?></span>
+                        <span><?php esc_html_e('Bad Credit? No Problem.', 'finance-theme'); ?></span>
                     </li>
                     <li>
                         <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -484,25 +484,25 @@ $latest_posts = flavor_get_latest_posts(3);
                             <polyline points="20 6 9 17 4 12" />
                         </svg>
                         <span>
-                            <?php esc_html_e('100% Secure Process', 'flavor'); ?>
+                            <?php esc_html_e('100% Secure Process', 'finance-theme'); ?>
                         </span>
                     </li>
                 </ul>
 
                 <a href="<?php echo esc_url(home_url('/apply')); ?>" class="btn btn-australia">
-                    <?php esc_html_e('Apply Now', 'flavor'); ?>
+                    <?php esc_html_e('Apply Now', 'finance-theme'); ?>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
                 </a>
                 <p class="australia-note">
-                    <?php esc_html_e('Safe and Secure. 5 min application*', 'flavor'); ?>
+                    <?php esc_html_e('Safe and Secure. 5 min application*', 'finance-theme'); ?>
                 </p>
             </div>
 
             <div class="australia-image">
                 <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/australia-people.png'); ?>"
-                    alt="<?php esc_attr_e('Australia made of people', 'flavor'); ?>" loading="lazy">
+                    alt="<?php esc_attr_e('Australia made of people', 'finance-theme'); ?>" loading="lazy">
             </div>
         </div>
     </div>
@@ -513,10 +513,10 @@ $latest_posts = flavor_get_latest_posts(3);
     <div class="container">
         <div class="section-header">
             <h2>
-                <?php esc_html_e('What Our Customers Say', 'flavor'); ?>
+                <?php esc_html_e('What Our Customers Say', 'finance-theme'); ?>
             </h2>
             <p>
-                <?php esc_html_e('Don\'t just take our word for it - hear from real customers who got a fair go.', 'flavor'); ?>
+                <?php esc_html_e('Don\'t just take our word for it - hear from real customers who got a fair go.', 'finance-theme'); ?>
             </p>
         </div>
 
@@ -551,10 +551,10 @@ $latest_posts = flavor_get_latest_posts(3);
     <div class="container">
         <div class="section-header">
             <h2>
-                <?php esc_html_e('Frequently Asked Questions', 'flavor'); ?>
+                <?php esc_html_e('Frequently Asked Questions', 'finance-theme'); ?>
             </h2>
             <p>
-                <?php esc_html_e('Got questions? We\'ve got answers.', 'flavor'); ?>
+                <?php esc_html_e('Got questions? We\'ve got answers.', 'finance-theme'); ?>
             </p>
         </div>
 
@@ -586,10 +586,10 @@ $latest_posts = flavor_get_latest_posts(3);
     <div class="container">
         <div class="section-header">
             <h2>
-                <?php esc_html_e('Latest from Our Blog', 'flavor'); ?>
+                <?php esc_html_e('Latest from Our Blog', 'finance-theme'); ?>
             </h2>
             <p>
-                <?php esc_html_e('Tips, insights, and news about personal finance in Australia.', 'flavor'); ?>
+                <?php esc_html_e('Tips, insights, and news about personal finance in Australia.', 'finance-theme'); ?>
             </p>
         </div>
 
@@ -628,7 +628,7 @@ $latest_posts = flavor_get_latest_posts(3);
                                 <?php echo esc_html(get_the_excerpt()); ?>
                             </p>
                             <a href="<?php echo esc_url(get_permalink()); ?>" class="read-more">
-                                <?php esc_html_e('Read More', 'flavor'); ?>
+                                <?php esc_html_e('Read More', 'finance-theme'); ?>
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M5 12h14M12 5l7 7-7 7" />
@@ -672,7 +672,7 @@ $latest_posts = flavor_get_latest_posts(3);
                                 <?php echo esc_html($sample['excerpt']); ?>
                             </p>
                             <a href="<?php echo esc_url(home_url('/blog')); ?>" class="read-more">
-                                <?php esc_html_e('Read More', 'flavor'); ?>
+                                <?php esc_html_e('Read More', 'finance-theme'); ?>
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M5 12h14M12 5l7 7-7 7" />
@@ -686,7 +686,7 @@ $latest_posts = flavor_get_latest_posts(3);
 
         <div class="text-center" style="margin-top: var(--space-10);">
             <a href="<?php echo esc_url(home_url('/blog')); ?>" class="btn btn-secondary">
-                <?php esc_html_e('View All Posts', 'flavor'); ?>
+                <?php esc_html_e('View All Posts', 'finance-theme'); ?>
             </a>
         </div>
     </div>
@@ -697,18 +697,18 @@ $latest_posts = flavor_get_latest_posts(3);
     style="background: linear-gradient(135deg, var(--primary-900), var(--primary-700)); text-align: center; color: var(--white);">
     <div class="container">
         <h2 style="color: var(--white); margin-bottom: var(--space-4);">
-            <?php esc_html_e('Ready to Get Started?', 'flavor'); ?>
+            <?php esc_html_e('Ready to Get Started?', 'finance-theme'); ?>
         </h2>
         <p style="color: var(--white-80); max-width: 600px; margin: 0 auto var(--space-8);">
-            <?php esc_html_e('Apply in just 6 minutes and get your funds the same day. No hidden fees, no surprises.', 'flavor'); ?>
+            <?php esc_html_e('Apply in just 6 minutes and get your funds the same day. No hidden fees, no surprises.', 'finance-theme'); ?>
         </p>
         <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
             <a href="<?php echo esc_url(home_url('/apply')); ?>" class="btn btn-primary btn-lg">
-                <?php esc_html_e('Apply Now', 'flavor'); ?>
+                <?php esc_html_e('Apply Now', 'finance-theme'); ?>
             </a>
             <a href="tel:<?php echo esc_attr(get_theme_mod('flavor_phone', '1300XXXXXX')); ?>"
                 class="btn btn-outline btn-lg">
-                <?php esc_html_e('Call Us', 'flavor'); ?>
+                <?php esc_html_e('Call Us', 'finance-theme'); ?>
             </a>
         </div>
     </div>

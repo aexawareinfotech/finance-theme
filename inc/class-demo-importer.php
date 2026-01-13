@@ -158,20 +158,20 @@ class Finance_Theme_Demo_Importer
             <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
 
             <div class="card" style="max-width: 600px; padding: 20px; margin-top: 20px;">
-                <h2><?php esc_html_e('Import Demo Content', 'flavor'); ?></h2>
-                <p><?php esc_html_e('Click the button below to import the demo content. This will create editable posts for:', 'flavor'); ?>
+                <h2><?php esc_html_e('Import Demo Content', 'finance-theme'); ?></h2>
+                <p><?php esc_html_e('Click the button below to import the demo content. This will create editable posts for:', 'finance-theme'); ?>
                 </p>
                 <ul style="list-style: disc; margin-left: 20px; margin-bottom: 20px;">
-                    <li><?php esc_html_e('Loan Types (with images)', 'flavor'); ?></li>
-                    <li><?php esc_html_e('Testimonials', 'flavor'); ?></li>
-                    <li><?php esc_html_e('FAQs', 'flavor'); ?></li>
+                    <li><?php esc_html_e('Loan Types (with images)', 'finance-theme'); ?></li>
+                    <li><?php esc_html_e('Testimonials', 'finance-theme'); ?></li>
+                    <li><?php esc_html_e('FAQs', 'finance-theme'); ?></li>
                 </ul>
-                <p><?php esc_html_e('NOTE: Please ensure you run this only once to avoid duplicate content.', 'flavor'); ?></p>
+                <p><?php esc_html_e('NOTE: Please ensure you run this only once to avoid duplicate content.', 'finance-theme'); ?></p>
 
                 <form method="post" action="">
                     <?php wp_nonce_field('finance_theme_import_demo', 'finance_theme_import_nonce'); ?>
                     <input type="hidden" name="finance_theme_action" value="import_demo">
-                    <?php submit_button(__('Import All Demo Data', 'flavor'), 'primary'); ?>
+                    <?php submit_button(__('Import All Demo Data', 'finance-theme'), 'primary'); ?>
                 </form>
             </div>
         </div>
@@ -231,7 +231,7 @@ class Finance_Theme_Demo_Importer
         add_action('admin_notices', function () use ($count) {
             ?>
             <div class="notice notice-success is-dismissible">
-                <p><?php echo sprintf(esc_html__('Successfully processed import! %d items checked/created.', 'flavor'), $count); ?>
+                <p><?php echo sprintf(esc_html__('Successfully processed import! %d items checked/created.', 'finance-theme'), $count); ?>
                 </p>
             </div>
             <?php

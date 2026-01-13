@@ -99,23 +99,23 @@ $instagram = get_theme_mod('flavor_instagram', '');
                 <!-- Quick Links -->
                 <div class="footer-column">
                     <h4>
-                        <?php esc_html_e('Quick Links', 'flavor'); ?>
+                        <?php esc_html_e('Quick Links', 'finance-theme'); ?>
                     </h4>
                     <ul>
                         <li><a href="<?php echo esc_url(home_url('/')); ?>">
-                                <?php esc_html_e('Home', 'flavor'); ?>
+                                <?php esc_html_e('Home', 'finance-theme'); ?>
                             </a></li>
                         <li><a href="<?php echo esc_url(home_url('/about')); ?>">
-                                <?php esc_html_e('About Us', 'flavor'); ?>
+                                <?php esc_html_e('About Us', 'finance-theme'); ?>
                             </a></li>
                         <li><a href="<?php echo esc_url(home_url('/how-it-works')); ?>">
-                                <?php esc_html_e('How It Works', 'flavor'); ?>
+                                <?php esc_html_e('How It Works', 'finance-theme'); ?>
                             </a></li>
                         <li><a href="<?php echo esc_url(home_url('/blog')); ?>">
-                                <?php esc_html_e('Blog', 'flavor'); ?>
+                                <?php esc_html_e('Blog', 'finance-theme'); ?>
                             </a></li>
                         <li><a href="<?php echo esc_url(home_url('/contact')); ?>">
-                                <?php esc_html_e('Contact', 'flavor'); ?>
+                                <?php esc_html_e('Contact', 'finance-theme'); ?>
                             </a></li>
                     </ul>
                 </div>
@@ -123,23 +123,23 @@ $instagram = get_theme_mod('flavor_instagram', '');
                 <!-- Loan Types -->
                 <div class="footer-column">
                     <h4>
-                        <?php esc_html_e('Our Loans', 'flavor'); ?>
+                        <?php esc_html_e('Our Loans', 'finance-theme'); ?>
                     </h4>
                     <ul>
                         <li><a href="<?php echo esc_url(home_url('/loans/personal')); ?>">
-                                <?php esc_html_e('Personal Loans', 'flavor'); ?>
+                                <?php esc_html_e('Personal Loans', 'finance-theme'); ?>
                             </a></li>
                         <li><a href="<?php echo esc_url(home_url('/loans/car')); ?>">
-                                <?php esc_html_e('Car Loans', 'flavor'); ?>
+                                <?php esc_html_e('Car Loans', 'finance-theme'); ?>
                             </a></li>
                         <li><a href="<?php echo esc_url(home_url('/loans/business')); ?>">
-                                <?php esc_html_e('Business Loans', 'flavor'); ?>
+                                <?php esc_html_e('Business Loans', 'finance-theme'); ?>
                             </a></li>
                         <li><a href="<?php echo esc_url(home_url('/loans/debt-consolidation')); ?>">
-                                <?php esc_html_e('Debt Consolidation', 'flavor'); ?>
+                                <?php esc_html_e('Debt Consolidation', 'finance-theme'); ?>
                             </a></li>
                         <li><a href="<?php echo esc_url(home_url('/loans')); ?>">
-                                <?php esc_html_e('View All Loans', 'flavor'); ?>
+                                <?php esc_html_e('View All Loans', 'finance-theme'); ?>
                             </a></li>
                     </ul>
                 </div>
@@ -147,7 +147,7 @@ $instagram = get_theme_mod('flavor_instagram', '');
                 <!-- Contact -->
                 <div class="footer-column">
                     <h4>
-                        <?php esc_html_e('Contact Us', 'flavor'); ?>
+                        <?php esc_html_e('Contact Us', 'finance-theme'); ?>
                     </h4>
                     <ul class="footer-contact">
                         <li>
@@ -156,9 +156,10 @@ $instagram = get_theme_mod('flavor_instagram', '');
                                 <path
                                     d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                             </svg>
-                            <span>
+                            <a href="tel:<?php echo esc_attr(preg_replace('/[^0-9+]/', '', $phone)); ?>"
+                                aria-label="<?php esc_attr_e('Call us', 'finance-theme'); ?>">
                                 <?php echo esc_html($phone); ?>
-                            </span>
+                            </a>
                         </li>
                         <li>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -200,25 +201,25 @@ $instagram = get_theme_mod('flavor_instagram', '');
 
     <!-- License/Compliance Section -->
     <?php if (get_theme_mod('flavor_show_license', true)): ?>
-    <div class="footer-license">
-        <div class="container">
-            <h3 class="license-title">
-                <?php esc_html_e('Licensed by ASIC', 'flavor'); ?> · <?php esc_html_e('Member of AFCA', 'flavor'); ?>
-            </h3>
-            <div class="license-logos">
-                <a href="https://asic.gov.au" target="_blank" rel="noopener noreferrer" class="license-logo">
-                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/asic-logo.png'); ?>"
-                        alt="<?php esc_attr_e('ASIC - Australian Securities & Investments Commission', 'flavor'); ?>"
-                        loading="lazy">
-                </a>
-                <a href="https://afca.org.au" target="_blank" rel="noopener noreferrer" class="license-logo">
-                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/afca-logo.png'); ?>"
-                        alt="<?php esc_attr_e('AFCA - Australian Financial Complaints Authority', 'flavor'); ?>"
-                        loading="lazy">
-                </a>
+        <div class="footer-license">
+            <div class="container">
+                <h3 class="license-title">
+                    <?php esc_html_e('Licensed by ASIC', 'finance-theme'); ?> · <?php esc_html_e('Member of AFCA', 'finance-theme'); ?>
+                </h3>
+                <div class="license-logos">
+                    <a href="https://asic.gov.au" target="_blank" rel="noopener noreferrer" class="license-logo">
+                        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/asic-logo.png'); ?>"
+                            alt="<?php esc_attr_e('ASIC - Australian Securities & Investments Commission', 'finance-theme'); ?>"
+                            loading="lazy">
+                    </a>
+                    <a href="https://afca.org.au" target="_blank" rel="noopener noreferrer" class="license-logo">
+                        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/afca-logo.png'); ?>"
+                            alt="<?php esc_attr_e('AFCA - Australian Financial Complaints Authority', 'finance-theme'); ?>"
+                            loading="lazy">
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
     <?php endif; ?>
 
     <!-- Footer Bottom -->
@@ -226,20 +227,20 @@ $instagram = get_theme_mod('flavor_instagram', '');
         <div class="container">
             <div class="footer-bottom-inner">
                 <p class="copyright">
-                    <?php 
+                    <?php
                     $custom_copyright = get_theme_mod('flavor_copyright', '');
                     if ($custom_copyright) {
                         echo esc_html($custom_copyright);
                     } else {
                         printf(
-                            esc_html__('© %1$s %2$s. All rights reserved.', 'flavor'),
-                            date('Y'),
+                            esc_html__('© %1$s %2$s. All rights reserved.', 'finance-theme'),
+                            esc_html(date_i18n('Y')),
                             get_bloginfo('name')
                         );
                     }
                     ?>
                 </p>
-                <nav class="legal-links" aria-label="<?php esc_attr_e('Legal Links', 'flavor'); ?>">
+                <nav class="legal-links" aria-label="<?php esc_attr_e('Legal Links', 'finance-theme'); ?>">
                     <?php
                     wp_nav_menu([
                         'theme_location' => 'legal',
@@ -248,13 +249,13 @@ $instagram = get_theme_mod('flavor_instagram', '');
                         'fallback_cb' => function () {
                             ?>
                         <a href="<?php echo esc_url(home_url('/privacy-policy')); ?>">
-                            <?php esc_html_e('Privacy Policy', 'flavor'); ?>
+                            <?php esc_html_e('Privacy Policy', 'finance-theme'); ?>
                         </a>
                         <a href="<?php echo esc_url(home_url('/disclaimer')); ?>">
-                            <?php esc_html_e('Disclaimer', 'flavor'); ?>
+                            <?php esc_html_e('Disclaimer', 'finance-theme'); ?>
                         </a>
                         <a href="<?php echo esc_url(home_url('/terms-conditions')); ?>">
-                            <?php esc_html_e('Terms & Conditions', 'flavor'); ?>
+                            <?php esc_html_e('Terms & Conditions', 'finance-theme'); ?>
                         </a>
                         <?php
                         },

@@ -53,7 +53,7 @@ get_header();
                                 <?php echo esc_html(get_the_excerpt()); ?>
                             </p>
                             <a href="<?php echo esc_url(get_permalink()); ?>" class="read-more">
-                                <?php esc_html_e('Read More', 'flavor'); ?>
+                                <?php esc_html_e('Read More', 'finance-theme'); ?>
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M5 12h14M12 5l7 7-7 7" />
@@ -78,10 +78,10 @@ get_header();
         <?php else: ?>
             <div class="no-posts" style="text-align: center; padding: var(--space-16) 0;">
                 <h2>
-                    <?php esc_html_e('No posts found', 'flavor'); ?>
+                    <?php esc_html_e('No posts found', 'finance-theme'); ?>
                 </h2>
                 <p>
-                    <?php esc_html_e('Check back soon for new content!', 'flavor'); ?>
+                    <?php esc_html_e('Check back soon for new content!', 'finance-theme'); ?>
                 </p>
             </div>
         <?php endif; ?>

@@ -17,10 +17,10 @@ get_header();
     <div class="container" style="max-width: 900px;">
         <header class="page-header" style="margin-bottom: var(--space-8);">
             <h1>
-                <?php esc_html_e('Terms & Conditions', 'flavor'); ?>
+                <?php esc_html_e('Terms & Conditions', 'finance-theme'); ?>
             </h1>
             <p style="color: var(--primary-600);">
-                <?php printf(esc_html__('Last updated: %s', 'flavor'), date('F j, Y')); ?>
+                <?php printf(esc_html__('Last updated: %s', 'finance-theme'), date('F j, Y')); ?>
             </p>
         </header>
 
@@ -33,7 +33,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('1. Acceptance of Terms', 'flavor'); ?>
+                        <?php esc_html_e('1. Acceptance of Terms', 'finance-theme'); ?>
                     </h2>
                     <p>By accessing and using this website, you accept and agree to be bound by these Terms and Conditions.
                         If you do not agree to these terms, please do not use this website.</p>
@@ -41,7 +41,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('2. About Us', 'flavor'); ?>
+                        <?php esc_html_e('2. About Us', 'finance-theme'); ?>
                     </h2>
                     <p>
                         <?php echo esc_html(get_bloginfo('name')); ?> is an Australian company that provides personal and
@@ -53,7 +53,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('3. Use of Website', 'flavor'); ?>
+                        <?php esc_html_e('3. Use of Website', 'finance-theme'); ?>
                     </h2>
                     <p>You may use this website for lawful purposes only. You must not:</p>
                     <ul style="margin: var(--space-4) 0; padding-left: var(--space-6); list-style: disc;">
@@ -67,7 +67,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('4. Loan Applications', 'flavor'); ?>
+                        <?php esc_html_e('4. Loan Applications', 'finance-theme'); ?>
                     </h2>
                     <p>When you submit a loan application through our website:</p>
                     <ul style="margin: var(--space-4) 0; padding-left: var(--space-6); list-style: disc;">
@@ -80,7 +80,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('5. Credit Checks', 'flavor'); ?>
+                        <?php esc_html_e('5. Credit Checks', 'finance-theme'); ?>
                     </h2>
                     <p>By applying for a loan, you consent to us conducting credit checks and obtaining information from
                         credit reporting bodies. This may affect your credit score. We may also provide information to
@@ -89,7 +89,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('6. Intellectual Property', 'flavor'); ?>
+                        <?php esc_html_e('6. Intellectual Property', 'finance-theme'); ?>
                     </h2>
                     <p>All content on this website, including text, graphics, logos, images, and software, is the property
                         of
@@ -100,7 +100,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('7. Limitation of Liability', 'flavor'); ?>
+                        <?php esc_html_e('7. Limitation of Liability', 'finance-theme'); ?>
                     </h2>
                     <p>To the extent permitted by law, we exclude all warranties, representations, and guarantees relating
                         to this website and its content. We will not be liable for any loss or damage arising from your use
@@ -109,7 +109,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('8. Indemnity', 'flavor'); ?>
+                        <?php esc_html_e('8. Indemnity', 'finance-theme'); ?>
                     </h2>
                     <p>You agree to indemnify and hold harmless
                         <?php echo esc_html(get_bloginfo('name')); ?>, its officers, directors, employees, and agents from
@@ -120,7 +120,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('9. Privacy', 'flavor'); ?>
+                        <?php esc_html_e('9. Privacy', 'finance-theme'); ?>
                     </h2>
                     <p>Your use of this website is also governed by our <a
                             href="<?php echo esc_url(home_url('/privacy-policy')); ?>">Privacy Policy</a>, which describes
@@ -129,7 +129,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('10. Changes to Terms', 'flavor'); ?>
+                        <?php esc_html_e('10. Changes to Terms', 'finance-theme'); ?>
                     </h2>
                     <p>We reserve the right to modify these Terms and Conditions at any time. Changes will be effective
                         immediately upon posting to this website. Your continued use of the website after changes are posted
@@ -138,7 +138,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('11. Governing Law', 'flavor'); ?>
+                        <?php esc_html_e('11. Governing Law', 'finance-theme'); ?>
                     </h2>
                     <p>These Terms and Conditions are governed by the laws of Australia. Any disputes arising from these
                         terms will be subject to the exclusive jurisdiction of the courts of Australia.</p>
@@ -146,7 +146,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('12. Contact', 'flavor'); ?>
+                        <?php esc_html_e('12. Contact', 'finance-theme'); ?>
                     </h2>
                     <p>If you have any questions about these Terms and Conditions, please contact us at:</p>
                     <p>

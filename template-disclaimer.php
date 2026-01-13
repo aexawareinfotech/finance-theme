@@ -17,10 +17,10 @@ get_header();
     <div class="container" style="max-width: 900px;">
         <header class="page-header" style="margin-bottom: var(--space-8);">
             <h1>
-                <?php esc_html_e('Disclaimer', 'flavor'); ?>
+                <?php esc_html_e('Disclaimer', 'finance-theme'); ?>
             </h1>
             <p style="color: var(--primary-600);">
-                <?php printf(esc_html__('Last updated: %s', 'flavor'), date('F j, Y')); ?>
+                <?php printf(esc_html__('Last updated: %s', 'finance-theme'), date('F j, Y')); ?>
             </p>
         </header>
 
@@ -43,7 +43,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('General Information Only', 'flavor'); ?>
+                        <?php esc_html_e('General Information Only', 'finance-theme'); ?>
                     </h2>
                     <p>The information provided on this website is for general informational purposes only. It does not
                         constitute financial advice, credit assistance, or a recommendation for any particular loan product.
@@ -53,7 +53,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('Credit Assessment', 'flavor'); ?>
+                        <?php esc_html_e('Credit Assessment', 'finance-theme'); ?>
                     </h2>
                     <p>All loan applications are subject to our credit assessment criteria and approval process. We are
                         required by responsible lending laws to assess whether a credit product is suitable for you, taking
@@ -63,7 +63,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('Interest Rates and Fees', 'flavor'); ?>
+                        <?php esc_html_e('Interest Rates and Fees', 'finance-theme'); ?>
                     </h2>
                     <p>Interest rates, fees, and charges mentioned on this website are indicative only and may vary based on
                         individual circumstances. The actual rate and terms you receive will depend on factors including
@@ -73,7 +73,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('Comparison Rates', 'flavor'); ?>
+                        <?php esc_html_e('Comparison Rates', 'finance-theme'); ?>
                     </h2>
                     <p>WARNING: Comparison rates are true only for the examples given and may not include all fees and
                         charges. Different terms, fees, or other loan amounts might result in a different comparison rate.
@@ -82,7 +82,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('Credit Reporting', 'flavor'); ?>
+                        <?php esc_html_e('Credit Reporting', 'finance-theme'); ?>
                     </h2>
                     <p>Applying for a loan will result in a credit enquiry being recorded on your credit file. Multiple
                         credit enquiries in a short period may affect your credit score. We may obtain information about you
@@ -91,7 +91,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('External Links', 'flavor'); ?>
+                        <?php esc_html_e('External Links', 'finance-theme'); ?>
                     </h2>
                     <p>This website may contain links to external websites. We are not responsible for the content, privacy
                         policies, or practices of any third-party websites. Accessing linked websites is at your own risk.
@@ -100,7 +100,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('No Guarantees', 'flavor'); ?>
+                        <?php esc_html_e('No Guarantees', 'finance-theme'); ?>
                     </h2>
                     <p>While we strive to provide accurate and up-to-date information, we make no warranties or
                         representations about the accuracy, reliability, completeness, or timeliness of any information on
@@ -109,7 +109,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('Limitation of Liability', 'flavor'); ?>
+                        <?php esc_html_e('Limitation of Liability', 'finance-theme'); ?>
                     </h2>
                     <p>To the maximum extent permitted by law, we exclude all liability for any loss or damage arising from
                         the use of this website or reliance on any information contained herein, including but not limited
@@ -118,7 +118,7 @@ get_header();
 
                 <section style="margin-bottom: var(--space-8);">
                     <h2>
-                        <?php esc_html_e('Regulatory Information', 'flavor'); ?>
+                        <?php esc_html_e('Regulatory Information', 'finance-theme'); ?>
                     </h2>
                     <p>
                         <?php echo esc_html(get_bloginfo('name')); ?> is:<br>

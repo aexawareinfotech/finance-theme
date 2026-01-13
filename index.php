@@ -11,7 +11,7 @@
 get_header();
 ?>
 
-<main id="primary" class="site-main">
+<div class="blog-archive">
     <div class="container">
         <?php if (have_posts()): ?>
 
@@ -56,7 +56,7 @@ get_header();
                             </div>
 
                             <a href="<?php the_permalink(); ?>" class="read-more">
-                                <?php esc_html_e('Read More', 'flavor'); ?>
+                                <?php esc_html_e('Read More', 'finance-theme'); ?>
                             </a>
                         </div>
                     </article>
@@ -70,19 +70,19 @@ get_header();
             <section class="no-results not-found">
                 <header class="page-header">
                     <h1 class="page-title">
-                        <?php esc_html_e('Nothing Found', 'flavor'); ?>
+                        <?php esc_html_e('Nothing Found', 'finance-theme'); ?>
                     </h1>
                 </header>
                 <div class="page-content">
                     <p>
-                        <?php esc_html_e('It seems we can\'t find what you\'re looking for.', 'flavor'); ?>
+                        <?php esc_html_e('It seems we can\'t find what you\'re looking for.', 'finance-theme'); ?>
                     </p>
                 </div>
             </section>
 
         <?php endif; ?>
     </div>
-</main>
+</div>
 
 <?php
 get_footer();

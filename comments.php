@@ -21,12 +21,12 @@ if (post_password_required()) {
             $comment_count = get_comments_number();
             if ($comment_count === '1') {
                 printf(
-                    esc_html__('One thought on "%1$s"', 'flavor'),
+                    esc_html__('One thought on "%1$s"', 'finance-theme'),
                     '<span>' . get_the_title() . '</span>'
                 );
             } else {
                 printf(
-                    esc_html(_n('%1$s thought on "%2$s"', '%1$s thoughts on "%2$s"', $comment_count, 'flavor')),
+                    esc_html(_n('%1$s thought on "%2$s"', '%1$s thoughts on "%2$s"', $comment_count, 'finance-theme')),
                     number_format_i18n($comment_count),
                     '<span>' . get_the_title() . '</span>'
                 );
@@ -46,8 +46,8 @@ if (post_password_required()) {
 
         <?php
         the_comments_pagination([
-            'prev_text' => '<span class="screen-reader-text">' . esc_html__('Previous', 'flavor') . '</span>',
-            'next_text' => '<span class="screen-reader-text">' . esc_html__('Next', 'flavor') . '</span>',
+            'prev_text' => '<span class="screen-reader-text">' . esc_html__('Previous', 'finance-theme') . '</span>',
+            'next_text' => '<span class="screen-reader-text">' . esc_html__('Next', 'finance-theme') . '</span>',
         ]);
         ?>
 
@@ -55,7 +55,7 @@ if (post_password_required()) {
 
     <?php if (!comments_open() && get_comments_number() && post_type_supports(get_post_type(), 'comments')): ?>
         <p class="no-comments">
-            <?php esc_html_e('Comments are closed.', 'flavor'); ?>
+            <?php esc_html_e('Comments are closed.', 'finance-theme'); ?>
         </p>
     <?php endif; ?>
 

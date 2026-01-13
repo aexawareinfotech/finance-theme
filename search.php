@@ -16,7 +16,7 @@ get_header();
     style="padding: 120px 0 60px; background: linear-gradient(135deg, var(--primary-900), var(--primary-700)); color: var(--white); text-align: center;">
     <div class="container">
         <h1 style="color: var(--white);">
-            <?php printf(esc_html__('Search Results for: %s', 'flavor'), '<span>' . get_search_query() . '</span>'); ?>
+            <?php printf(esc_html__('Search Results for: %s', 'finance-theme'), '<span>' . get_search_query() . '</span>'); ?>
         </h1>
     </div>
 </section>
@@ -56,7 +56,7 @@ get_header();
                                 <?php echo esc_html(get_the_excerpt()); ?>
                             </p>
                             <a href="<?php echo esc_url(get_permalink()); ?>" class="read-more">
-                                <?php esc_html_e('Read More', 'flavor'); ?>
+                                <?php esc_html_e('Read More', 'finance-theme'); ?>
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M5 12h14M12 5l7 7-7 7" />
@@ -81,10 +81,10 @@ get_header();
         <?php else: ?>
             <div class="no-posts" style="text-align: center; padding: var(--space-16) 0;">
                 <h2>
-                    <?php esc_html_e('No results found', 'flavor'); ?>
+                    <?php esc_html_e('No results found', 'finance-theme'); ?>
                 </h2>
                 <p>
-                    <?php esc_html_e('Sorry, no content matched your search. Try different keywords.', 'flavor'); ?>
+                    <?php esc_html_e('Sorry, no content matched your search. Try different keywords.', 'finance-theme'); ?>
                 </p>
                 <div style="margin-top: var(--space-6);">
                     <?php get_search_form(); ?>
