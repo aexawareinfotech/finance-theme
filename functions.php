@@ -24,10 +24,8 @@ define('FLAVOR_URI', FINANCE_THEME_URI);
 
 // Include GitHub Updater for automatic updates
 require_once FINANCE_THEME_DIR . '/inc/class-github-updater.php';
-require_once FINANCE_THEME_DIR . '/inc/class-tgm-plugin-activation.php';
 require_once FINANCE_THEME_DIR . '/inc/class-demo-importer.php';
-// Include TGM Plugin Activation for required/recommended plugins
-require_once FINANCE_THEME_DIR . '/inc/required-plugins.php';
+require_once FINANCE_THEME_DIR . '/inc/custom-post-types.php';
 
 /**
  * Theme Setup
@@ -45,6 +43,16 @@ function flavor_setup(): void
 
     // Enable support for Post Thumbnails
     add_theme_support('post-thumbnails');
+
+    // Add support for block styles
+    add_theme_support('wp-block-styles');
+
+    // Add support for editor styles
+    add_theme_support('editor-styles');
+    add_editor_style();
+
+    // Add support for full and wide align images
+    add_theme_support('align-wide');
 
     // Add custom image sizes
     add_image_size('blog-thumbnail', 600, 400, true);
