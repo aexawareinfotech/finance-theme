@@ -108,65 +108,66 @@ $latest_posts = flavor_get_latest_posts(3);
                     [
                         'title' => 'Emergency Loans',
                         'description' => 'Get yourself unstuck and borrow up to $10,000 for emergencies.',
-                        'image' => 'https://a.storyblok.com/f/273483/7212x4629/c1f88dead4/emergency-loan.jpg',
+                        'image' => get_template_directory_uri() . '/assets/images/loans/emergency-loan.jpg',
                     ],
                     [
                         'title' => 'Wedding Loans',
                         'description' => 'Spread the costs of your big day with a loan up to $10,000.',
-                        'image' => 'https://a.storyblok.com/f/273483/7952x5304/d22527da07/wedding.jpg',
+                        'image' => get_template_directory_uri() . '/assets/images/loans/wedding.jpg',
                     ],
                     [
                         'title' => 'Education Loans',
                         'description' => 'This smarter personal loan can help with all things related to studying.',
-                        'image' => 'https://a.storyblok.com/f/273483/6272x4708/e75533e6af/education.jpg',
+                        'image' => get_template_directory_uri() . '/assets/images/loans/education.jpg',
                     ],
                     [
                         'title' => 'Travel Loans',
                         'description' => 'Take a well-deserved break with up to $10,000 for your adventure.',
-                        'image' => 'https://a.storyblok.com/f/273483/6720x4480/ac478c61d0/online.jpg',
+                        'image' => get_template_directory_uri() . '/assets/images/loans/online.jpg',
                     ],
                     [
                         'title' => 'Bond Loans',
                         'description' => 'Our 21-day interest-free bond loans lend a hand on moving day.',
-                        'image' => 'https://a.storyblok.com/f/273483/6720x4480/11c1056884/bond-loan.jpg',
+                        'image' => get_template_directory_uri() . '/assets/images/loans/bond-loan.jpg',
                     ],
                     [
                         'title' => 'Car Repairs',
                         'description' => 'Get your car back on the road quickly with repair financing.',
-                        'image' => 'https://a.storyblok.com/f/273483/6016x4016/329a128934/car-repairs.jpg',
+                        'image' => get_template_directory_uri() . '/assets/images/loans/car-repairs.jpg',
                     ],
                     [
                         'title' => 'Household Bills',
                         'description' => 'Cover unexpected household expenses when you need it most.',
-                        'image' => 'https://a.storyblok.com/f/273483/6720x4480/ac478c61d0/online.jpg',
+                        'image' => get_template_directory_uri() . '/assets/images/loans/online.jpg',
                     ],
                     [
                         'title' => 'Vet Loans',
                         'description' => 'Take care of your furry friends with quick vet expense financing.',
-                        'image' => 'https://a.storyblok.com/f/273483/5760x3840/17d3b3b849/vet-loans.jpg',
+                        'image' => get_template_directory_uri() . '/assets/images/loans/vet-loans.jpg',
                     ],
                     [
                         'title' => 'Cosmetic Loans',
                         'description' => 'Finance your cosmetic procedures with flexible payment options.',
-                        'image' => 'https://a.storyblok.com/f/273483/4901x3267/c49be04419/cosmetic-surgery.jpg',
+                        'image' => get_template_directory_uri() . '/assets/images/loans/cosmetic-surgery.jpg',
                     ],
                     [
                         'title' => 'Medium Loans',
                         'description' => 'Borrow between $2,001 to $5,000 for medium-sized expenses.',
-                        'image' => 'https://a.storyblok.com/f/273483/5906x3943/f4d1983f2d/medium-loans.jpg',
+                        'image' => get_template_directory_uri() . '/assets/images/loans/medium-loans.jpg',
                     ],
                     [
                         'title' => 'Large Loans',
                         'description' => 'Access up to $50,000 for major purchases and investments.',
-                        'image' => 'https://a.storyblok.com/f/273483/4708x3139/f930acc60a/large-loans.jpg',
+                        'image' => get_template_directory_uri() . '/assets/images/loans/large-loans.jpg',
                     ],
                 ];
 
                 foreach ($loan_cards as $loan):
-                ?>
+                    ?>
                     <a href="<?php echo esc_url(home_url('/apply')); ?>" class="loan-type-card">
                         <div class="loan-type-image">
-                            <img src="<?php echo esc_url($loan['image']); ?>" alt="<?php echo esc_attr($loan['title']); ?>" loading="lazy">
+                            <img src="<?php echo esc_url($loan['image']); ?>" alt="<?php echo esc_attr($loan['title']); ?>"
+                                loading="lazy">
                         </div>
                         <div class="loan-type-content">
                             <h3><?php echo esc_html($loan['title']); ?></h3>
@@ -275,55 +276,55 @@ $latest_posts = flavor_get_latest_posts(3);
         <div class="australia-grid">
             <div class="australia-content">
                 <h2><?php esc_html_e('Trusted by Australians', 'flavor'); ?></h2>
-                    <p class="australia-intro">
-                        <?php
-                        $company_name = get_bloginfo('name');
-                        $asic_number = get_theme_mod('flavor_asic_number', 'XXXXXX');
-                        $afca_number = get_theme_mod('flavor_afca_number', 'XXXXXX');
-                        printf(
-                            esc_html__('%s holds Australian Credit Licence %s and is a member of AFCA (%s). We provide straightforward loan options that put transparency, security, and responsible lending first.', 'flavor'),
-                            esc_html($company_name),
-                            esc_html($asic_number),
-                            esc_html($afca_number)
-                        );
-                        ?>
-                    </p>
+                <p class="australia-intro">
+                    <?php
+                    $company_name = get_bloginfo('name');
+                    $asic_number = get_theme_mod('flavor_asic_number', 'XXXXXX');
+                    $afca_number = get_theme_mod('flavor_afca_number', 'XXXXXX');
+                    printf(
+                        esc_html__('%s holds Australian Credit Licence %s and is a member of AFCA (%s). We provide straightforward loan options that put transparency, security, and responsible lending first.', 'flavor'),
+                        esc_html($company_name),
+                        esc_html($asic_number),
+                        esc_html($afca_number)
+                    );
+                    ?>
+                </p>
 
-                    <ul class="australia-features">
-                        <li>
-                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <ul class="australia-features">
+                    <li>
+                        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
                             <polyline points=" 20 6 9 17 4 12" />
-                            </svg>
-                            <span><?php esc_html_e('100% Australian owned', 'flavor'); ?></span>
-                        </li>
-                        <li>
-                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2.5">
-                                <polyline points="20 6 9 17 4 12" />
-                            </svg>
-                            <span><?php esc_html_e('Bad Credit? No Problem.', 'flavor'); ?></span>
-                        </li>
-                        <li>
-                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2.5">
-                                <polyline points="20 6 9 17 4 12" />
-                            </svg>
-                            <span>
-                                <?php esc_html_e('100% Secure Process', 'flavor'); ?>
-                            </span>
-                        </li>
-                    </ul>
-
-                    <a href="<?php echo esc_url(home_url('/apply')); ?>" class="btn btn-australia">
-                        <?php esc_html_e('Apply Now', 'flavor'); ?>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
                         </svg>
-                    </a>
-                    <p class="australia-note">
-                        <?php esc_html_e('Safe and Secure. 5 min application*', 'flavor'); ?>
-                    </p>
+                        <span><?php esc_html_e('100% Australian owned', 'flavor'); ?></span>
+                    </li>
+                    <li>
+                        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        <span><?php esc_html_e('Bad Credit? No Problem.', 'flavor'); ?></span>
+                    </li>
+                    <li>
+                        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        <span>
+                            <?php esc_html_e('100% Secure Process', 'flavor'); ?>
+                        </span>
+                    </li>
+                </ul>
+
+                <a href="<?php echo esc_url(home_url('/apply')); ?>" class="btn btn-australia">
+                    <?php esc_html_e('Apply Now', 'flavor'); ?>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+                <p class="australia-note">
+                    <?php esc_html_e('Safe and Secure. 5 min application*', 'flavor'); ?>
+                </p>
             </div>
 
             <div class="australia-image">

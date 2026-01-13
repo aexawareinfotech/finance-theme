@@ -24,7 +24,8 @@ define('FLAVOR_URI', FINANCE_THEME_URI);
 
 // Include GitHub Updater for automatic updates
 require_once FINANCE_THEME_DIR . '/inc/class-github-updater.php';
-
+require_once FINANCE_THEME_DIR . '/inc/class-tgm-plugin-activation.php';
+require_once FINANCE_THEME_DIR . '/inc/class-demo-importer.php';
 // Include TGM Plugin Activation for required/recommended plugins
 require_once FINANCE_THEME_DIR . '/inc/required-plugins.php';
 
