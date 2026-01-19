@@ -132,21 +132,7 @@ class Finance_Theme_GitHub_Updater
         $github_version = ltrim($this->github_response['tag_name'], 'v');
 
         if (version_compare($github_version, $current_version, '>')) {
-            // Try to get the release asset (our properly named zip)
-            $package = null;
-            if (!empty($this->github_response['assets'])) {
-                foreach ($this->github_response['assets'] as $asset) {
-                    if (strpos($asset['name'], '.zip') !== false) {
-                        $package = $asset['browser_download_url'];
-                        break;
-                    }
-                }
-            }
-
-            // Fallback to zipball if no asset found
-            if (!$package) {
-                $package = $this->github_response['zipball_url'];
-            }
+            $package = $this->get_release_package();
 
             if ($this->authorize_token) {
                 $package = add_query_arg(['access_token' => $this->authorize_token], $package);
@@ -202,8 +188,35 @@ class Finance_Theme_GitHub_Updater
                 'description' => $theme->get('Description'),
                 'changelog' => $this->get_changelog(),
             ],
-            'download_link' => $this->github_response['zipball_url'],
+            'download_link' => $this->get_release_package(),
         ];
+    }
+
+    private function get_release_package(): string
+    {
+        $package = '';
+
+        if (!empty($this->github_response['assets'])) {
+            foreach ($this->github_response['assets'] as $asset) {
+                if (!isset($asset['name'], $asset['browser_download_url'])) {
+                    continue;
+                }
+
+                if ($asset['name'] === 'finance-theme.zip') {
+                    return $asset['browser_download_url'];
+                }
+
+                if ($package === '' && substr($asset['name'], -4) === '.zip') {
+                    $package = $asset['browser_download_url'];
+                }
+            }
+        }
+
+        if ($package !== '') {
+            return $package;
+        }
+
+        return $this->github_response['zipball_url'];
     }
 
     /**
