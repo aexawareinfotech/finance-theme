@@ -202,6 +202,64 @@ class Flavor_Loan_Metaboxes
                         placeholder="Label (e.g. Online Process)">
                 </div>
             </div>
+
+            <hr>
+            <h3>
+                <?php _e('Example Loan Costs', 'finance-theme'); ?>
+            </h3>
+            <p class="description">
+                        <?php _e('Configure the example loan cost cards shown on single loan pages.', 'finance-theme'); ?></p>
+
+            <?php
+            // Get loan cost examples
+            $cost_1_amount = get_post_meta($post->ID, '_loan_cost_1_amount', true) ?: '$1,000';
+            $cost_1_term = get_post_meta($post->ID, '_loan_cost_1_term', true) ?: 'Over 12 months';
+            $cost_1_repayment = get_post_meta($post->ID, '_loan_cost_1_repayment', true) ?: '$95/fortnight*';
+
+            $cost_2_amount = get_post_meta($post->ID, '_loan_cost_2_amount', true) ?: '$3,000';
+            $cost_2_term = get_post_meta($post->ID, '_loan_cost_2_term', true) ?: 'Over 24 months';
+            $cost_2_repayment = get_post_meta($post->ID, '_loan_cost_2_repayment', true) ?: '$75/fortnight*';
+
+            $cost_3_amount = get_post_meta($post->ID, '_loan_cost_3_amount', true) ?: '$5,000';
+            $cost_3_term = get_post_meta($post->ID, '_loan_cost_3_term', true) ?: 'Over 36 months';
+            $cost_3_repayment = get_post_meta($post->ID, '_loan_cost_3_repayment', true) ?: '$85/fortnight*';
+            ?>
+
+            <div class="flavor-stats-grid" style="margin-top: 15px;">
+                <div style="background: #f9f9f9; padding: 15px; border-radius: 8px;">
+                    <label style="display: block; margin-bottom: 10px; font-weight: bold;">
+                        <?php _e('Example 1', 'finance-theme'); ?>
+                    </label>
+                    <input type="text" name="loan_cost_1_amount" value="<?php echo esc_attr($cost_1_amount); ?>"
+                        placeholder="Amount (e.g. $1,000)" style="margin-bottom: 5px;">
+                    <input type="text" name="loan_cost_1_term" value="<?php echo esc_attr($cost_1_term); ?>"
+                        placeholder="Term (e.g. Over 12 months)" style="margin-bottom: 5px;">
+                    <input type="text" name="loan_cost_1_repayment" value="<?php echo esc_attr($cost_1_repayment); ?>"
+                        placeholder="Repayment (e.g. $95/fortnight*)">
+                </div>
+                <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; border: 2px solid #4caf50;">
+                    <label style="display: block; margin-bottom: 10px; font-weight: bold;">
+                        <?php _e('Example 2 (Popular)', 'finance-theme'); ?>
+                    </label>
+                    <input type="text" name="loan_cost_2_amount" value="<?php echo esc_attr($cost_2_amount); ?>"
+                        placeholder="Amount (e.g. $3,000)" style="margin-bottom: 5px;">
+                    <input type="text" name="loan_cost_2_term" value="<?php echo esc_attr($cost_2_term); ?>"
+                        placeholder="Term (e.g. Over 24 months)" style="margin-bottom: 5px;">
+                    <input type="text" name="loan_cost_2_repayment" value="<?php echo esc_attr($cost_2_repayment); ?>"
+                        placeholder="Repayment (e.g. $75/fortnight*)">
+                </div>
+                <div style="background: #f9f9f9; padding: 15px; border-radius: 8px;">
+                    <label style="display: block; margin-bottom: 10px; font-weight: bold;">
+                        <?php _e('Example 3', 'finance-theme'); ?>
+                    </label>
+                    <input type="text" name="loan_cost_3_amount" value="<?php echo esc_attr($cost_3_amount); ?>"
+                        placeholder="Amount (e.g. $5,000)" style="margin-bottom: 5px;">
+                    <input type="text" name="loan_cost_3_term" value="<?php echo esc_attr($cost_3_term); ?>"
+                        placeholder="Term (e.g. Over 36 months)" style="margin-bottom: 5px;">
+                    <input type="text" name="loan_cost_3_repayment" value="<?php echo esc_attr($cost_3_repayment); ?>"
+                        placeholder="Repayment (e.g. $85/fortnight*)">
+                </div>
+            </div>
         </div>
         <?php
     }
@@ -240,6 +298,16 @@ class Flavor_Loan_Metaboxes
             'loan_stat_2_label',
             'loan_stat_3_number',
             'loan_stat_3_label',
+            // Loan Cost Examples
+            'loan_cost_1_amount',
+            'loan_cost_1_term',
+            'loan_cost_1_repayment',
+            'loan_cost_2_amount',
+            'loan_cost_2_term',
+            'loan_cost_2_repayment',
+            'loan_cost_3_amount',
+            'loan_cost_3_term',
+            'loan_cost_3_repayment',
         ];
 
         foreach ($fields as $field) {

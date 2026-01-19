@@ -10,6 +10,78 @@ if (!defined('ABSPATH')) {
 }
 
 get_header();
+?>
+
+<style>
+    /* Single Loan Page Responsive Styles */
+    @media (max-width: 768px) {
+
+        /* Features Row */
+        .features-row .container>div {
+            grid-template-columns: 1fr !important;
+            gap: var(--space-4) !important;
+        }
+
+        /* Why Choose Section - image on top */
+        .why-choose-loan-grid {
+            display: flex !important;
+            flex-direction: column !important;
+        }
+
+        .why-choose-loan-grid .why-choose-image {
+            order: -1 !important;
+            margin-bottom: var(--space-6);
+        }
+
+        .why-choose-loan-grid .why-choose-content {
+            order: 1 !important;
+        }
+
+        /* Eligibility Section - image on top */
+        .eligibility-grid {
+            display: flex !important;
+            flex-direction: column !important;
+        }
+
+        .eligibility-grid .eligibility-image {
+            order: -1 !important;
+            margin-bottom: var(--space-6);
+        }
+
+        .eligibility-grid .eligibility-content {
+            order: 1 !important;
+        }
+
+        /* How to Apply Section */
+        .how-to-apply-grid {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: var(--space-8) !important;
+        }
+
+        /* Loan Costs Grid */
+        .loan-costs-grid {
+            grid-template-columns: 1fr !important;
+        }
+
+        /* Reviews Grid */
+        .reviews-grid {
+            grid-template-columns: 1fr !important;
+        }
+
+        /* Hero Stats */
+        .loan-hero-stats {
+            flex-direction: column !important;
+            gap: var(--space-4) !important;
+        }
+
+        .loan-hero-stats .stat-item {
+            text-align: center !important;
+        }
+    }
+</style>
+
+<?php
 
 while (have_posts()):
     the_post();
@@ -164,34 +236,6 @@ while (have_posts()):
             <div class="entry-content" style="font-size: var(--text-lg); line-height: 1.8;">
                 <?php the_content(); ?>
             </div>
-
-            <?php
-            // Display Features List if entered
-            $features_text = get_post_meta($post_id, '_loan_features', true);
-            if (!empty($features_text)):
-                $features_list = array_filter(array_map('trim', explode("\n", $features_text)));
-                if (!empty($features_list)):
-                    ?>
-                    <div class="loan-features-list"
-                        style="margin-top: var(--space-8); background: var(--gray-100); padding: var(--space-8); border-radius: var(--radius-xl);">
-                        <h3 style="margin-bottom: var(--space-6);"><?php esc_html_e('Key Features', 'finance-theme'); ?></h3>
-                        <ul class="loan-features"
-                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-4);">
-                            <?php foreach ($features_list as $feature): ?>
-                                <li style="display: flex; gap: var(--space-3); align-items: center;">
-                                    <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent-500)"
-                                        stroke-width="2.5" style="width: 20px; height: 20px;">
-                                        <polyline points="20 6 9 17 4 12" />
-                                    </svg>
-                                    <span><?php echo esc_html($feature); ?></span>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
-                    <?php
-                endif;
-            endif;
-            ?>
         </div>
     </section>
 
@@ -370,6 +414,21 @@ while (have_posts()):
                 </p>
             </div>
 
+            <?php
+            // Get dynamic loan cost values
+            $cost_1_amount = get_post_meta($post_id, '_loan_cost_1_amount', true) ?: '$1,000';
+            $cost_1_term = get_post_meta($post_id, '_loan_cost_1_term', true) ?: 'Over 12 months';
+            $cost_1_repayment = get_post_meta($post_id, '_loan_cost_1_repayment', true) ?: '$95/fortnight*';
+
+            $cost_2_amount = get_post_meta($post_id, '_loan_cost_2_amount', true) ?: '$3,000';
+            $cost_2_term = get_post_meta($post_id, '_loan_cost_2_term', true) ?: 'Over 24 months';
+            $cost_2_repayment = get_post_meta($post_id, '_loan_cost_2_repayment', true) ?: '$75/fortnight*';
+
+            $cost_3_amount = get_post_meta($post_id, '_loan_cost_3_amount', true) ?: '$5,000';
+            $cost_3_term = get_post_meta($post_id, '_loan_cost_3_term', true) ?: 'Over 36 months';
+            $cost_3_repayment = get_post_meta($post_id, '_loan_cost_3_repayment', true) ?: '$85/fortnight*';
+            ?>
+
             <div class="loan-costs-grid"
                 style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); max-width: 900px; margin: 0 auto;">
                 <!-- Example 1 -->
@@ -380,15 +439,17 @@ while (have_posts()):
                     </div>
                     <div
                         style="font-size: var(--text-2xl); font-weight: 700; color: var(--gray-900); margin-bottom: var(--space-4);">
-                        $1,000</div>
+                        <?php echo esc_html($cost_1_amount); ?>
+                    </div>
                     <div style="font-size: var(--text-sm); color: var(--gray-500);">
-                        <?php esc_html_e('Over 12 months', 'finance-theme'); ?>
+                        <?php echo esc_html($cost_1_term); ?>
                     </div>
                     <div
                         style="font-size: var(--text-lg); font-weight: 600; color: var(--accent-600); margin-top: var(--space-2);">
-                        $95/fortnight*</div>
+                        <?php echo esc_html($cost_1_repayment); ?>
+                    </div>
                 </div>
-                <!-- Example 2 -->
+                <!-- Example 2 (Popular) -->
                 <div class="loan-cost-card"
                     style="background: var(--accent-50); border: 2px solid var(--accent-500); border-radius: var(--radius-xl); padding: var(--space-6); text-align: center; position: relative;">
                     <div
@@ -400,13 +461,15 @@ while (have_posts()):
                     </div>
                     <div
                         style="font-size: var(--text-2xl); font-weight: 700; color: var(--gray-900); margin-bottom: var(--space-4);">
-                        $3,000</div>
+                        <?php echo esc_html($cost_2_amount); ?>
+                    </div>
                     <div style="font-size: var(--text-sm); color: var(--gray-500);">
-                        <?php esc_html_e('Over 24 months', 'finance-theme'); ?>
+                        <?php echo esc_html($cost_2_term); ?>
                     </div>
                     <div
                         style="font-size: var(--text-lg); font-weight: 600; color: var(--accent-600); margin-top: var(--space-2);">
-                        $75/fortnight*</div>
+                        <?php echo esc_html($cost_2_repayment); ?>
+                    </div>
                 </div>
                 <!-- Example 3 -->
                 <div class="loan-cost-card"
@@ -416,13 +479,15 @@ while (have_posts()):
                     </div>
                     <div
                         style="font-size: var(--text-2xl); font-weight: 700; color: var(--gray-900); margin-bottom: var(--space-4);">
-                        $5,000</div>
+                        <?php echo esc_html($cost_3_amount); ?>
+                    </div>
                     <div style="font-size: var(--text-sm); color: var(--gray-500);">
-                        <?php esc_html_e('Over 36 months', 'finance-theme'); ?>
+                        <?php echo esc_html($cost_3_term); ?>
                     </div>
                     <div
                         style="font-size: var(--text-lg); font-weight: 600; color: var(--accent-600); margin-top: var(--space-2);">
-                        $85/fortnight*</div>
+                        <?php echo esc_html($cost_3_repayment); ?>
+                    </div>
                 </div>
             </div>
             <p style="text-align: center; color: var(--gray-500); font-size: var(--text-sm); margin-top: var(--space-6);">
