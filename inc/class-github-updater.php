@@ -182,6 +182,39 @@ class Finance_Theme_GitHub_Updater
         return '<pre>' . esc_html($this->github_response['body']) . '</pre>';
     }
 
+    private function resolve_source_dir(string $source_dir, $filesystem): string
+    {
+        $source_dir = untrailingslashit($source_dir);
+
+        if ($filesystem->exists($source_dir . '/style.css')) {
+            return $source_dir;
+        }
+
+        $source_files = $filesystem->dirlist($source_dir);
+        if (!$source_files || !is_array($source_files)) {
+            return $source_dir;
+        }
+
+        if (isset($source_files[$this->slug]) && $source_files[$this->slug]['type'] === 'd') {
+            $candidate = $source_dir . '/' . $this->slug;
+            if ($filesystem->exists($candidate . '/style.css')) {
+                return $candidate;
+            }
+        }
+
+        if (count($source_files) === 1) {
+            $subfolder = key($source_files);
+            if ($source_files[$subfolder]['type'] === 'd') {
+                $candidate = $source_dir . '/' . $subfolder;
+                if ($filesystem->exists($candidate . '/style.css')) {
+                    return $candidate;
+                }
+            }
+        }
+
+        return $source_dir;
+    }
+
     /**
      * Fix folder name after install
      */
@@ -193,39 +226,34 @@ class Finance_Theme_GitHub_Updater
             return $result;
         }
 
-        $theme_dir = get_theme_root() . '/' . $this->slug;
+        $theme_dir = trailingslashit(get_theme_root()) . $this->slug;
         $source_dir = $result['destination'];
+        $resolved_source_dir = $this->resolve_source_dir($source_dir, $wp_filesystem);
 
-        // Check if the destination is correct already
-        if ($source_dir === $theme_dir) {
+        if ($resolved_source_dir === $theme_dir) {
             return $result;
         }
 
-        // If the source has a subfolder (from our zip), find and use it
-        $source_files = $wp_filesystem->dirlist($source_dir);
-        if ($source_files && count($source_files) === 1) {
-            $subfolder = key($source_files);
-            if ($source_files[$subfolder]['type'] === 'd') {
-                // There's a single subfolder, use its contents
-                $source_dir = trailingslashit($source_dir) . $subfolder;
+        if (strpos($resolved_source_dir, $theme_dir . '/') === 0) {
+            $temp_dir = $theme_dir . '-tmp';
+            if ($wp_filesystem->exists($temp_dir)) {
+                $wp_filesystem->delete($temp_dir, true);
             }
+            $wp_filesystem->move($resolved_source_dir, $temp_dir);
+            if ($wp_filesystem->exists($theme_dir)) {
+                $wp_filesystem->delete($theme_dir, true);
+            }
+            $wp_filesystem->move($temp_dir, $theme_dir);
+        } else {
+            if ($wp_filesystem->exists($theme_dir)) {
+                $wp_filesystem->delete($theme_dir, true);
+            }
+            $wp_filesystem->move($resolved_source_dir, $theme_dir);
         }
 
-        // Remove existing theme directory if it exists
-        if ($wp_filesystem->exists($theme_dir)) {
-            $wp_filesystem->delete($theme_dir, true);
-        }
-
-        // Move the source to the correct theme directory
-        $wp_filesystem->move($source_dir, $theme_dir);
         $result['destination'] = $theme_dir;
+        $result['destination_name'] = $this->slug;
 
-        // Clean up the original extracted folder if it still exists
-        if ($wp_filesystem->exists($result['destination_name']) && $result['destination_name'] !== $theme_dir) {
-            $wp_filesystem->delete($result['destination_name'], true);
-        }
-
-        // Re-activate theme if it was active
         if (get_option('template') === $this->slug) {
             switch_theme($this->slug);
         }
