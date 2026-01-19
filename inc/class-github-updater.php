@@ -33,10 +33,42 @@ class Finance_Theme_GitHub_Updater
 
         add_filter('pre_set_site_transient_update_themes', [$this, 'check_update']);
         add_filter('themes_api', [$this, 'theme_info'], 20, 3);
+        add_filter('upgrader_source_selection', [$this, 'filter_source_selection'], 10, 4);
         add_filter('upgrader_post_install', [$this, 'after_install'], 10, 3);
 
         // Add update check info to theme details
         add_action('core_upgrade_preamble', [$this, 'display_update_info']);
+    }
+
+    public function filter_source_selection($source, $remote_source, $upgrader, $hook_extra)
+    {
+        if (!isset($hook_extra['theme']) || $hook_extra['theme'] !== $this->slug) {
+            return $source;
+        }
+
+        global $wp_filesystem;
+
+        if (!$wp_filesystem) {
+            return $source;
+        }
+
+        $resolved_source = $this->resolve_source_dir($source, $wp_filesystem);
+        $base_dir = untrailingslashit($remote_source);
+        $proper_source = $base_dir . '/' . $this->slug;
+
+        if ($resolved_source === $proper_source) {
+            return $resolved_source;
+        }
+
+        if ($wp_filesystem->exists($proper_source)) {
+            $wp_filesystem->delete($proper_source, true);
+        }
+
+        if ($wp_filesystem->move($resolved_source, $proper_source)) {
+            return $proper_source;
+        }
+
+        return $source;
     }
 
     /**
