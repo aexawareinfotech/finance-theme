@@ -256,54 +256,58 @@ $latest_posts = flavor_get_latest_posts(3);
             <!-- Step 1 -->
             <div class="process-step">
                 <div class="process-icon process-icon-1">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="3" width="18" height="18" rx="2" />
-                        <path d="M9 12l2 2 4-4" />
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14" />
+                        <path d="M12 5l7 7-7 7" />
                     </svg>
                 </div>
-                <h3><?php esc_html_e('Apply now', 'finance-theme'); ?></h3>
-                <p><?php esc_html_e('Our online application takes just six minutes to complete.', 'finance-theme'); ?>
-                </p>
+                <div class="process-step-content">
+                    <h3><?php esc_html_e('Apply now', 'finance-theme'); ?></h3>
+                    <p><?php esc_html_e('Our online application takes just six minutes to complete.', 'finance-theme'); ?></p>
+                </div>
             </div>
 
             <!-- Step 2 -->
             <div class="process-step">
                 <div class="process-icon process-icon-2">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-                        <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 11l3 3L22 4" />
+                        <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
                     </svg>
                 </div>
-                <h3><?php esc_html_e('Accept our offer', 'finance-theme'); ?></h3>
-                <p><?php esc_html_e('We send you the loan terms. You accept with a secure SMS code. It couldn\'t be easier.', 'finance-theme'); ?>
-                </p>
+                <div class="process-step-content">
+                    <h3><?php esc_html_e('Accept our offer', 'finance-theme'); ?></h3>
+                    <p><?php esc_html_e('We send you the loan terms. You accept with a secure SMS code. It couldn\'t be easier.', 'finance-theme'); ?></p>
+                </div>
             </div>
 
             <!-- Step 3 -->
             <div class="process-step">
                 <div class="process-icon process-icon-3">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="10" />
                         <path d="M12 6v6l4 2" />
+                        <path d="M8 3v2M16 3v2" />
                     </svg>
                 </div>
-                <h3><?php esc_html_e('Get your funds', 'finance-theme'); ?></h3>
-                <p><?php esc_html_e('Our real-time funding means your funds are in your account on the same day.', 'finance-theme'); ?>
-                </p>
+                <div class="process-step-content">
+                    <h3><?php esc_html_e('Get your funds', 'finance-theme'); ?></h3>
+                    <p><?php esc_html_e('Our real-time funding means your funds are in your account on the same day.', 'finance-theme'); ?></p>
+                </div>
             </div>
 
             <!-- Step 4 -->
             <div class="process-step">
                 <div class="process-icon process-icon-4">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-                        <circle cx="9" cy="7" r="4" />
-                        <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                        <polyline points="9 22 9 12 15 12 15 22" />
                     </svg>
                 </div>
-                <h3><?php esc_html_e('Stay supported', 'finance-theme'); ?></h3>
-                <p><?php esc_html_e('We stick around to help with repayments, questions and credit score boosts.', 'finance-theme'); ?>
-                </p>
+                <div class="process-step-content">
+                    <h3><?php esc_html_e('Stay supported', 'finance-theme'); ?></h3>
+                    <p><?php esc_html_e('We stick around to help with repayments, questions and credit score boosts.', 'finance-theme'); ?></p>
+                </div>
             </div>
         </div>
 </section>
