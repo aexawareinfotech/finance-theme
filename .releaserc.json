@@ -55,7 +55,7 @@
         [
             "@semantic-release/exec",
             {
-                "prepareCmd": "sed -i 's/Version: .*/Version: ${nextRelease.version}/g' style.css && sed -i \"s/define('FINANCE_THEME_VERSION', '.*');/define('FINANCE_THEME_VERSION', '${nextRelease.version}');/g\" functions.php && sed -i 's/Stable tag: .*/Stable tag: ${nextRelease.version}/g' readme.txt"
+                "prepareCmd": "sed -i 's/Version: .*/Version: ${nextRelease.version}/g' style.css && sed -i \"s/define('FINANCE_THEME_VERSION', '.*');/define('FINANCE_THEME_VERSION', '${nextRelease.version}');/g\" functions.php && sed -i 's/Stable tag: .*/Stable tag: ${nextRelease.version}/g' readme.txt && rm -rf ./finance-theme ./finance-theme.zip && mkdir finance-theme && rsync -av --exclude='node_modules' --exclude='.git' --exclude='.github' --exclude='package.json' --exclude='package-lock.json' --exclude='bun.lock' --exclude='.releaserc.json' --exclude='finance-theme' --exclude='finance-theme.zip' --exclude='scripts' --exclude='AGENTS.md' . finance-theme/ && zip -r finance-theme.zip finance-theme && rm -rf finance-theme"
             }
         ],
         [
