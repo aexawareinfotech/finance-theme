@@ -37,7 +37,7 @@ jobs:
           # Create the theme folder with exact name WordPress expects
           mkdir finance-theme
 
-          # Copy theme files (excluding dev files)
+          # Copy theme files (excluding dev files and temp folders)
           rsync -av \
             --exclude='node_modules' \
             --exclude='.git' \
@@ -50,7 +50,7 @@ jobs:
             --exclude='finance-theme.zip' \
             --exclude='scripts' \
             --exclude='AGENTS.md' \
-            ./* finance-theme/
+            . finance-theme/
 
           # Verify the folder exists and has content
           ls -la finance-theme/
