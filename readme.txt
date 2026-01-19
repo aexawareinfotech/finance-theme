@@ -35,8 +35,8 @@ https://aexaware.com
 
 1. Upload the theme folder to `/wp-content/themes/`
 2. Activate the theme through 'Appearance' > 'Themes' menu in WordPress
-3. Activate the companion plugin "Finance Theme - Custom Post Types"
-4. Go to 'Appearance' > 'Customize' to configure theme options
+3. Go to 'Appearance' > 'Customize' to configure theme options
+4. Navigate to 'Appearance' > 'Theme Setup' to import demo content (optional)
 
 == Auto Updates ==
 

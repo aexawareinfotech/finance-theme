@@ -24,9 +24,6 @@ define('FLAVOR_URI', FINANCE_THEME_URI);
 
 require_once FINANCE_THEME_DIR . '/inc/class-demo-importer.php';
 
-// Note: Custom Post Types have been moved to the companion plugin
-// "Finance Theme - Custom Post Types" for WordPress.org compliance
-
 /**
  * Theme Setup
  */
@@ -227,25 +224,6 @@ function flavor_register_block_patterns(): void
     ]);
 }
 add_action('init', 'flavor_register_block_patterns');
-
-/**
- * Display admin notice if companion plugin is not active
- */
-function flavor_check_required_plugin(): void
-{
-    if (!is_plugin_active('flavor-post-types/flavor-post-types.php') && current_user_can('activate_plugins')) {
-        add_action('admin_notices', function () {
-            ?>
-            <div class="notice notice-warning is-dismissible">
-                <p><?php esc_html_e('Fair Go Finance theme recommends activating the "Fair Go Finance - Custom Post Types" plugin for full functionality.', 'finance-theme'); ?>
-                </p>
-            </div>
-            <?php
-        });
-    }
-}
-add_action('admin_init', 'flavor_check_required_plugin');
-
 
 /**
  * Theme Customizer
