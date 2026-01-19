@@ -300,18 +300,18 @@ class Finance_Theme_GitHub_Updater
     {
         $theme = wp_get_theme($this->slug);
         ?>
-                <div class="notice notice-info">
-                    <p>
-                        <strong>
-                            <?php echo esc_html($theme->get('Name')); ?>
-                        </strong>
-                        <?php esc_html_e('receives automatic updates from GitHub.', 'finance-theme'); ?>
-                        <a href="https://github.com/<?php echo esc_attr($this->username . '/' . $this->repo); ?>" target="_blank">
-                            <?php esc_html_e('View on GitHub', 'finance-theme'); ?>
-                        </a>
-                    </p>
-                </div>
-                <?php
+        <div class="notice notice-info">
+            <p>
+                <strong>
+                    <?php echo esc_html($theme->get('Name')); ?>
+                </strong>
+                <?php esc_html_e('receives automatic updates from GitHub.', 'finance-theme'); ?>
+                <a href="https://github.com/<?php echo esc_attr($this->username . '/' . $this->repo); ?>" target="_blank">
+                    <?php esc_html_e('View on GitHub', 'finance-theme'); ?>
+                </a>
+            </p>
+        </div>
+        <?php
     }
 }
 
