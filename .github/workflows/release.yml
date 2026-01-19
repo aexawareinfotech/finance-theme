@@ -32,10 +32,10 @@ jobs:
       - name: Create theme zip
         run: |
           # Clean up any existing files
-          rm -rf ./finance-theme ./finance-theme.zip
+          rm -rf ./build ./finance-theme.zip
 
           # Create the theme folder with exact name WordPress expects
-          mkdir finance-theme
+          mkdir build
 
           # Copy theme files (excluding dev files)
           rsync -av \
@@ -46,22 +46,22 @@ jobs:
             --exclude='package-lock.json' \
             --exclude='bun.lock' \
             --exclude='.releaserc.json' \
-            --exclude='finance-theme' \
+            --exclude='build' \
             --exclude='finance-theme.zip' \
             --exclude='scripts' \
-            ./ finance-theme/
+            ./ build/
 
           # Verify the folder exists and has content
-          ls -la finance-theme/
+          ls -la build/
 
           # Create ZIP with correct structure (finance-theme at root)
-          zip -r finance-theme.zip finance-theme
+          cd build && zip -r ../finance-theme.zip . && cd ..
 
-          # Verify ZIP structure
+          # Verify ZIP structure - should show finance-theme/ not finance-theme/finance-theme/
           unzip -l finance-theme.zip | head -20
 
           # Cleanup the temp folder
-          rm -rf finance-theme
+          rm -rf build
 
       - name: Run semantic-release
         env:
