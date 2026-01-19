@@ -229,6 +229,27 @@ function finance_theme_flush_rewrite_rules(): void
 add_action('after_switch_theme', 'finance_theme_flush_rewrite_rules');
 
 /**
+ * Clear default WordPress widgets on theme activation
+ * Removes Archives, Categories, Meta widgets that WP adds by default
+ */
+function finance_theme_clear_default_widgets(): void
+{
+    // Get all sidebar widget assignments
+    $sidebars_widgets = get_option('sidebars_widgets');
+
+    if (is_array($sidebars_widgets)) {
+        // Clear all widget areas
+        foreach ($sidebars_widgets as $sidebar_id => $widgets) {
+            if ($sidebar_id !== 'wp_inactive_widgets' && $sidebar_id !== 'array_version') {
+                $sidebars_widgets[$sidebar_id] = [];
+            }
+        }
+        update_option('sidebars_widgets', $sidebars_widgets);
+    }
+}
+add_action('after_switch_theme', 'finance_theme_clear_default_widgets');
+
+/**
  * Enqueue scripts and styles
  */
 function flavor_scripts(): void

@@ -1,24 +1,24 @@
 {
-    "name": "finance-theme",
-    "version": "1.0.0",
-    "description": "Finance Theme by Aexaware Infotech",
-    "private": true,
-    "scripts": {
-        "release": "semantic-release"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/aexawareinfotech/finance-theme.git"
-    },
-    "author": "Aexaware Infotech",
-    "license": "GPL-2.0-or-later",
-    "devDependencies": {
-        "@semantic-release/commit-analyzer": "^13.0.1",
-        "@semantic-release/exec": "^7.1.0",
-        "@semantic-release/git": "^10.0.1",
-        "@semantic-release/github": "^12.0.2",
-        "conventional-changelog-conventionalcommits": "^9.1.0",
-        "semantic-release": "^25.0.2",
-        "sharp": "^0.34.5"
-    }
+  "name": "finance-theme",
+  "version": "1.12.0",
+  "description": "Finance Theme by Aexaware Infotech",
+  "private": true,
+  "scripts": {
+    "release": "semantic-release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aexawareinfotech/finance-theme.git"
+  },
+  "author": "Aexaware Infotech",
+  "license": "GPL-2.0-or-later",
+  "devDependencies": {
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/exec": "^7.1.0",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^12.0.2",
+    "conventional-changelog-conventionalcommits": "^9.1.0",
+    "semantic-release": "^25.0.2",
+    "sharp": "^0.34.5"
+  }
 }
