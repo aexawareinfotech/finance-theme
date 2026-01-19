@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+package-lock.json
+vendor/
+
+# Build artifacts
+*.log
+*.map
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.sublime-*
+
+# Local development
+.env
+.env.local
+
+# Compiled assets (if using build tools)
+dist/
