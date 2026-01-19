@@ -81,16 +81,7 @@ if (!defined('ABSPATH')) {
 
                 <!-- Header Actions (Search + CTA) -->
                 <div class="header-actions">
-                    <?php if (get_theme_mod('flavor_show_search', true)): ?>
-                        <button class="search-toggle" id="search-toggle"
-                            aria-label="<?php esc_attr_e('Open Search', 'finance-theme'); ?>">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="11" cy="11" r="8" />
-                                <path d="m21 21-4.35-4.35" />
-                            </svg>
-                        </button>
-                    <?php endif; ?>
+
 
                     <?php if (get_theme_mod('flavor_show_cta', true)): ?>
                         <a href="<?php echo esc_url(home_url(get_theme_mod('flavor_cta_url', '/apply'))); ?>"
@@ -115,21 +106,7 @@ if (!defined('ABSPATH')) {
             </div>
         </div>
 
-        <!-- Search Overlay -->
-        <?php if (get_theme_mod('flavor_show_search', true)): ?>
-            <div class="search-overlay" id="search-overlay" aria-hidden="true">
-                <div class="search-overlay-inner">
-                    <button class="search-close" id="search-close"
-                        aria-label="<?php esc_attr_e('Close Search', 'finance-theme'); ?>">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round">
-                            <path d="M18 6L6 18M6 6l12 12" />
-                        </svg>
-                    </button>
-                    <?php get_search_form(); ?>
-                </div>
-            </div>
-        <?php endif; ?>
+
 
         <!-- Mobile Menu -->
         <nav class="mobile-menu" id="mobile-menu"

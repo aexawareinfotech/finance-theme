@@ -585,7 +585,7 @@ p:last-child {
 }
 
 .search-toggle {
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     width: 40px;
@@ -596,6 +596,12 @@ p:last-child {
     cursor: pointer;
     color: var(--primary-900);
     transition: all var(--transition-base);
+}
+
+@media (min-width: 1024px) {
+    .search-toggle {
+        display: flex;
+    }
 }
 
 .search-toggle svg {
@@ -815,16 +821,51 @@ p:last-child {
 }
 
 .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-10);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
     align-items: center;
+}
+
+/* Mobile: Reorder elements - title/subtitle first, then calculator, then features */
+@media (max-width: 1023px) {
+    .hero-grid {
+        text-align: center;
+    }
+
+    .hero-left {
+        display: contents;
+    }
+
+    .hero-title {
+        order: 1;
+        width: 100%;
+    }
+
+    .hero-subtitle {
+        order: 2;
+        width: 100%;
+        margin-bottom: var(--space-6);
+    }
+
+    .hero-right {
+        order: 3;
+    }
+
+    .hero-features {
+        order: 4;
+        text-align: left;
+        margin-top: var(--space-6);
+        padding: var(--space-8) 0;
+    }
 }
 
 @media (min-width: 1024px) {
     .hero-grid {
+        display: grid;
         grid-template-columns: 1fr 420px;
         gap: var(--space-16);
+        text-align: left;
     }
 }
 
