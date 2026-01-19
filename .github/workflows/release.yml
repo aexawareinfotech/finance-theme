@@ -13,7 +13,7 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -31,9 +31,36 @@ jobs:
 
       - name: Create theme zip
         run: |
-          mkdir -p finance-theme
-          rsync -av --exclude='node_modules' --exclude='.git' --exclude='.github' --exclude='package*.json' --exclude='.releaserc.json' . finance-theme/
+          # Clean up any existing files
+          rm -rf ./finance-theme ./finance-theme.zip
+
+          # Create the theme folder with exact name WordPress expects
+          mkdir finance-theme
+
+          # Copy theme files (excluding dev files)
+          rsync -av \
+            --exclude='node_modules' \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='package.json' \
+            --exclude='package-lock.json' \
+            --exclude='bun.lock' \
+            --exclude='.releaserc.json' \
+            --exclude='finance-theme' \
+            --exclude='finance-theme.zip' \
+            --exclude='scripts' \
+            ./ finance-theme/
+
+          # Verify the folder exists and has content
+          ls -la finance-theme/
+
+          # Create ZIP with correct structure (finance-theme at root)
           zip -r finance-theme.zip finance-theme
+
+          # Verify ZIP structure
+          unzip -l finance-theme.zip | head -20
+
+          # Cleanup the temp folder
           rm -rf finance-theme
 
       - name: Run semantic-release
