@@ -125,8 +125,8 @@ Finance Theme by Aexaware Infotech - Professional WordPress theme for loan and f
     --container-sm: 640px;
     --container-md: 768px;
     --container-lg: 1024px;
-    --container-xl: 1280px;
-    --container-2xl: 1400px;
+    --container-xl: 1536px;
+    --container-2xl: 1600px;
 
     /* Z-index */
     --z-dropdown: 100;
@@ -1771,30 +1771,68 @@ p:last-child {
     background: var(--gray-100);
 }
 
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-6);
+/* Testimonials Slider - horizontal single row with slider */
+.testimonials-slider {
+    position: relative;
+    overflow: hidden;
+    margin-left: calc(-1 * var(--space-4));
+    margin-right: calc(-1 * var(--space-4));
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
 }
 
 @media (min-width: 768px) {
-    .testimonials-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .testimonials-slider {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
     }
 }
 
-@media (min-width: 1024px) {
-    .testimonials-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
+.testimonials-track {
+    display: flex;
+    gap: var(--space-5);
+    transition: transform 0.4s ease;
 }
+
+.testimonials-grid {
+    display: flex;
+    gap: var(--space-5);
+    transition: transform 0.4s ease;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: var(--space-4);
+}
+
+.testimonials-grid::-webkit-scrollbar {
+    display: none;
+}
+
 
 .testimonial-card {
+    flex: 0 0 320px;
+    min-width: 280px;
     background: var(--white);
     border-radius: var(--radius-xl);
     padding: var(--space-6);
     box-shadow: var(--shadow-md);
     transition: all var(--transition-base);
+    scroll-snap-align: start;
+}
+
+@media (min-width: 768px) {
+    .testimonial-card {
+        flex: 0 0 380px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .testimonial-card {
+        flex: 0 0 420px;
+    }
 }
 
 .testimonial-card:hover {

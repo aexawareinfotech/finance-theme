@@ -5,6 +5,7 @@
 
 document.addEventListener('DOMContentLoaded', function () {
     initLoanSlider();
+    initTestimonialsSlider();
 });
 
 function initLoanSlider() {
@@ -210,4 +211,65 @@ function initLoanSlider() {
     // Initialize
     updateProgressBar();
     updateButtonStates();
+}
+
+/**
+ * Testimonials Slider
+ * Scroll-based horizontal slider for testimonials section
+ */
+function initTestimonialsSlider() {
+    const track = document.getElementById('testimonials-slider-track');
+    const prevBtn = document.getElementById('testimonials-prev');
+    const nextBtn = document.getElementById('testimonials-next');
+    const progressBar = document.getElementById('testimonials-progress');
+
+    if (!track) return;
+
+    const cards = track.querySelectorAll('.testimonial-card');
+    if (cards.length === 0) return;
+
+    // Get card width including gap
+    function getCardWidth() {
+        const card = cards[0];
+        if (!card) return 380;
+        const rect = card.getBoundingClientRect();
+        const gap = 20; // var(--space-5) = 1.25rem = 20px
+        return rect.width + gap;
+    }
+
+    // Update progress bar based on scroll position
+    function updateProgress() {
+        if (!progressBar) return;
+
+        const scrollLeft = track.scrollLeft;
+        const maxScroll = track.scrollWidth - track.clientWidth;
+        const progress = maxScroll === 0 ? 100 : (scrollLeft / maxScroll) * 100;
+        const finalProgress = Math.max(15, Math.min(100, progress + 15));
+
+        progressBar.style.width = `${finalProgress}%`;
+
+        // Update button states
+        if (prevBtn) prevBtn.disabled = scrollLeft <= 0;
+        if (nextBtn) nextBtn.disabled = scrollLeft >= maxScroll - 5;
+    }
+
+    // Navigate prev/next
+    function goToPrev() {
+        const cardWidth = getCardWidth();
+        track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    }
+
+    function goToNext() {
+        const cardWidth = getCardWidth();
+        track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    }
+
+    // Event listeners
+    if (prevBtn) prevBtn.addEventListener('click', goToPrev);
+    if (nextBtn) nextBtn.addEventListener('click', goToNext);
+
+    track.addEventListener('scroll', updateProgress);
+
+    // Initialize
+    updateProgress();
 }

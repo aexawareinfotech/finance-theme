@@ -177,14 +177,6 @@ $latest_posts = flavor_get_latest_posts(3);
 
 <!-- Process Section -->
 <section class="section process-section" id="process">
-    <!-- Decorative Swirl -->
-    <div class="process-swirl">
-        <svg viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M100 0C100 0 20 80 20 160C20 240 100 200 100 280C100 360 180 400 180 400"
-                stroke="var(--primary-600)" stroke-width="12" stroke-linecap="round" fill="none" />
-        </svg>
-    </div>
-
     <div class="container">
         <div class="process-hero-grid">
             <!-- Left: Image -->
@@ -508,7 +500,7 @@ $latest_posts = flavor_get_latest_posts(3);
             </p>
         </div>
 
-        <div class="testimonials-grid">
+        <div class="testimonials-grid" id="testimonials-slider-track">
             <?php foreach (array_slice($testimonials, 0, 6) as $testimonial): ?>
                 <div class="testimonial-card">
                     <?php echo flavor_render_stars($testimonial['rating']); ?>
@@ -531,8 +523,29 @@ $latest_posts = flavor_get_latest_posts(3);
                 </div>
             <?php endforeach; ?>
         </div>
+
+        <div class="slider-nav">
+            <button class="slider-btn slider-btn-prev" id="testimonials-prev"
+                aria-label="<?php esc_attr_e('Previous', 'finance-theme'); ?>">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M15 18l-6-6 6-6" />
+                </svg>
+            </button>
+            <div class="slider-progress">
+                <div class="slider-progress-bar" id="testimonials-progress"></div>
+            </div>
+            <button class="slider-btn slider-btn-next" id="testimonials-next"
+                aria-label="<?php esc_attr_e('Next', 'finance-theme'); ?>">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M9 18l6-6-6-6" />
+                </svg>
+            </button>
+        </div>
     </div>
 </section>
+
 
 <!-- FAQ Section -->
 <section class="section faq-section" id="faq">
