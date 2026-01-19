@@ -15,7 +15,6 @@ if (!defined('ABSPATH')) {
 class Finance_Theme_GitHub_Updater
 {
     private string $slug;
-    private string $theme_data;
     private string $username;
     private string $repo;
     private string $branch;
@@ -24,7 +23,8 @@ class Finance_Theme_GitHub_Updater
 
     public function __construct()
     {
-        $this->slug = get_option('template');
+        // Hard-code the slug to ensure consistency
+        $this->slug = 'finance-theme';
         $this->username = 'aexawareinfotech';
         $this->repo = 'finance-theme';
         $this->branch = 'main';
@@ -40,8 +40,12 @@ class Finance_Theme_GitHub_Updater
         add_action('core_upgrade_preamble', [$this, 'display_update_info']);
     }
 
+    /**
+     * Filter source selection to handle ZIP structure
+     */
     public function filter_source_selection($source, $remote_source, $upgrader, $hook_extra)
     {
+        // Only handle our theme
         if (!isset($hook_extra['theme']) || $hook_extra['theme'] !== $this->slug) {
             return $source;
         }
@@ -52,24 +56,52 @@ class Finance_Theme_GitHub_Updater
             return $source;
         }
 
-        $resolved_source = $this->resolve_source_dir($source, $wp_filesystem);
-        $base_dir = untrailingslashit($remote_source);
-        $proper_source = $base_dir . '/' . $this->slug;
+        // The source should already be correct since we create the ZIP with finance-theme/ folder
+        // But let's verify and handle edge cases
+        $source = untrailingslashit($source);
 
-        if ($resolved_source === $proper_source) {
-            return $resolved_source;
+        // Check if style.css exists directly in source
+        if ($wp_filesystem->exists($source . '/style.css')) {
+            // Source is correct, check if folder name matches
+            $source_name = basename($source);
+            if ($source_name === $this->slug) {
+                return trailingslashit($source);
+            }
+
+            // Folder name doesn't match, rename it
+            $proper_destination = dirname($source) . '/' . $this->slug;
+            if ($wp_filesystem->exists($proper_destination)) {
+                $wp_filesystem->delete($proper_destination, true);
+            }
+
+            if ($wp_filesystem->move($source, $proper_destination)) {
+                return trailingslashit($proper_destination);
+            }
         }
 
-        if (!$this->is_matching_theme_dir($resolved_source)) {
-            return $source;
-        }
+        // Check subdirectories for style.css
+        $dirlist = $wp_filesystem->dirlist($source);
+        if (is_array($dirlist)) {
+            foreach ($dirlist as $name => $details) {
+                if ($details['type'] !== 'd') {
+                    continue;
+                }
 
-        if ($wp_filesystem->exists($proper_source)) {
-            $wp_filesystem->delete($proper_source, true);
-        }
+                $subdir = $source . '/' . $name;
+                if ($wp_filesystem->exists($subdir . '/style.css')) {
+                    // Found the theme in a subdirectory
+                    $proper_destination = dirname($source) . '/' . $this->slug;
 
-        if ($wp_filesystem->move($resolved_source, $proper_source)) {
-            return $proper_source;
+                    if ($wp_filesystem->exists($proper_destination)) {
+                        $wp_filesystem->delete($proper_destination, true);
+                    }
+
+                    if ($wp_filesystem->move($subdir, $proper_destination)) {
+                        return trailingslashit($proper_destination);
+                    }
+                    return trailingslashit($subdir);
+                }
+            }
         }
 
         return $source;
@@ -90,11 +122,15 @@ class Finance_Theme_GitHub_Updater
             $this->repo
         );
 
-        $args = [];
+        $args = [
+            'timeout' => 10,
+            'headers' => [
+                'Accept' => 'application/vnd.github.v3+json',
+            ],
+        ];
+
         if ($this->authorize_token) {
-            $args['headers'] = [
-                'Authorization' => 'token ' . $this->authorize_token,
-            ];
+            $args['headers']['Authorization'] = 'token ' . $this->authorize_token;
         }
 
         $response = wp_remote_get($request_uri, $args);
@@ -128,8 +164,16 @@ class Finance_Theme_GitHub_Updater
         }
 
         $theme = wp_get_theme($this->slug);
+        if (!$theme->exists()) {
+            return $transient;
+        }
+
         $current_version = $theme->get('Version');
-        $github_version = ltrim($this->github_response['tag_name'], 'v');
+        $github_version = ltrim($this->github_response['tag_name'] ?? '', 'v');
+
+        if (!$github_version) {
+            return $transient;
+        }
 
         if (version_compare($github_version, $current_version, '>')) {
             $package = $this->get_release_package();
@@ -192,6 +236,9 @@ class Finance_Theme_GitHub_Updater
         ];
     }
 
+    /**
+     * Get the release package URL (prefer ZIP asset over zipball)
+     */
     private function get_release_package(): string
     {
         $package = '';
@@ -216,7 +263,7 @@ class Finance_Theme_GitHub_Updater
             return $package;
         }
 
-        return $this->github_response['zipball_url'];
+        return $this->github_response['zipball_url'] ?? '';
     }
 
     /**
@@ -231,82 +278,6 @@ class Finance_Theme_GitHub_Updater
         return '<pre>' . esc_html($this->github_response['body']) . '</pre>';
     }
 
-    private function resolve_source_dir(string $source_dir, $filesystem): string
-    {
-        $source_dir = untrailingslashit($source_dir);
-
-        // Check if style.css is directly in the source directory
-        if ($filesystem->exists($source_dir . '/style.css')) {
-            return $source_dir;
-        }
-
-        // Check if the theme is in a subdirectory with the same name (standard GitHub ZIP)
-        $slug_dir = $source_dir . '/' . $this->slug;
-        if ($filesystem->exists($slug_dir . '/style.css')) {
-            return $slug_dir;
-        }
-
-        // Fallback: Scan subdirectories for the theme
-        $source_files = $filesystem->dirlist($source_dir);
-        if (!$source_files || !is_array($source_files)) {
-            return $source_dir;
-        }
-
-        // Look for any folder containing style.css
-        foreach ($source_files as $folder => $details) {
-            if (!is_array($details) || $details['type'] !== 'd') {
-                continue;
-            }
-
-            $candidate = $source_dir . '/' . $folder;
-            if ($filesystem->exists($candidate . '/style.css')) {
-                return $candidate;
-            }
-        }
-
-        // Handle single subdirectory case where name doesn't match
-        if (count($source_files) === 1) {
-            $subfolder = key($source_files);
-            if ($source_files[$subfolder]['type'] === 'd') {
-                $candidate = $source_dir . '/' . $subfolder;
-                if ($filesystem->exists($candidate . '/style.css')) {
-                    return $candidate;
-                }
-            }
-        }
-
-        return $source_dir;
-    }
-
-    private function is_matching_theme_dir(string $source_dir): bool
-    {
-        $stylesheet = untrailingslashit($source_dir) . '/style.css';
-
-        if (!file_exists($stylesheet)) {
-            return false;
-        }
-
-        $headers = get_file_data(
-            $stylesheet,
-            [
-                'name' => 'Theme Name',
-                'textdomain' => 'Text Domain',
-            ],
-            'theme'
-        );
-
-        $theme_name = strtolower(trim((string) $headers['name']));
-        $theme_domain = strtolower(trim((string) $headers['textdomain']));
-        $current_theme = wp_get_theme($this->slug);
-        $current_name = strtolower(trim((string) $current_theme->get('Name')));
-
-        if ($theme_domain && $theme_domain === $this->slug) {
-            return true;
-        }
-
-        return $theme_name !== '' && $theme_name === $current_name;
-    }
-
     /**
      * Fix folder name after install
      */
@@ -319,37 +290,34 @@ class Finance_Theme_GitHub_Updater
         }
 
         $theme_dir = trailingslashit(get_theme_root()) . $this->slug;
-        $source_dir = $result['destination'];
-        $resolved_source_dir = $this->resolve_source_dir($source_dir, $wp_filesystem);
+        $source = $result['destination'] ?? '';
 
-        if ($resolved_source_dir === $theme_dir) {
+        if (empty($source) || !$wp_filesystem) {
             return $result;
         }
 
-        if (!$this->is_matching_theme_dir($resolved_source_dir)) {
+        $source = untrailingslashit($source);
+
+        // If already in the correct location, nothing to do
+        if ($source === $theme_dir) {
+            // Reactivate theme if it was active
+            if (get_option('template') === $this->slug) {
+                switch_theme($this->slug);
+            }
             return $result;
         }
 
-        if (strpos($resolved_source_dir, $theme_dir . '/') === 0) {
-            $temp_dir = $theme_dir . '-tmp';
-            if ($wp_filesystem->exists($temp_dir)) {
-                $wp_filesystem->delete($temp_dir, true);
-            }
-            $wp_filesystem->move($resolved_source_dir, $temp_dir);
-            if ($wp_filesystem->exists($theme_dir)) {
-                $wp_filesystem->delete($theme_dir, true);
-            }
-            $wp_filesystem->move($temp_dir, $theme_dir);
-        } else {
-            if ($wp_filesystem->exists($theme_dir)) {
-                $wp_filesystem->delete($theme_dir, true);
-            }
-            $wp_filesystem->move($resolved_source_dir, $theme_dir);
+        // Move to correct location if needed
+        if ($wp_filesystem->exists($theme_dir)) {
+            $wp_filesystem->delete($theme_dir, true);
         }
 
-        $result['destination'] = $theme_dir;
-        $result['destination_name'] = $this->slug;
+        if ($wp_filesystem->move($source, $theme_dir)) {
+            $result['destination'] = $theme_dir;
+            $result['destination_name'] = $this->slug;
+        }
 
+        // Reactivate theme if it was active
         if (get_option('template') === $this->slug) {
             switch_theme($this->slug);
         }
@@ -363,6 +331,9 @@ class Finance_Theme_GitHub_Updater
     public function display_update_info(): void
     {
         $theme = wp_get_theme($this->slug);
+        if (!$theme->exists()) {
+            return;
+        }
         ?>
         <div class="notice notice-info">
             <p>
