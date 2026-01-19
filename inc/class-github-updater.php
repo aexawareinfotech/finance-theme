@@ -235,22 +235,24 @@ class Finance_Theme_GitHub_Updater
     {
         $source_dir = untrailingslashit($source_dir);
 
+        // Check if style.css is directly in the source directory
         if ($filesystem->exists($source_dir . '/style.css')) {
             return $source_dir;
         }
 
+        // Check if the theme is in a subdirectory with the same name (standard GitHub ZIP)
+        $slug_dir = $source_dir . '/' . $this->slug;
+        if ($filesystem->exists($slug_dir . '/style.css')) {
+            return $slug_dir;
+        }
+
+        // Fallback: Scan subdirectories for the theme
         $source_files = $filesystem->dirlist($source_dir);
         if (!$source_files || !is_array($source_files)) {
             return $source_dir;
         }
 
-        if (isset($source_files[$this->slug]) && $source_files[$this->slug]['type'] === 'd') {
-            $candidate = $source_dir . '/' . $this->slug;
-            if ($filesystem->exists($candidate . '/style.css')) {
-                return $candidate;
-            }
-        }
-
+        // Look for any folder containing style.css
         foreach ($source_files as $folder => $details) {
             if (!is_array($details) || $details['type'] !== 'd') {
                 continue;
@@ -262,6 +264,7 @@ class Finance_Theme_GitHub_Updater
             }
         }
 
+        // Handle single subdirectory case where name doesn't match
         if (count($source_files) === 1) {
             $subfolder = key($source_files);
             if ($source_files[$subfolder]['type'] === 'd') {
