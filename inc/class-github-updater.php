@@ -60,6 +60,10 @@ class Finance_Theme_GitHub_Updater
             return $resolved_source;
         }
 
+        if (!$this->is_matching_theme_dir($resolved_source)) {
+            return $source;
+        }
+
         if ($wp_filesystem->exists($proper_source)) {
             $wp_filesystem->delete($proper_source, true);
         }
@@ -234,6 +238,17 @@ class Finance_Theme_GitHub_Updater
             }
         }
 
+        foreach ($source_files as $folder => $details) {
+            if (!is_array($details) || $details['type'] !== 'd') {
+                continue;
+            }
+
+            $candidate = $source_dir . '/' . $folder;
+            if ($filesystem->exists($candidate . '/style.css')) {
+                return $candidate;
+            }
+        }
+
         if (count($source_files) === 1) {
             $subfolder = key($source_files);
             if ($source_files[$subfolder]['type'] === 'd') {
@@ -245,6 +260,35 @@ class Finance_Theme_GitHub_Updater
         }
 
         return $source_dir;
+    }
+
+    private function is_matching_theme_dir(string $source_dir): bool
+    {
+        $stylesheet = untrailingslashit($source_dir) . '/style.css';
+
+        if (!file_exists($stylesheet)) {
+            return false;
+        }
+
+        $headers = get_file_data(
+            $stylesheet,
+            [
+                'name' => 'Theme Name',
+                'textdomain' => 'Text Domain',
+            ],
+            'theme'
+        );
+
+        $theme_name = strtolower(trim((string) $headers['name']));
+        $theme_domain = strtolower(trim((string) $headers['textdomain']));
+        $current_theme = wp_get_theme($this->slug);
+        $current_name = strtolower(trim((string) $current_theme->get('Name')));
+
+        if ($theme_domain && $theme_domain === $this->slug) {
+            return true;
+        }
+
+        return $theme_name !== '' && $theme_name === $current_name;
     }
 
     /**
@@ -263,6 +307,10 @@ class Finance_Theme_GitHub_Updater
         $resolved_source_dir = $this->resolve_source_dir($source_dir, $wp_filesystem);
 
         if ($resolved_source_dir === $theme_dir) {
+            return $result;
+        }
+
+        if (!$this->is_matching_theme_dir($resolved_source_dir)) {
             return $result;
         }
 
