@@ -75,7 +75,7 @@
                 "assets": [
                     {
                         "path": "finance-theme.zip",
-                        "label": "finance-theme.zip"
+                        "label": "Finance Theme v${nextRelease.version}"
                     }
                 ]
             }
