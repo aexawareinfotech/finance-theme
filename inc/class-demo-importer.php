@@ -22,62 +22,197 @@ class Finance_Theme_Demo_Importer
         add_action('admin_menu', [$this, 'add_admin_menu']);
         add_action('admin_init', [$this, 'handle_import']);
 
-        // Define loan types data
+        // Define loan types data with all metadata
         $this->loan_types = [
             [
                 'title' => 'Emergency Loans',
-                'description' => 'Get yourself unstuck and borrow up to $10,000 for emergencies.',
+                'description' => 'When unexpected expenses arise, our emergency loans provide fast access to funds when you need them most.',
                 'image' => 'emergency-loan.webp',
+                'meta' => [
+                    '_loan_subtitle' => 'Fast access to funds when you need them most.',
+                    '_loan_amount' => '$500 - $10,000',
+                    '_loan_term' => '16 days - 24 months',
+                    '_loan_features' => "Same-day approval available\nNo hidden fees\nFlexible repayment options\nBad credit considered",
+                    '_loan_color' => 'var(--accent-500)',
+                    '_loan_icon' => 'default',
+                    '_loan_stat_1_number' => '$10k',
+                    '_loan_stat_1_label' => 'Max Amount',
+                    '_loan_stat_2_number' => '60 min*',
+                    '_loan_stat_2_label' => 'Fast Funding',
+                    '_loan_stat_3_number' => '100%',
+                    '_loan_stat_3_label' => 'Online Process'
+                ]
             ],
             [
                 'title' => 'Wedding Loans',
-                'description' => 'Spread the costs of your big day with a loan up to $10,000.',
+                'description' => 'Make your special day unforgettable without the financial stress. Our wedding loans help you spread the cost of your dream wedding with manageable repayments.',
                 'image' => 'wedding.webp',
+                'meta' => [
+                    '_loan_subtitle' => 'Make your special day unforgettable without the stress.',
+                    '_loan_amount' => '$2,000 - $25,000',
+                    '_loan_term' => '12 - 36 months',
+                    '_loan_features' => "Cover venue, catering & more\nCompetitive interest rates\nQuick online application\nPredictable monthly payments",
+                    '_loan_color' => '#e75480',
+                    '_loan_icon' => 'heart',
+                    '_loan_stat_1_number' => '$25k',
+                    '_loan_stat_1_label' => 'Max Amount',
+                    '_loan_stat_2_number' => '24 hrs',
+                    '_loan_stat_2_label' => 'Approval Time',
+                    '_loan_stat_3_number' => 'Low',
+                    '_loan_stat_3_label' => 'Interest Rates'
+                ]
             ],
             [
                 'title' => 'Education Loans',
-                'description' => 'This smarter personal loan can help with all things related to studying.',
+                'description' => 'Invest in your future with our education financing options. Cover tuition, books, equipment, or any study-related expenses.',
                 'image' => 'education.webp',
+                'meta' => [
+                    '_loan_subtitle' => 'Invest in your future with flexible financing.',
+                    '_loan_amount' => '$1,000 - $20,000',
+                    '_loan_term' => '12 - 48 months',
+                    '_loan_features' => "Fund courses & certifications\nEquipment & supplies included\nDeferred payment options\nNo early repayment fees",
+                    '_loan_color' => '#3498db',
+                    '_loan_icon' => 'briefcase',
+                    '_loan_stat_1_number' => '$20k',
+                    '_loan_stat_1_label' => 'Max Amount',
+                    '_loan_stat_2_number' => '48 mos',
+                    '_loan_stat_2_label' => 'Max Term',
+                    '_loan_stat_3_number' => '0',
+                    '_loan_stat_3_label' => 'Early Fees'
+                ]
             ],
             [
                 'title' => 'Travel Loans',
-                'description' => 'Take a well-deserved break with up to $10,000 for your adventure.',
+                'description' => 'Turn your travel dreams into reality. Whether it\'s a family vacation, honeymoon, or adventure trip, our travel loans make it possible.',
                 'image' => 'online.webp',
+                'meta' => [
+                    '_loan_subtitle' => 'Turn your travel dreams into reality.',
+                    '_loan_amount' => '$1,000 - $15,000',
+                    '_loan_term' => '6 - 24 months',
+                    '_loan_features' => "Book now, pay later\nCover flights, hotels & tours\nQuick approval process\nFlexible terms available",
+                    '_loan_color' => '#27ae60',
+                    '_loan_icon' => 'plane',
+                    '_loan_stat_1_number' => '$15k',
+                    '_loan_stat_1_label' => 'Max Amount',
+                    '_loan_stat_2_number' => 'Fast',
+                    '_loan_stat_2_label' => 'Approval',
+                    '_loan_stat_3_number' => 'Flex',
+                    '_loan_stat_3_label' => 'Repayments'
+                ]
             ],
             [
                 'title' => 'Bond Loans',
-                'description' => 'Our 21-day interest-free bond loans lend a hand on moving day.',
+                'description' => 'Moving to a new place? Our bond loans help you cover rental bond deposits quickly, so you can secure your new home without stress.',
                 'image' => 'bond-loan.webp',
+                'meta' => [
+                    '_loan_subtitle' => 'Secure your new home without stress.',
+                    '_loan_amount' => '$500 - $5,000',
+                    '_loan_term' => '21 days - 12 months',
+                    '_loan_features' => "21 days interest-free option\nFast approval for renters\nCover bond & moving costs\nSimple application process",
+                    '_loan_color' => '#9b59b6',
+                    '_loan_icon' => 'home',
+                    '_loan_stat_1_number' => '$5k',
+                    '_loan_stat_1_label' => 'Max Amount',
+                    '_loan_stat_2_number' => '21 days',
+                    '_loan_stat_2_label' => 'Interest Free',
+                    '_loan_stat_3_number' => 'Fast',
+                    '_loan_stat_3_label' => 'Transfer'
+                ]
             ],
             [
-                'title' => 'Car Repairs',
-                'description' => 'Get your car back on the road quickly with repair financing.',
+                'title' => 'Car Repair Loans',
+                'description' => 'Don\'t let car troubles keep you off the road. Our car repair loans provide quick funding for mechanical repairs, servicing, and maintenance.',
                 'image' => 'car-repairs.webp',
-            ],
-            [
-                'title' => 'Household Bills',
-                'description' => 'Cover unexpected household expenses when you need it most.',
-                'image' => 'online.webp', // Reusing online.webp
+                'meta' => [
+                    '_loan_subtitle' => 'Get back on the road quickly.',
+                    '_loan_amount' => '$500 - $8,000',
+                    '_loan_term' => '6 - 18 months',
+                    '_loan_features' => "Cover any repair costs\nSame-day funding available\nWork with any mechanic\nAffordable repayments",
+                    '_loan_color' => '#e67e22',
+                    '_loan_icon' => 'car',
+                    '_loan_stat_1_number' => '$8k',
+                    '_loan_stat_1_label' => 'Max Amount',
+                    '_loan_stat_2_number' => 'Same Day',
+                    '_loan_stat_2_label' => 'Funding',
+                    '_loan_stat_3_number' => 'Any',
+                    '_loan_stat_3_label' => 'Mechanic'
+                ]
             ],
             [
                 'title' => 'Vet Loans',
-                'description' => 'Take care of your furry friends with quick vet expense financing.',
+                'description' => 'Your furry family members deserve the best care. Our vet loans help cover unexpected veterinary bills, surgeries, and ongoing treatments.',
                 'image' => 'vet-loans.webp',
+                'meta' => [
+                    '_loan_subtitle' => 'Care for your furry family members.',
+                    '_loan_amount' => '$500 - $10,000',
+                    '_loan_term' => '6 - 24 months',
+                    '_loan_features' => "Emergency vet care covered\nSurgery & treatments included\nQuick decisions made\nNo upfront payments",
+                    '_loan_color' => '#1abc9c',
+                    '_loan_icon' => 'heart',
+                    '_loan_stat_1_number' => '$10k',
+                    '_loan_stat_1_label' => 'Max Amount',
+                    '_loan_stat_2_number' => 'Quick',
+                    '_loan_stat_2_label' => 'Decisions',
+                    '_loan_stat_3_number' => 'No',
+                    '_loan_stat_3_label' => 'Upfront'
+                ]
             ],
             [
                 'title' => 'Cosmetic Loans',
-                'description' => 'Finance your cosmetic procedures with flexible payment options.',
+                'description' => 'Finance your cosmetic procedures with confidence. From dental work to aesthetic treatments, our cosmetic loans help you look and feel your best.',
                 'image' => 'cosmetic-surgery.webp',
+                'meta' => [
+                    '_loan_subtitle' => 'Look and feel your best with flexible financing.',
+                    '_loan_amount' => '$2,000 - $30,000',
+                    '_loan_term' => '12 - 48 months',
+                    '_loan_features' => "All procedures covered\nWork with any provider\nDiscreet application\nFlexible payment plans",
+                    '_loan_color' => '#e74c3c',
+                    '_loan_icon' => 'medical',
+                    '_loan_stat_1_number' => '$30k',
+                    '_loan_stat_1_label' => 'Max Amount',
+                    '_loan_stat_2_number' => 'Discreet',
+                    '_loan_stat_2_label' => 'Process',
+                    '_loan_stat_3_number' => 'Flex',
+                    '_loan_stat_3_label' => 'Plans'
+                ]
             ],
             [
                 'title' => 'Medium Loans',
-                'description' => 'Borrow between $2,001 to $5,000 for medium-sized expenses.',
+                'description' => 'For those mid-sized expenses that require a bit more flexibility. Our medium loans offer competitive rates for amounts between $2,001 and $5,000.',
                 'image' => 'medium-loans.webp',
+                'meta' => [
+                    '_loan_subtitle' => 'Flexible mid-sized loans for your needs.',
+                    '_loan_amount' => '$2,001 - $5,000',
+                    '_loan_term' => '9 weeks - 24 months',
+                    '_loan_features' => "Competitive interest rates\nFlexible repayment schedules\nNo hidden charges\nQuick approval process",
+                    '_loan_color' => '#2980b9',
+                    '_loan_icon' => 'default',
+                    '_loan_stat_1_number' => '$5k',
+                    '_loan_stat_1_label' => 'Max Amount',
+                    '_loan_stat_2_number' => 'Low',
+                    '_loan_stat_2_label' => 'Rates',
+                    '_loan_stat_3_number' => 'Quick',
+                    '_loan_stat_3_label' => 'Process'
+                ]
             ],
             [
                 'title' => 'Large Loans',
-                'description' => 'Access up to $50,000 for major purchases and investments.',
+                'description' => 'For significant expenses and major life events. Our large loans provide access to up to $50,000 with flexible terms tailored to your needs.',
                 'image' => 'large-loans.webp',
+                'meta' => [
+                    '_loan_subtitle' => 'Funding for life\'s big moments.',
+                    '_loan_amount' => '$5,001 - $50,000',
+                    '_loan_term' => '12 - 60 months',
+                    '_loan_features' => "Higher loan amounts\nLonger repayment terms\nPersonalised rates\nDedicated support",
+                    '_loan_color' => '#34495e',
+                    '_loan_icon' => 'default',
+                    '_loan_stat_1_number' => '$50k',
+                    '_loan_stat_1_label' => 'Max Amount',
+                    '_loan_stat_2_number' => '60 mos',
+                    '_loan_stat_2_label' => 'Max Term',
+                    '_loan_stat_3_number' => 'VIP',
+                    '_loan_stat_3_label' => 'Support'
+                ]
             ],
         ];
 
@@ -162,17 +297,18 @@ class Finance_Theme_Demo_Importer
                 <p><?php esc_html_e('Click the button below to import the demo content. This will create editable posts for:', 'finance-theme'); ?>
                 </p>
                 <ul style="list-style: disc; margin-left: 20px; margin-bottom: 20px;">
-                    <li><?php esc_html_e('Loan Types (with images)', 'finance-theme'); ?></li>
+                    <li><?php esc_html_e('Loan Types (with images and full details)', 'finance-theme'); ?></li>
                     <li><?php esc_html_e('Testimonials', 'finance-theme'); ?></li>
                     <li><?php esc_html_e('FAQs', 'finance-theme'); ?></li>
                 </ul>
-                <p><?php esc_html_e('NOTE: Please ensure you run this only once to avoid duplicate content.', 'finance-theme'); ?>
+                <p><strong><?php esc_html_e('Note:', 'finance-theme'); ?></strong>
+                    <?php esc_html_e('This performs an update-if-exists operation for Loan Types metadata.', 'finance-theme'); ?>
                 </p>
 
                 <form method="post" action="">
                     <?php wp_nonce_field('finance_theme_import_demo', 'finance_theme_import_nonce'); ?>
                     <input type="hidden" name="finance_theme_action" value="import_demo">
-                    <?php submit_button(__('Import All Demo Data', 'finance-theme'), 'primary'); ?>
+                    <?php submit_button(__('Import / Update Demo Data', 'finance-theme'), 'primary'); ?>
                 </form>
             </div>
         </div>
@@ -200,31 +336,36 @@ class Finance_Theme_Demo_Importer
 
         // Import Loan Types
         foreach ($this->loan_types as $loan) {
-            if ($this->create_post_if_not_exists($loan['title'], $loan['description'], 'loan_type')) {
-                // We need the ID to attach image.
-                $post = get_page_by_title($loan['title'], OBJECT, 'loan_type');
-                if ($post) {
-                    $this->sideload_image($post->ID, $loan['image']);
-                    $count++;
+            // Create or Get Post
+            $post_id = $this->ensure_post_exists($loan['title'], $loan['description'], 'loan_type');
+
+            if ($post_id) {
+                // Update Metadata
+                if (isset($loan['meta']) && is_array($loan['meta'])) {
+                    foreach ($loan['meta'] as $key => $value) {
+                        update_post_meta($post_id, $key, $value);
+                    }
                 }
+
+                // Set Image
+                $this->sideload_image($post_id, $loan['image']);
+                $count++;
             }
         }
 
         // Import Testimonials
         foreach ($this->testimonials as $testimonial) {
-            if ($this->create_post_if_not_exists($testimonial['title'], $testimonial['content'], 'testimonial')) {
-                $post = get_page_by_title($testimonial['title'], OBJECT, 'testimonial');
-                if ($post) {
-                    update_post_meta($post->ID, '_testimonial_rating', $testimonial['rating']);
-                    update_post_meta($post->ID, '_testimonial_loan_type', $testimonial['loan_type']);
-                    $count++;
-                }
+            $post_id = $this->ensure_post_exists($testimonial['title'], $testimonial['content'], 'testimonial');
+            if ($post_id) {
+                update_post_meta($post_id, '_testimonial_rating', $testimonial['rating']);
+                update_post_meta($post_id, '_testimonial_loan_type', $testimonial['loan_type']);
+                $count++;
             }
         }
 
         // Import FAQs
         foreach ($this->faqs as $faq) {
-            if ($this->create_post_if_not_exists($faq['title'], $faq['content'], 'faq')) {
+            if ($this->ensure_post_exists($faq['title'], $faq['content'], 'faq')) {
                 $count++;
             }
         }
@@ -232,7 +373,7 @@ class Finance_Theme_Demo_Importer
         add_action('admin_notices', function () use ($count) {
             ?>
             <div class="notice notice-success is-dismissible">
-                <p><?php echo sprintf(esc_html__('Successfully processed import! %d items checked/created.', 'finance-theme'), $count); ?>
+                <p><?php echo sprintf(esc_html__('Successfully processed import! %d items checked/updated.', 'finance-theme'), $count); ?>
                 </p>
             </div>
             <?php
@@ -240,30 +381,25 @@ class Finance_Theme_Demo_Importer
     }
 
     /**
-     * Helper to create post if it doesn't exist
+     * Ensure post exists (create if not, return ID if yes)
      */
-    private function create_post_if_not_exists($title, $content, $type)
+    private function ensure_post_exists($title, $content, $type)
     {
-        $exists = get_posts([
-            'post_type' => $type,
-            'title' => $title,
-            'posts_per_page' => 1,
-            'post_status' => 'any'
-        ]);
+        $existing = get_page_by_title($title, OBJECT, $type);
 
-        if (!empty($exists)) {
-            return false;
+        if ($existing) {
+            return $existing->ID;
         }
 
         $post_id = wp_insert_post([
             'post_title' => $title,
             'post_content' => $content,
-            'post_excerpt' => ($type === 'loan_type') ? $content : '',
+            'post_excerpt' => ($type === 'loan_type' || $type === 'testimonial') ? $content : '',
             'post_type' => $type,
             'post_status' => 'publish',
         ]);
 
-        return !is_wp_error($post_id);
+        return !is_wp_error($post_id) ? $post_id : false;
     }
 
     /**
@@ -271,6 +407,11 @@ class Finance_Theme_Demo_Importer
      */
     private function sideload_image($post_id, $filename)
     {
+        // Don't re-upload if already has thumbnail
+        if (has_post_thumbnail($post_id)) {
+            return;
+        }
+
         $image_path = get_template_directory() . '/assets/images/loans/' . $filename;
 
         if (!file_exists($image_path)) {

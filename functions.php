@@ -23,6 +23,8 @@ define('FLAVOR_DIR', FINANCE_THEME_DIR);
 define('FLAVOR_URI', FINANCE_THEME_URI);
 
 require_once FINANCE_THEME_DIR . '/inc/class-demo-importer.php';
+require_once FINANCE_THEME_DIR . '/inc/class-loan-metaboxes.php';
+
 
 /**
  * Theme Setup

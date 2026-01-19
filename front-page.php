@@ -104,79 +104,54 @@ $latest_posts = flavor_get_latest_posts(3);
         <div class="loan-types-slider" id="loan-slider">
             <div class="loan-types-track" id="loan-slider-track">
                 <?php
-                $loan_cards = [
-                    [
-                        'title' => 'Emergency Loans',
-                        'description' => 'Get yourself unstuck and borrow up to $10,000 for emergencies.',
-                        'image' => get_template_directory_uri() . '/assets/images/loans/emergency-loan.webp',
-                    ],
-                    [
-                        'title' => 'Wedding Loans',
-                        'description' => 'Spread the costs of your big day with a loan up to $10,000.',
-                        'image' => get_template_directory_uri() . '/assets/images/loans/wedding.webp',
-                    ],
-                    [
-                        'title' => 'Education Loans',
-                        'description' => 'This smarter personal loan can help with all things related to studying.',
-                        'image' => get_template_directory_uri() . '/assets/images/loans/education.webp',
-                    ],
-                    [
-                        'title' => 'Travel Loans',
-                        'description' => 'Take a well-deserved break with up to $10,000 for your adventure.',
-                        'image' => get_template_directory_uri() . '/assets/images/loans/online.webp',
-                    ],
-                    [
-                        'title' => 'Bond Loans',
-                        'description' => 'Our 21-day interest-free bond loans lend a hand on moving day.',
-                        'image' => get_template_directory_uri() . '/assets/images/loans/bond-loan.webp',
-                    ],
-                    [
-                        'title' => 'Car Repairs',
-                        'description' => 'Get your car back on the road quickly with repair financing.',
-                        'image' => get_template_directory_uri() . '/assets/images/loans/car-repairs.webp',
-                    ],
-                    [
-                        'title' => 'Household Bills',
-                        'description' => 'Cover unexpected household expenses when you need it most.',
-                        'image' => get_template_directory_uri() . '/assets/images/loans/online.webp',
-                    ],
-                    [
-                        'title' => 'Vet Loans',
-                        'description' => 'Take care of your furry friends with quick vet expense financing.',
-                        'image' => get_template_directory_uri() . '/assets/images/loans/vet-loans.webp',
-                    ],
-                    [
-                        'title' => 'Cosmetic Loans',
-                        'description' => 'Finance your cosmetic procedures with flexible payment options.',
-                        'image' => get_template_directory_uri() . '/assets/images/loans/cosmetic-surgery.webp',
-                    ],
-                    [
-                        'title' => 'Medium Loans',
-                        'description' => 'Borrow between $2,001 to $5,000 for medium-sized expenses.',
-                        'image' => get_template_directory_uri() . '/assets/images/loans/medium-loans.webp',
-                    ],
-                    [
-                        'title' => 'Large Loans',
-                        'description' => 'Access up to $50,000 for major purchases and investments.',
-                        'image' => get_template_directory_uri() . '/assets/images/loans/large-loans.webp',
-                    ],
-                ];
+                // Fetch dynamic loan types
+                $loan_posts = get_posts([
+                    'post_type' => 'loan_type',
+                    'posts_per_page' => 12,
+                    'orderby' => 'menu_order',
+                    'order' => 'ASC',
+                ]);
 
-                foreach ($loan_cards as $loan):
-                    ?>
-                    <a href="<?php echo esc_url(home_url('/apply')); ?>" class="loan-type-card">
-                        <div class="loan-type-image">
-                            <img src="<?php echo esc_url($loan['image']); ?>" alt="<?php echo esc_attr($loan['title']); ?>"
-                                loading="lazy">
-                        </div>
-                        <div class="loan-type-content">
-                            <h3><?php echo esc_html($loan['title']); ?></h3>
-                            <p><?php echo esc_html($loan['description']); ?></p>
-                        </div>
-                    </a>
-                <?php endforeach; ?>
+                if (!empty($loan_posts)):
+                    foreach ($loan_posts as $loan_post):
+                        $image = get_the_post_thumbnail_url($loan_post, 'medium') ?: get_template_directory_uri() . '/assets/images/loans/default.webp';
+                        $loan_url = get_permalink($loan_post);
+                        ?>
+                        <a href="<?php echo esc_url($loan_url); ?>" class="loan-type-card">
+                            <div class="loan-type-image">
+                                <img src="<?php echo esc_url($image); ?>"
+                                    alt="<?php echo esc_attr(get_the_title($loan_post)); ?>" loading="lazy">
+                            </div>
+                            <div class="loan-type-content">
+                                <h3><?php echo esc_html(get_the_title($loan_post)); ?></h3>
+                                <p><?php echo esc_html(get_the_excerpt($loan_post)); ?></p>
+                            </div>
+                        </a>
+                    <?php endforeach;
+                else:
+                    // Fallback if no posts exist
+                    $fallback_loans = [
+                        ['title' => 'Emergency Loans', 'slug' => 'emergency-loans', 'description' => 'Get yourself unstuck and borrow up to $10,000 for emergencies.', 'image' => get_template_directory_uri() . '/assets/images/loans/emergency-loan.webp'],
+                        ['title' => 'Wedding Loans', 'slug' => 'wedding-loans', 'description' => 'Spread the costs of your big day with a loan up to $10,000.', 'image' => get_template_directory_uri() . '/assets/images/loans/wedding.webp'],
+                        ['title' => 'Education Loans', 'slug' => 'education-loans', 'description' => 'This smarter personal loan can help with all things related to studying.', 'image' => get_template_directory_uri() . '/assets/images/loans/education.webp'],
+                    ];
+                    foreach ($fallback_loans as $loan): ?>
+                        <a href="<?php echo esc_url(home_url('/loan/' . $loan['slug'])); ?>" class="loan-type-card">
+                            <div class="loan-type-image">
+                                <img src="<?php echo esc_url($loan['image']); ?>" alt="<?php echo esc_attr($loan['title']); ?>"
+                                    loading="lazy">
+                            </div>
+                            <div class="loan-type-content">
+                                <h3><?php echo esc_html($loan['title']); ?></h3>
+                                <p><?php echo esc_html($loan['description']); ?></p>
+                            </div>
+                        </a>
+                    <?php endforeach;
+                endif;
+                ?>
             </div>
         </div>
+
 
         <div class="slider-nav">
             <button class="slider-btn slider-btn-prev" id="slider-prev"
@@ -256,35 +231,40 @@ $latest_posts = flavor_get_latest_posts(3);
             <!-- Step 1 -->
             <div class="process-step">
                 <div class="process-icon process-icon-1">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round">
                         <path d="M5 12h14" />
                         <path d="M12 5l7 7-7 7" />
                     </svg>
                 </div>
                 <div class="process-step-content">
                     <h3><?php esc_html_e('Apply now', 'finance-theme'); ?></h3>
-                    <p><?php esc_html_e('Our online application takes just six minutes to complete.', 'finance-theme'); ?></p>
+                    <p><?php esc_html_e('Our online application takes just six minutes to complete.', 'finance-theme'); ?>
+                    </p>
                 </div>
             </div>
 
             <!-- Step 2 -->
             <div class="process-step">
                 <div class="process-icon process-icon-2">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round">
                         <path d="M9 11l3 3L22 4" />
                         <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
                     </svg>
                 </div>
                 <div class="process-step-content">
                     <h3><?php esc_html_e('Accept our offer', 'finance-theme'); ?></h3>
-                    <p><?php esc_html_e('We send you the loan terms. You accept with a secure SMS code. It couldn\'t be easier.', 'finance-theme'); ?></p>
+                    <p><?php esc_html_e('We send you the loan terms. You accept with a secure SMS code. It couldn\'t be easier.', 'finance-theme'); ?>
+                    </p>
                 </div>
             </div>
 
             <!-- Step 3 -->
             <div class="process-step">
                 <div class="process-icon process-icon-3">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round">
                         <circle cx="12" cy="12" r="10" />
                         <path d="M12 6v6l4 2" />
                         <path d="M8 3v2M16 3v2" />
@@ -292,21 +272,24 @@ $latest_posts = flavor_get_latest_posts(3);
                 </div>
                 <div class="process-step-content">
                     <h3><?php esc_html_e('Get your funds', 'finance-theme'); ?></h3>
-                    <p><?php esc_html_e('Our real-time funding means your funds are in your account on the same day.', 'finance-theme'); ?></p>
+                    <p><?php esc_html_e('Our real-time funding means your funds are in your account on the same day.', 'finance-theme'); ?>
+                    </p>
                 </div>
             </div>
 
             <!-- Step 4 -->
             <div class="process-step">
                 <div class="process-icon process-icon-4">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round">
                         <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
                         <polyline points="9 22 9 12 15 12 15 22" />
                     </svg>
                 </div>
                 <div class="process-step-content">
                     <h3><?php esc_html_e('Stay supported', 'finance-theme'); ?></h3>
-                    <p><?php esc_html_e('We stick around to help with repayments, questions and credit score boosts.', 'finance-theme'); ?></p>
+                    <p><?php esc_html_e('We stick around to help with repayments, questions and credit score boosts.', 'finance-theme'); ?>
+                    </p>
                 </div>
             </div>
         </div>
