@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('FINANCE_THEME_VERSION', '1.8.3');
+define('FINANCE_THEME_VERSION', '1.8.4');
 define('FINANCE_THEME_DIR', get_template_directory());
 define('FINANCE_THEME_URI', get_template_directory_uri());
 
