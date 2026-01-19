@@ -358,63 +358,288 @@ while (have_posts()):
         </div>
     </section>
 
-
-    <!-- Why Choose Us (Specific for single loan pages) -->
-    <section class="section">
+    <!-- Example Loan Costs Section -->
+    <section class="section loan-costs-section" style="background: #fff;">
         <div class="container">
-            <div class="section-header">
-                <h2><?php esc_html_e('Why Choose This Loan?', 'finance-theme'); ?></h2>
+            <div class="section-header" style="text-align: center; margin-bottom: var(--space-10);">
+                <h2 style="font-size: var(--text-3xl); font-weight: 700; color: var(--gray-900);">
+                    <?php esc_html_e('Example Loan Costs', 'finance-theme'); ?>
+                </h2>
+                <p style="color: var(--gray-600); max-width: 600px; margin: 0 auto;">
+                    <?php esc_html_e('Here are some examples of what your loan repayments could look like. Actual rates may vary based on your circumstances.', 'finance-theme'); ?>
+                </p>
             </div>
-            <div class="why-choose-grid">
-                <div class="why-card">
-                    <div class="why-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10" />
-                            <path d="M12 6v6l4 2" />
-                        </svg>
+
+            <div class="loan-costs-grid"
+                style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); max-width: 900px; margin: 0 auto;">
+                <!-- Example 1 -->
+                <div class="loan-cost-card"
+                    style="background: var(--gray-50); border-radius: var(--radius-xl); padding: var(--space-6); text-align: center;">
+                    <div style="font-size: var(--text-sm); color: var(--gray-500); margin-bottom: var(--space-2);">
+                        <?php esc_html_e('Borrow', 'finance-theme'); ?>
                     </div>
-                    <h3><?php esc_html_e('Fast Processing', 'finance-theme'); ?></h3>
-                    <p><?php esc_html_e('We prioritize your application to get you funds when you need them.', 'finance-theme'); ?>
-                    </p>
+                    <div
+                        style="font-size: var(--text-2xl); font-weight: 700; color: var(--gray-900); margin-bottom: var(--space-4);">
+                        $1,000</div>
+                    <div style="font-size: var(--text-sm); color: var(--gray-500);">
+                        <?php esc_html_e('Over 12 months', 'finance-theme'); ?>
+                    </div>
+                    <div
+                        style="font-size: var(--text-lg); font-weight: 600; color: var(--accent-600); margin-top: var(--space-2);">
+                        $95/fortnight*</div>
                 </div>
-                <div class="why-card">
-                    <div class="why-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
-                            <polyline points="22 4 12 14.01 9 11.01" />
-                        </svg>
+                <!-- Example 2 -->
+                <div class="loan-cost-card"
+                    style="background: var(--accent-50); border: 2px solid var(--accent-500); border-radius: var(--radius-xl); padding: var(--space-6); text-align: center; position: relative;">
+                    <div
+                        style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent-500); color: white; padding: 4px 16px; border-radius: var(--radius-full); font-size: var(--text-xs); font-weight: 600;">
+                        <?php esc_html_e('POPULAR', 'finance-theme'); ?>
                     </div>
-                    <h3><?php esc_html_e('Flexible Terms', 'finance-theme'); ?></h3>
-                    <p><?php esc_html_e('Choose repayment options that suit your budget and schedule.', 'finance-theme'); ?>
-                    </p>
+                    <div style="font-size: var(--text-sm); color: var(--gray-500); margin-bottom: var(--space-2);">
+                        <?php esc_html_e('Borrow', 'finance-theme'); ?>
+                    </div>
+                    <div
+                        style="font-size: var(--text-2xl); font-weight: 700; color: var(--gray-900); margin-bottom: var(--space-4);">
+                        $3,000</div>
+                    <div style="font-size: var(--text-sm); color: var(--gray-500);">
+                        <?php esc_html_e('Over 24 months', 'finance-theme'); ?>
+                    </div>
+                    <div
+                        style="font-size: var(--text-lg); font-weight: 600; color: var(--accent-600); margin-top: var(--space-2);">
+                        $75/fortnight*</div>
                 </div>
-                <div class="why-card">
-                    <div class="why-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
-                            <line x1="1" y1="10" x2="23" y2="10" />
-                        </svg>
+                <!-- Example 3 -->
+                <div class="loan-cost-card"
+                    style="background: var(--gray-50); border-radius: var(--radius-xl); padding: var(--space-6); text-align: center;">
+                    <div style="font-size: var(--text-sm); color: var(--gray-500); margin-bottom: var(--space-2);">
+                        <?php esc_html_e('Borrow', 'finance-theme'); ?>
                     </div>
-                    <h3><?php esc_html_e('No Hidden Costs', 'finance-theme'); ?></h3>
-                    <p><?php esc_html_e('Transparent fee structure so you know exactly what you pay.', 'finance-theme'); ?>
-                    </p>
+                    <div
+                        style="font-size: var(--text-2xl); font-weight: 700; color: var(--gray-900); margin-bottom: var(--space-4);">
+                        $5,000</div>
+                    <div style="font-size: var(--text-sm); color: var(--gray-500);">
+                        <?php esc_html_e('Over 36 months', 'finance-theme'); ?>
+                    </div>
+                    <div
+                        style="font-size: var(--text-lg); font-weight: 600; color: var(--accent-600); margin-top: var(--space-2);">
+                        $85/fortnight*</div>
                 </div>
             </div>
+            <p style="text-align: center; color: var(--gray-500); font-size: var(--text-sm); margin-top: var(--space-6);">
+                <?php esc_html_e('*Representative examples only. Your actual repayments may differ based on credit assessment.', 'finance-theme'); ?>
+            </p>
         </div>
     </section>
 
+    <!-- Reviews Section -->
+    <section class="section reviews-section" style="background: var(--gray-50);">
+        <div class="container">
+            <div class="section-header" style="text-align: center; margin-bottom: var(--space-10);">
+                <h2 style="font-size: var(--text-3xl); font-weight: 700; color: var(--gray-900);">
+                    <?php esc_html_e('What Our Customers Say', 'finance-theme'); ?>
+                </h2>
+            </div>
+
+            <?php
+            // Fetch testimonials
+            $testimonials = get_posts([
+                'post_type' => 'testimonial',
+                'posts_per_page' => 3,
+                'orderby' => 'rand',
+            ]);
+
+            if (!empty($testimonials)):
+                ?>
+                <div class="reviews-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6);">
+                    <?php foreach ($testimonials as $testimonial):
+                        $rating = get_post_meta($testimonial->ID, '_testimonial_rating', true) ?: 5;
+                        ?>
+                        <div class="review-card"
+                            style="background: #fff; border-radius: var(--radius-xl); padding: var(--space-6); box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                            <!-- Stars -->
+                            <div style="display: flex; gap: 4px; margin-bottom: var(--space-4);">
+                                <?php for ($i = 0; $i < 5; $i++): ?>
+                                    <svg width="20" height="20" viewBox="0 0 24 24"
+                                        fill="<?php echo $i < $rating ? '#fbbf24' : '#e5e7eb'; ?>">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                    </svg>
+                                <?php endfor; ?>
+                            </div>
+                            <p style="color: var(--gray-700); line-height: 1.6; margin-bottom: var(--space-4);">
+                                "
+                                <?php echo esc_html(get_the_excerpt($testimonial) ?: get_the_content(null, false, $testimonial)); ?>"
+                            </p>
+                            <div style="font-weight: 600; color: var(--gray-900);">
+                                <?php echo esc_html(get_the_title($testimonial)); ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php else: ?>
+                <!-- Fallback reviews -->
+                <div class="reviews-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6);">
+                    <div class="review-card"
+                        style="background: #fff; border-radius: var(--radius-xl); padding: var(--space-6); box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                        <div style="display: flex; gap: 4px; margin-bottom: var(--space-4);">
+                            <?php for ($i = 0; $i < 5; $i++): ?>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="#fbbf24">
+                                    <path
+                                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                </svg>
+                            <?php endfor; ?>
+                        </div>
+                        <p style="color: var(--gray-700); line-height: 1.6; margin-bottom: var(--space-4);">"Fast and easy
+                            process. Got my funds the same day!"</p>
+                        <div style="font-weight: 600; color: var(--gray-900);">Sarah M.</div>
+                    </div>
+                    <div class="review-card"
+                        style="background: #fff; border-radius: var(--radius-xl); padding: var(--space-6); box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                        <div style="display: flex; gap: 4px; margin-bottom: var(--space-4);">
+                            <?php for ($i = 0; $i < 5; $i++): ?>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="#fbbf24">
+                                    <path
+                                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                </svg>
+                            <?php endfor; ?>
+                        </div>
+                        <p style="color: var(--gray-700); line-height: 1.6; margin-bottom: var(--space-4);">"The team was super
+                            helpful and explained everything clearly."</p>
+                        <div style="font-weight: 600; color: var(--gray-900);">James T.</div>
+                    </div>
+                    <div class="review-card"
+                        style="background: #fff; border-radius: var(--radius-xl); padding: var(--space-6); box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                        <div style="display: flex; gap: 4px; margin-bottom: var(--space-4);">
+                            <?php for ($i = 0; $i < 5; $i++): ?>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="#fbbf24">
+                                    <path
+                                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                </svg>
+                            <?php endfor; ?>
+                        </div>
+                        <p style="color: var(--gray-700); line-height: 1.6; margin-bottom: var(--space-4);">"Highly recommend!
+                            No hidden fees and great rates."</p>
+                        <div style="font-weight: 600; color: var(--gray-900);">Lisa K.</div>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section class="section faqs-section" style="background: #fff;">
+        <div class="container" style="max-width: 800px;">
+            <div class="section-header" style="text-align: center; margin-bottom: var(--space-10);">
+                <h2 style="font-size: var(--text-3xl); font-weight: 700; color: var(--gray-900);">
+                    <?php esc_html_e('Frequently Asked Questions', 'finance-theme'); ?>
+                </h2>
+            </div>
+
+            <?php
+            // Fetch FAQs
+            $faqs = get_posts([
+                'post_type' => 'faq',
+                'posts_per_page' => 5,
+                'orderby' => 'menu_order',
+                'order' => 'ASC',
+            ]);
+
+            if (!empty($faqs)):
+                ?>
+                <div class="faq-list" style="display: flex; flex-direction: column; gap: var(--space-4);">
+                    <?php foreach ($faqs as $index => $faq): ?>
+                        <div class="faq-item"
+                            style="border: 1px solid var(--gray-200); border-radius: var(--radius-lg); overflow: hidden;">
+                            <details>
+                                <summary
+                                    style="padding: var(--space-5); cursor: pointer; font-weight: 600; color: var(--gray-900); display: flex; justify-content: space-between; align-items: center; list-style: none;">
+                                    <?php echo esc_html(get_the_title($faq)); ?>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" style="flex-shrink: 0;">
+                                        <polyline points="6 9 12 15 18 9" />
+                                    </svg>
+                                </summary>
+                                <div style="padding: 0 var(--space-5) var(--space-5); color: var(--gray-600); line-height: 1.7;">
+                                    <?php echo wp_kses_post(get_the_content(null, false, $faq)); ?>
+                                </div>
+                            </details>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php else: ?>
+                <!-- Fallback FAQs -->
+                <div class="faq-list" style="display: flex; flex-direction: column; gap: var(--space-4);">
+                    <div class="faq-item"
+                        style="border: 1px solid var(--gray-200); border-radius: var(--radius-lg); overflow: hidden;">
+                        <details>
+                            <summary
+                                style="padding: var(--space-5); cursor: pointer; font-weight: 600; color: var(--gray-900); display: flex; justify-content: space-between; align-items: center; list-style: none;">
+                                <?php esc_html_e('How quickly can I get my money?', 'finance-theme'); ?>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9" />
+                                </svg>
+                            </summary>
+                            <div style="padding: 0 var(--space-5) var(--space-5); color: var(--gray-600); line-height: 1.7;">
+                                <?php esc_html_e('Once approved, funds can be transferred to your account within 60 minutes via NPP instant transfers during business hours.', 'finance-theme'); ?>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="faq-item"
+                        style="border: 1px solid var(--gray-200); border-radius: var(--radius-lg); overflow: hidden;">
+                        <details>
+                            <summary
+                                style="padding: var(--space-5); cursor: pointer; font-weight: 600; color: var(--gray-900); display: flex; justify-content: space-between; align-items: center; list-style: none;">
+                                <?php esc_html_e('What documents do I need to apply?', 'finance-theme'); ?>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9" />
+                                </svg>
+                            </summary>
+                            <div style="padding: 0 var(--space-5) var(--space-5); color: var(--gray-600); line-height: 1.7;">
+                                <?php esc_html_e('You\'ll need 100 points of ID and access to your online banking so we can securely verify your income.', 'finance-theme'); ?>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="faq-item"
+                        style="border: 1px solid var(--gray-200); border-radius: var(--radius-lg); overflow: hidden;">
+                        <details>
+                            <summary
+                                style="padding: var(--space-5); cursor: pointer; font-weight: 600; color: var(--gray-900); display: flex; justify-content: space-between; align-items: center; list-style: none;">
+                                <?php esc_html_e('Can I pay off my loan early?', 'finance-theme'); ?>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9" />
+                                </svg>
+                            </summary>
+                            <div style="padding: 0 var(--space-5) var(--space-5); color: var(--gray-600); line-height: 1.7;">
+                                <?php esc_html_e('Yes! You can pay off your loan early at any time with no early repayment penalties.', 'finance-theme'); ?>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="faq-item"
+                        style="border: 1px solid var(--gray-200); border-radius: var(--radius-lg); overflow: hidden;">
+                        <details>
+                            <summary
+                                style="padding: var(--space-5); cursor: pointer; font-weight: 600; color: var(--gray-900); display: flex; justify-content: space-between; align-items: center; list-style: none;">
+                                <?php esc_html_e('Will applying affect my credit score?', 'finance-theme'); ?>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9" />
+                                </svg>
+                            </summary>
+                            <div style="padding: 0 var(--space-5) var(--space-5); color: var(--gray-600); line-height: 1.7;">
+                                <?php esc_html_e('We perform a credit check as part of our responsible lending assessment. This is a standard enquiry that all lenders make.', 'finance-theme'); ?>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
+    </section>
+
+
     <?php
-    // Get current post slug and build apply URL
-    $loan_slug = get_post_field('post_name', get_post());
-    $apply_url = add_query_arg('loan_type', $loan_slug, home_url('/apply'));
-
-    // CTA Section
-    get_template_part('template-parts/cta-section', null, [
-        'title' => sprintf(__('Apply for a %s today', 'finance-theme'), get_the_title()),
-        'subtitle' => __('It only takes a few minutes to complete our secure online application.', 'finance-theme'),
-        'apply_url' => $apply_url,
-    ]);
-
 endwhile; // End of the loop.
 
 get_footer();

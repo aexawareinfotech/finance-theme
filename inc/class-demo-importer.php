@@ -16,6 +16,7 @@ class Finance_Theme_Demo_Importer
     private $loan_types = [];
     private $testimonials = [];
     private $faqs = [];
+    private $template_assets = [];
 
     public function __construct()
     {
@@ -267,6 +268,20 @@ class Finance_Theme_Demo_Importer
                 'content' => 'Yes, we perform credit checks as part of our responsible lending obligations.'
             ],
         ];
+
+        // Define template assets to download
+        $this->template_assets = [
+            [
+                'url' => 'https://www.denverhealthmedicalplan.org/sites/default/files/inline-images/GettyImages-1368402298.v2.jpg',
+                'filename' => 'eligibility.jpg',
+                'folder' => 'images'
+            ],
+            [
+                'url' => 'https://www.shutterstock.com/shutterstock/videos/3718668489/thumb/1.jpg?ip=x480',
+                'filename' => 'why-choose.jpg',
+                'folder' => 'images'
+            ],
+        ];
     }
 
     /**
@@ -370,14 +385,71 @@ class Finance_Theme_Demo_Importer
             }
         }
 
-        add_action('admin_notices', function () use ($count) {
+        // Download template assets
+        $assets_count = $this->download_template_assets();
+
+        add_action('admin_notices', function () use ($count, $assets_count) {
             ?>
             <div class="notice notice-success is-dismissible">
-                <p><?php echo sprintf(esc_html__('Successfully processed import! %d items checked/updated.', 'finance-theme'), $count); ?>
+                <p><?php echo sprintf(esc_html__('Successfully processed import! %d items checked/updated. %d template images downloaded.', 'finance-theme'), $count, $assets_count); ?>
                 </p>
             </div>
             <?php
         });
+    }
+
+    /**
+     * Download template assets from URLs
+     */
+    private function download_template_assets()
+    {
+        $count = 0;
+        $assets_dir = get_template_directory() . '/assets/';
+
+        foreach ($this->template_assets as $asset) {
+            $target_dir = $assets_dir . $asset['folder'] . '/';
+            $target_file = $target_dir . $asset['filename'];
+
+            // Skip if file already exists
+            if (file_exists($target_file)) {
+                continue;
+            }
+
+            // Ensure directory exists
+            if (!file_exists($target_dir)) {
+                wp_mkdir_p($target_dir);
+            }
+
+            // Download the image
+            $response = wp_remote_get($asset['url'], [
+                'timeout' => 30,
+                'sslverify' => false
+            ]);
+
+            if (is_wp_error($response)) {
+                continue;
+            }
+
+            $image_data = wp_remote_retrieve_body($response);
+
+            if (empty($image_data)) {
+                continue;
+            }
+
+            // Initialize WP_Filesystem
+            global $wp_filesystem;
+            if (!function_exists('WP_Filesystem')) {
+                require_once ABSPATH . 'wp-admin/includes/file.php';
+            }
+            WP_Filesystem();
+
+            // Save the file
+            if ($wp_filesystem->put_contents($target_file, $image_data, FS_CHMOD_FILE)) {
+                $count++;
+            }
+        }
+
+        return $count;
     }
 
     /**
