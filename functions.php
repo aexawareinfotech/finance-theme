@@ -108,6 +108,125 @@ function flavor_setup(): void
 add_action('after_setup_theme', 'flavor_setup');
 
 /**
+ * Create essential pages on theme activation
+ * 
+ * This function creates the required pages for the theme to function properly.
+ * Pages are only created if they don't already exist.
+ */
+function finance_theme_create_essential_pages(): void
+{
+    // Define essential pages with their templates
+    $essential_pages = [
+        [
+            'title' => 'Loans',
+            'slug' => 'loans',
+            'content' => '',
+            'template' => '', // page-loans.php is auto-applied via slug
+        ],
+        [
+            'title' => 'Apply Now',
+            'slug' => 'apply',
+            'content' => '<!-- Apply form content can be added here or via page builder -->',
+            'template' => '',
+        ],
+        [
+            'title' => 'Privacy Policy',
+            'slug' => 'privacy-policy',
+            'content' => '',
+            'template' => 'template-privacy-policy.php',
+        ],
+        [
+            'title' => 'Terms & Conditions',
+            'slug' => 'terms-and-conditions',
+            'content' => '',
+            'template' => 'template-terms.php',
+        ],
+        [
+            'title' => 'Disclaimer',
+            'slug' => 'disclaimer',
+            'content' => '',
+            'template' => 'template-disclaimer.php',
+        ],
+    ];
+
+    foreach ($essential_pages as $page_data) {
+        // Check if page with this slug already exists
+        $existing_page = get_page_by_path($page_data['slug']);
+
+        if (!$existing_page) {
+            // Create the page
+            $page_id = wp_insert_post([
+                'post_title' => $page_data['title'],
+                'post_name' => $page_data['slug'],
+                'post_content' => $page_data['content'],
+                'post_status' => 'publish',
+                'post_type' => 'page',
+                'post_author' => 1,
+            ]);
+
+            // Set page template if specified
+            if ($page_id && !is_wp_error($page_id) && !empty($page_data['template'])) {
+                update_post_meta($page_id, '_wp_page_template', $page_data['template']);
+            }
+        }
+    }
+
+    // Flush rewrite rules to ensure new pages are accessible
+    flush_rewrite_rules();
+}
+add_action('after_switch_theme', 'finance_theme_create_essential_pages');
+
+/**
+ * Register Custom Post Types
+ * 
+ * Registers the loan_type custom post type for the theme.
+ * This allows /loans/ URL to work via archive-loan_type.php template.
+ */
+function finance_theme_register_post_types(): void
+{
+    // Register Loan Type CPT
+    register_post_type('loan_type', [
+        'labels' => [
+            'name' => __('Loan Types', 'finance-theme'),
+            'singular_name' => __('Loan Type', 'finance-theme'),
+            'menu_name' => __('Loan Types', 'finance-theme'),
+            'add_new' => __('Add New', 'finance-theme'),
+            'add_new_item' => __('Add New Loan Type', 'finance-theme'),
+            'edit_item' => __('Edit Loan Type', 'finance-theme'),
+            'new_item' => __('New Loan Type', 'finance-theme'),
+            'view_item' => __('View Loan Type', 'finance-theme'),
+            'search_items' => __('Search Loan Types', 'finance-theme'),
+            'not_found' => __('No loan types found', 'finance-theme'),
+            'not_found_in_trash' => __('No loan types found in trash', 'finance-theme'),
+        ],
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'show_in_rest' => true,
+        'menu_position' => 5,
+        'menu_icon' => 'dashicons-money-alt',
+        'supports' => ['title', 'editor', 'thumbnail', 'excerpt', 'custom-fields'],
+        'has_archive' => 'loans', // This makes /loans/ use archive-loan_type.php
+        'rewrite' => [
+            'slug' => 'loan',
+            'with_front' => false,
+        ],
+    ]);
+}
+add_action('init', 'finance_theme_register_post_types');
+
+/**
+ * Flush rewrite rules on theme activation to ensure custom post types work
+ */
+function finance_theme_flush_rewrite_rules(): void
+{
+    finance_theme_register_post_types();
+    flush_rewrite_rules();
+}
+add_action('after_switch_theme', 'finance_theme_flush_rewrite_rules');
+
+/**
  * Enqueue scripts and styles
  */
 function flavor_scripts(): void
