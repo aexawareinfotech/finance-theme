@@ -32,36 +32,6 @@ $latest_posts = flavor_get_latest_posts(3);
                     <?php esc_html_e('Get up to $50,000 paid within 60 min*', 'finance-theme'); ?>
                 </p>
 
-                <ul class="hero-features">
-                    <li>
-                        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.5">
-                            <polyline points="20 6 9 17 4 12" />
-                        </svg>
-                        <span><?php esc_html_e('Borrow from $2,000 to $50,000', 'finance-theme'); ?></span>
-                    </li>
-                    <li>
-                        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.5">
-                            <polyline points="20 6 9 17 4 12" />
-                        </svg>
-                        <span><?php esc_html_e('Digital & Paperless Journey', 'finance-theme'); ?></span>
-                    </li>
-                    <li>
-                        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.5">
-                            <polyline points="20 6 9 17 4 12" />
-                        </svg>
-                        <span><?php esc_html_e('Proudly Australian Lender', 'finance-theme'); ?></span>
-                    </li>
-                    <li>
-                        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.5">
-                            <polyline points="20 6 9 17 4 12" />
-                        </svg>
-                        <span><?php esc_html_e('Instant Decisions and Same-Day Cash', 'finance-theme'); ?></span>
-                    </li>
-                </ul>
             </div>
 
             <!-- Right Calculator Card -->
@@ -87,6 +57,38 @@ $latest_posts = flavor_get_latest_posts(3);
 
                 <p class="hero-note"><?php esc_html_e('Online application in minutes!', 'finance-theme'); ?></p>
             </div>
+
+            <!-- Hero Features (Moved for mobile layout) -->
+            <ul class="hero-features">
+                <li>
+                    <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                        <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg>
+                    <span><?php esc_html_e('Borrow from $2,000 to $50,000', 'finance-theme'); ?></span>
+                </li>
+                <li>
+                    <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                        <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg>
+                    <span><?php esc_html_e('Digital & Paperless Journey', 'finance-theme'); ?></span>
+                </li>
+                <li>
+                    <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                        <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg>
+                    <span><?php esc_html_e('Proudly Australian Lender', 'finance-theme'); ?></span>
+                </li>
+                <li>
+                    <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                        <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg>
+                    <span><?php esc_html_e('Instant Decisions and Same-Day Cash', 'finance-theme'); ?></span>
+                </li>
+            </ul>
         </div>
     </div>
 </section>
