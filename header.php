@@ -32,7 +32,7 @@ if (!defined('ABSPATH')) {
             <div class="header-inner">
                 <!-- Logo -->
                 <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo"
-                    aria-label="<?php bloginfo('name'); ?>">
+                    aria-label="<?php echo esc_attr(get_bloginfo('name')); ?>">
                     <?php if (has_custom_logo()): ?>
                         <?php the_custom_logo(); ?>
                     <?php else: ?>

@@ -260,7 +260,7 @@ $instagram = get_theme_mod('flavor_instagram', '');
                         printf(
                             esc_html__('© %1$s %2$s. All rights reserved.', 'finance-theme'),
                             esc_html(date_i18n('Y')),
-                            get_bloginfo('name')
+                            esc_html(get_bloginfo('name'))
                         );
                     }
                     ?>

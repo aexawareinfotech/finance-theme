@@ -97,12 +97,12 @@ class Flavor_Loan_Metaboxes
 
             <div class="flavor-form-row">
                 <label for="loan_subtitle">
-                    <?php _e('Subtitle / Short Description', 'finance-theme'); ?>
+                    <?php esc_html_e('Subtitle / Short Description', 'finance-theme'); ?>
                 </label>
                 <input type="text" id="loan_subtitle" name="loan_subtitle" value="<?php echo esc_attr($subtitle); ?>"
                     placeholder="e.g. Fast access to funds when you need them most.">
                 <p class="description">
-                    <?php _e('Displayed under the title on single pages and cards.', 'finance-theme'); ?>
+                    <?php esc_html_e('Displayed under the title on single pages and cards.', 'finance-theme'); ?>
                 </p>
             </div>
 
@@ -110,14 +110,14 @@ class Flavor_Loan_Metaboxes
                 <div style="display: flex; gap: 20px;">
                     <div style="flex: 1; max-width: 300px;">
                         <label for="loan_amount">
-                            <?php _e('Loan Amount Text', 'finance-theme'); ?>
+                            <?php esc_html_e('Loan Amount Text', 'finance-theme'); ?>
                         </label>
                         <input type="text" id="loan_amount" name="loan_amount" value="<?php echo esc_attr($amount); ?>"
                             placeholder="e.g. $500 - $10,000">
                     </div>
                     <div style="flex: 1; max-width: 300px;">
                         <label for="loan_term">
-                            <?php _e('Loan Term Text', 'finance-theme'); ?>
+                            <?php esc_html_e('Loan Term Text', 'finance-theme'); ?>
                         </label>
                         <input type="text" id="loan_term" name="loan_term" value="<?php echo esc_attr($term); ?>"
                             placeholder="e.g. 16 days - 24 months">
@@ -127,12 +127,12 @@ class Flavor_Loan_Metaboxes
 
             <div class="flavor-form-row">
                 <label for="loan_features">
-                    <?php _e('Key Features', 'finance-theme'); ?>
+                    <?php esc_html_e('Key Features', 'finance-theme'); ?>
                 </label>
                 <textarea id="loan_features" name="loan_features" rows="5"
                     placeholder="Enter one feature per line..."><?php echo esc_textarea($features); ?></textarea>
                 <p class="description">
-                    <?php _e('Enter each feature on a new line.', 'finance-theme'); ?>
+                    <?php esc_html_e('Enter each feature on a new line.', 'finance-theme'); ?>
                 </p>
             </div>
 
@@ -140,11 +140,11 @@ class Flavor_Loan_Metaboxes
                 <div style="display: flex; gap: 20px;">
                     <div style="flex: 1; max-width: 300px;">
                         <label for="loan_icon">
-                            <?php _e('Icon', 'finance-theme'); ?>
+                            <?php esc_html_e('Icon', 'finance-theme'); ?>
                         </label>
                         <select id="loan_icon" name="loan_icon">
                             <option value="default">
-                                <?php _e('Default', 'finance-theme'); ?>
+                                <?php esc_html_e('Default', 'finance-theme'); ?>
                             </option>
                             <?php foreach ($icons as $key => $label): ?>
                                 <option value="<?php echo esc_attr($key); ?>" <?php selected($icon, $key); ?>>
@@ -155,7 +155,7 @@ class Flavor_Loan_Metaboxes
                     </div>
                     <div style="flex: 1; max-width: 300px;">
                         <label for="loan_color">
-                            <?php _e('Accent Color', 'finance-theme'); ?>
+                            <?php esc_html_e('Accent Color', 'finance-theme'); ?>
                         </label>
                         <input type="text" id="loan_color" name="loan_color" value="<?php echo esc_attr($color); ?>"
                             placeholder="#e75480 or var(--accent-500)">
@@ -167,10 +167,10 @@ class Flavor_Loan_Metaboxes
 
             <hr>
             <h3>
-                <?php _e('Example Loan Costs', 'finance-theme'); ?>
+                <?php esc_html_e('Example Loan Costs', 'finance-theme'); ?>
             </h3>
             <p class="description">
-                <?php _e('Configure the example loan cost cards shown on single loan pages.', 'finance-theme'); ?>
+                <?php esc_html_e('Configure the example loan cost cards shown on single loan pages.', 'finance-theme'); ?>
             </p>
 
             <?php
@@ -191,7 +191,7 @@ class Flavor_Loan_Metaboxes
             <div class="flavor-stats-grid" style="margin-top: 15px;">
                 <div style="background: #f9f9f9; padding: 15px; border-radius: 8px;">
                     <label style="display: block; margin-bottom: 10px; font-weight: bold;">
-                        <?php _e('Example 1', 'finance-theme'); ?>
+                        <?php esc_html_e('Example 1', 'finance-theme'); ?>
                     </label>
                     <input type="text" name="loan_cost_1_amount" value="<?php echo esc_attr($cost_1_amount); ?>"
                         placeholder="Amount (e.g. $1,000)" style="margin-bottom: 5px;">
@@ -202,7 +202,7 @@ class Flavor_Loan_Metaboxes
                 </div>
                 <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; border: 2px solid #4caf50;">
                     <label style="display: block; margin-bottom: 10px; font-weight: bold;">
-                        <?php _e('Example 2 (Popular)', 'finance-theme'); ?>
+                        <?php esc_html_e('Example 2 (Popular)', 'finance-theme'); ?>
                     </label>
                     <input type="text" name="loan_cost_2_amount" value="<?php echo esc_attr($cost_2_amount); ?>"
                         placeholder="Amount (e.g. $3,000)" style="margin-bottom: 5px;">
@@ -213,7 +213,7 @@ class Flavor_Loan_Metaboxes
                 </div>
                 <div style="background: #f9f9f9; padding: 15px; border-radius: 8px;">
                     <label style="display: block; margin-bottom: 10px; font-weight: bold;">
-                        <?php _e('Example 3', 'finance-theme'); ?>
+                        <?php esc_html_e('Example 3', 'finance-theme'); ?>
                     </label>
                     <input type="text" name="loan_cost_3_amount" value="<?php echo esc_attr($cost_3_amount); ?>"
                         placeholder="Amount (e.g. $5,000)" style="margin-bottom: 5px;">

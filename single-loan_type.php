@@ -10,78 +10,6 @@ if (!defined('ABSPATH')) {
 }
 
 get_header();
-?>
-
-<style>
-    /* Single Loan Page Responsive Styles */
-    @media (max-width: 768px) {
-
-        /* Features Row */
-        .features-row .container>div {
-            grid-template-columns: 1fr !important;
-            gap: var(--space-4) !important;
-        }
-
-        /* Why Choose Section - image on top */
-        .why-choose-loan-grid {
-            display: flex !important;
-            flex-direction: column !important;
-        }
-
-        .why-choose-loan-grid .why-choose-image {
-            order: -1 !important;
-            margin-bottom: var(--space-6);
-        }
-
-        .why-choose-loan-grid .why-choose-content {
-            order: 1 !important;
-        }
-
-        /* Eligibility Section - image on top */
-        .eligibility-grid {
-            display: flex !important;
-            flex-direction: column !important;
-        }
-
-        .eligibility-grid .eligibility-image {
-            order: -1 !important;
-            margin-bottom: var(--space-6);
-        }
-
-        .eligibility-grid .eligibility-content {
-            order: 1 !important;
-        }
-
-        /* How to Apply Section */
-        .how-to-apply-grid {
-            display: flex !important;
-            flex-direction: column !important;
-            gap: var(--space-8) !important;
-        }
-
-        /* Loan Costs Grid */
-        .loan-costs-grid {
-            grid-template-columns: 1fr !important;
-        }
-
-        /* Reviews Grid */
-        .reviews-grid {
-            grid-template-columns: 1fr !important;
-        }
-
-        /* Hero Stats */
-        .loan-hero-stats {
-            flex-direction: column !important;
-            gap: var(--space-4) !important;
-        }
-
-        .loan-hero-stats .stat-item {
-            text-align: center !important;
-        }
-    }
-</style>
-
-<?php
 
 while (have_posts()):
     the_post();
@@ -175,11 +103,10 @@ while (have_posts()):
     ?>
 
     <!-- Why Choose This Loan Section -->
-    <section class="section why-choose-loan-section" style="background: linear-gradient(135deg, var(--accent-300) 0%, var(--accent-400) 100%);">
+    <section class="section why-choose-loan-section">
         <div class="container">
-            <div class="why-choose-loan-grid"
-                style="display: grid; grid-template-columns: 1fr 1.2fr; gap: var(--space-12); align-items: center;">
-                <div class="why-choose-image" style="border-radius: var(--radius-2xl); overflow: hidden;">
+            <div class="why-choose-loan-grid">
+                <div class="why-choose-image">
                     <?php if (has_post_thumbnail()): ?>
                         <?php the_post_thumbnail('large', ['style' => 'width: 100%; height: auto; display: block;']); ?>
                     <?php else: ?>
@@ -188,30 +115,27 @@ while (have_posts()):
                     <?php endif; ?>
                 </div>
                 <div class="why-choose-content">
-                    <h2
-                        style="font-size: var(--text-3xl); font-weight: 700; color: var(--gray-900); margin-bottom: var(--space-4);">
+                    <h2>
                         <?php printf(esc_html__('Why Choose a %s', 'finance-theme'), get_the_title()); ?>
                     </h2>
-                    <p style="color: var(--gray-700); margin-bottom: var(--space-8); font-size: var(--text-lg);">
+                    <p>
                         <?php echo esc_html($subtitle); ?>
                     </p>
 
-                    <div class="why-choose-features" style="display: flex; flex-direction: column; gap: var(--space-6);">
+                    <div class="why-choose-features">
                         <!-- Feature 1 -->
-                        <div class="why-feature-item" style="display: flex; gap: var(--space-4); align-items: flex-start;">
-                            <div class="why-feature-icon"
-                                style="width: 48px; height: 48px; background: var(--accent-500); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <div class="why-feature-item">
+                            <div class="why-feature-icon">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                                     <circle cx="12" cy="12" r="10" />
                                     <path d="M12 6v6l4 2" />
                                 </svg>
                             </div>
                             <div>
-                                <h4
-                                    style="font-size: var(--text-lg); font-weight: 600; color: var(--gray-900); margin-bottom: var(--space-1);">
+                                <h4>
                                     <?php esc_html_e('Cash in as little as 60 minutes', 'finance-theme'); ?>
                                 </h4>
-                                <p style="color: var(--gray-600); font-size: var(--text-base); line-height: 1.6;">
+                                <p>
                                     <?php esc_html_e('Apply online and, if approved before 4:30 pm on a banking day, you could have the cash in your account in just 60 minutes.*', 'finance-theme'); ?>
                                 </p>
                             </div>
@@ -232,7 +156,7 @@ while (have_posts()):
                                     style="font-size: var(--text-lg); font-weight: 600; color: var(--gray-900); margin-bottom: var(--space-1);">
                                     <?php esc_html_e('100% online, zero paperwork', 'finance-theme'); ?>
                                 </h4>
-                                <p style="color: var(--gray-600); font-size: var(--text-base); line-height: 1.6;">
+                                <p>
                                     <?php esc_html_e('No queues, no printers, no problem. Our fast online process keeps things simple, smart, and hassle-free.', 'finance-theme'); ?>
                                 </p>
                             </div>
@@ -254,9 +178,145 @@ while (have_posts()):
                                     style="font-size: var(--text-lg); font-weight: 600; color: var(--gray-900); margin-bottom: var(--space-1);">
                                     <?php esc_html_e('Real support, real fast', 'finance-theme'); ?>
                                 </h4>
-                                <p style="color: var(--gray-600); font-size: var(--text-base); line-height: 1.6;">
+                                <p>
                                     <?php esc_html_e('Need help choosing the right repayment plan? Our Aussie-based team is here with real answers and is always happy to help.', 'finance-theme'); ?>
                                 </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loan Comparison Section -->
+    <section class="section comparison-section" id="loan-examples">
+        <div class="container">
+            <h2 class="comparison-title">
+                <?php printf(esc_html__('%s Examples', 'finance-theme'), get_the_title()); ?><sup>2</sup>
+            </h2>
+
+            <div class="comparison-grid">
+                <!-- Left: Phone Mockup + Benefits -->
+                <div class="comparison-phone">
+                    <div class="phone-wrapper">
+                        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/phone-mockup.png'); ?>"
+                            alt="<?php esc_attr_e('Fair Go Finance App', 'finance-theme'); ?>" loading="lazy">
+                    </div>
+                    <ul class="comparison-benefits">
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M9 12l2 2 4-4" />
+                            </svg>
+                            <?php esc_html_e('Borrow between $500 to $5,000', 'finance-theme'); ?>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M9 12l2 2 4-4" />
+                            </svg>
+                            <?php esc_html_e('Flexible payment terms', 'finance-theme'); ?>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M9 12l2 2 4-4" />
+                            </svg>
+                            <?php esc_html_e('No hidden fees payout early to reduce total repayment amount', 'finance-theme'); ?>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M9 12l2 2 4-4" />
+                            </svg>
+                            <?php esc_html_e('Money in 60 minutes* of contract acceptance', 'finance-theme'); ?>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Right: Loan Tables -->
+                <div class="comparison-tables">
+                    <!-- Small Loan -->
+                    <div class="loan-table">
+                        <div class="loan-table-header loan-table-header-small">
+                            <h4><?php esc_html_e('Small Loan', 'finance-theme'); ?></h4>
+                            <p><?php esc_html_e('Loan amount: $500 – $2,000 | Loan term: 16 days – 12 months | Fees: 20% establishment + 4% monthly (flat) | Other fees and charges may apply.', 'finance-theme'); ?>
+                            </p>
+                        </div>
+                        <div class="loan-table-body">
+                            <h5><?php esc_html_e('Example', 'finance-theme'); ?></h5>
+                            <table>
+                                <tr>
+                                    <td><?php esc_html_e('Repayments', 'finance-theme'); ?></td>
+                                    <td><strong><?php esc_html_e('Weekly', 'finance-theme'); ?></strong></td>
+                                </tr>
+                                <tr>
+                                    <td><?php esc_html_e('Loan Amount', 'finance-theme'); ?></td>
+                                    <td><strong>$1,000</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><?php esc_html_e('Term', 'finance-theme'); ?></td>
+                                    <td><strong><?php esc_html_e('28 weeks', 'finance-theme'); ?></strong></td>
+                                </tr>
+                                <tr>
+                                    <td><?php esc_html_e('Establishment fee', 'finance-theme'); ?></td>
+                                    <td><strong>$200</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><?php esc_html_e('Total monthly fee (over 28 weeks)', 'finance-theme'); ?></td>
+                                    <td><strong>$280</strong></td>
+                                </tr>
+                                <tr class="total-row">
+                                    <td><?php esc_html_e('Total repayable', 'finance-theme'); ?></td>
+                                    <td><strong>$1,480</strong></td>
+                                </tr>
+                            </table>
+                            <div class="weekly-repayment weekly-repayment-small">
+                                <span><?php esc_html_e('Weekly repayment', 'finance-theme'); ?></span>
+                                <strong>$70.00</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Medium Loan -->
+                    <div class="loan-table">
+                        <div class="loan-table-header loan-table-header-medium">
+                            <h4><?php esc_html_e('Medium Loan', 'finance-theme'); ?></h4>
+                            <p><?php esc_html_e('Loan amount: $2,001 – $5,000 | Loan term: 9 weeks – 24 months | Fees: up to $400 establishment fee | Interest: up to 47.80% p.a| Other fees and charges may apply.', 'finance-theme'); ?>
+                            </p>
+                        </div>
+                        <div class="loan-table-body">
+                            <h5><?php esc_html_e('Example', 'finance-theme'); ?></h5>
+                            <table>
+                                <tr>
+                                    <td><?php esc_html_e('Repayments', 'finance-theme'); ?></td>
+                                    <td><strong><?php esc_html_e('Weekly', 'finance-theme'); ?></strong></td>
+                                </tr>
+                                <tr>
+                                    <td><?php esc_html_e('Loan Amount', 'finance-theme'); ?></td>
+                                    <td><strong>$2,500</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><?php esc_html_e('Term', 'finance-theme'); ?></td>
+                                    <td><strong><?php esc_html_e('28 Weeks', 'finance-theme'); ?></strong></td>
+                                </tr>
+                                <tr>
+                                    <td><?php esc_html_e('Establishment fee', 'finance-theme'); ?></td>
+                                    <td><strong>$400</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><?php esc_html_e('Total interest (over 28 weeks)', 'finance-theme'); ?></td>
+                                    <td><strong>$394.74</strong></td>
+                                </tr>
+                                <tr class="total-row">
+                                    <td><?php esc_html_e('Total repayable', 'finance-theme'); ?></td>
+                                    <td><strong>$3,289</strong></td>
+                                </tr>
+                            </table>
+                            <div class="weekly-repayment weekly-repayment-medium">
+                                <span><?php esc_html_e('Weekly repayment', 'finance-theme'); ?></span>
+                                <strong>$117.67</strong>
                             </div>
                         </div>
                     </div>

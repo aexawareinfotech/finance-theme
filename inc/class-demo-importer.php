@@ -457,10 +457,16 @@ class Finance_Theme_Demo_Importer
      */
     private function ensure_post_exists($title, $content, $type)
     {
-        $existing = get_page_by_title($title, OBJECT, $type);
+        // Use WP_Query instead of deprecated get_page_by_title()
+        $existing = get_posts([
+            'post_type' => $type,
+            'title' => $title,
+            'posts_per_page' => 1,
+            'post_status' => 'any',
+        ]);
 
-        if ($existing) {
-            return $existing->ID;
+        if (!empty($existing)) {
+            return $existing[0]->ID;
         }
 
         $post_id = wp_insert_post([
