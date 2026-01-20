@@ -22,6 +22,52 @@ $instagram = get_theme_mod('flavor_instagram', '');
 
 </main><!-- #main-content -->
 
+<!-- CTA Section (appears on all pages) -->
+<section class="section footer-cta"
+    style="background: linear-gradient(135deg, var(--primary-900), var(--primary-700)); text-align: center; color: var(--white);">
+    <div class="container">
+        <h2 style="color: var(--white); margin-bottom: var(--space-4);">
+            <?php esc_html_e('Ready to Get Started?', 'finance-theme'); ?>
+        </h2>
+        <p style="color: var(--white-80); max-width: 600px; margin: 0 auto var(--space-8);">
+            <?php esc_html_e('Apply in just 6 minutes and get your funds the same day. No hidden fees, no surprises.', 'finance-theme'); ?>
+        </p>
+        <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
+            <a href="<?php echo esc_url(home_url('/apply')); ?>" class="btn btn-primary btn-lg">
+                <?php esc_html_e('Apply Now', 'finance-theme'); ?>
+            </a>
+            <a href="tel:<?php echo esc_attr(get_theme_mod('flavor_phone', '1300XXXXXX')); ?>"
+                class="btn btn-outline btn-lg">
+                <?php esc_html_e('Call Us', 'finance-theme'); ?>
+            </a>
+        </div>
+
+        <!-- License Section -->
+        <div
+            style="background: var(--white); border-radius: var(--radius-xl); padding: var(--space-8); margin-top: var(--space-10); max-width: 700px; margin-left: auto; margin-right: auto;">
+            <h3
+                style="color: var(--primary-900); font-size: var(--text-lg); font-weight: 600; margin-bottom: var(--space-6); text-align: center;">
+                <?php esc_html_e('Licensed by ASIC · Member of AFCA', 'finance-theme'); ?>
+            </h3>
+            <div
+                style="display: flex; justify-content: center; align-items: center; gap: var(--space-10); flex-wrap: wrap;">
+                <a href="https://asic.gov.au" target="_blank" rel="noopener noreferrer"
+                    style="display: flex; align-items: center;">
+                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/asic-logo.png'); ?>"
+                        alt="<?php esc_attr_e('ASIC - Australian Securities & Investments Commission', 'finance-theme'); ?>"
+                        style="height: 60px; width: auto;">
+                </a>
+                <a href="https://afca.org.au" target="_blank" rel="noopener noreferrer"
+                    style="display: flex; align-items: center;">
+                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/afca-logo.png'); ?>"
+                        alt="<?php esc_attr_e('AFCA - Australian Financial Complaints Authority', 'finance-theme'); ?>"
+                        style="height: 60px; width: auto;">
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <footer class="site-footer">
     <!-- Main Footer -->
     <div class="footer-main">
@@ -199,28 +245,7 @@ $instagram = get_theme_mod('flavor_instagram', '');
         </div>
     </div>
 
-    <!-- License/Compliance Section -->
-    <?php if (get_theme_mod('flavor_show_license', true)): ?>
-        <div class="footer-license">
-            <div class="container">
-                <h3 class="license-title">
-                    <?php esc_html_e('Licensed by ASIC', 'finance-theme'); ?> · <?php esc_html_e('Member of AFCA', 'finance-theme'); ?>
-                </h3>
-                <div class="license-logos">
-                    <a href="https://asic.gov.au" target="_blank" rel="noopener noreferrer" class="license-logo">
-                        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/asic-logo.png'); ?>"
-                            alt="<?php esc_attr_e('ASIC - Australian Securities & Investments Commission', 'finance-theme'); ?>"
-                            loading="lazy">
-                    </a>
-                    <a href="https://afca.org.au" target="_blank" rel="noopener noreferrer" class="license-logo">
-                        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/afca-logo.png'); ?>"
-                            alt="<?php esc_attr_e('AFCA - Australian Financial Complaints Authority', 'finance-theme'); ?>"
-                            loading="lazy">
-                    </a>
-                </div>
-            </div>
-        </div>
-    <?php endif; ?>
+
 
     <!-- Footer Bottom -->
     <div class="footer-bottom">

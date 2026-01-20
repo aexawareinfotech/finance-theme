@@ -693,27 +693,6 @@ $latest_posts = flavor_get_latest_posts(3);
     </div>
 </section>
 
-<!-- CTA Section -->
-<section class="section"
-    style="background: linear-gradient(135deg, var(--primary-900), var(--primary-700)); text-align: center; color: var(--white);">
-    <div class="container">
-        <h2 style="color: var(--white); margin-bottom: var(--space-4);">
-            <?php esc_html_e('Ready to Get Started?', 'finance-theme'); ?>
-        </h2>
-        <p style="color: var(--white-80); max-width: 600px; margin: 0 auto var(--space-8);">
-            <?php esc_html_e('Apply in just 6 minutes and get your funds the same day. No hidden fees, no surprises.', 'finance-theme'); ?>
-        </p>
-        <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
-            <a href="<?php echo esc_url(home_url('/apply')); ?>" class="btn btn-primary btn-lg">
-                <?php esc_html_e('Apply Now', 'finance-theme'); ?>
-            </a>
-            <a href="tel:<?php echo esc_attr(get_theme_mod('flavor_phone', '1300XXXXXX')); ?>"
-                class="btn btn-outline btn-lg">
-                <?php esc_html_e('Call Us', 'finance-theme'); ?>
-            </a>
-        </div>
-    </div>
-</section>
 
 <?php
 get_footer();

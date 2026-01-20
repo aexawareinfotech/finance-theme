@@ -69,9 +69,9 @@ Finance Theme by Aexaware Infotech - Professional WordPress theme for loan and f
     --moccasin: #ffe3b7;
     --honeydew-light: rgba(235, 250, 239, 0.5);
 
-    /* Typography */
+    /* Typography - Single Font */
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --font-heading: 'Outfit', 'Inter', sans-serif;
+    --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
     /* Font Sizes - Mobile First */
     --text-xs: 0.75rem;
@@ -823,49 +823,54 @@ p:last-child {
 .hero-grid {
     display: flex;
     flex-direction: column;
-    gap: var(--space-6);
+    gap: var(--space-8);
     align-items: center;
+    text-align: center;
 }
 
-/* Mobile: Reorder elements - title/subtitle first, then calculator, then features */
+/* Mobile styles */
 @media (max-width: 1023px) {
-    .hero-grid {
-        text-align: center;
-    }
-
     .hero-left {
-        display: contents;
-    }
-
-    .hero-title {
         order: 1;
         width: 100%;
     }
 
-    .hero-subtitle {
+    .hero-right {
         order: 2;
         width: 100%;
-        margin-bottom: var(--space-6);
-    }
-
-    .hero-right {
-        order: 3;
     }
 
     .hero-features {
-        order: 4;
         text-align: left;
-        margin-top: var(--space-6);
-        padding: var(--space-8) 0;
+        width: 100%;
+        padding: 0 var(--space-4);
+    }
+
+    .hero-title {
+        font-size: var(--text-3xl);
+    }
+
+    .hero-subtitle {
+        font-size: var(--text-base);
+        margin-bottom: var(--space-4);
     }
 }
 
+/* Desktop styles */
 @media (min-width: 1024px) {
     .hero-grid {
         display: grid;
         grid-template-columns: 1fr 420px;
         gap: var(--space-16);
         text-align: left;
+    }
+
+    .hero-left {
+        order: unset;
+    }
+
+    .hero-right {
+        order: unset;
     }
 }
 
@@ -1580,6 +1585,7 @@ p:last-child {
     font-size: var(--text-xl);
     font-weight: 700;
     margin-bottom: var(--space-2);
+    color: var(--white);
 }
 
 .loan-table-header p {
@@ -2600,23 +2606,13 @@ p:last-child {
 
 /* Loans Hero Section */
 .loans-hero {
-    padding: calc(80px + var(--space-16)) 0 var(--space-16);
+    padding: calc(80px + var(--space-12)) 0 var(--space-12);
     background: linear-gradient(135deg, var(--primary-900) 0%, var(--primary-700) 100%);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    min-height: auto;
 }
 
-.loans-hero::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -20%;
-    width: 80%;
-    height: 200%;
-    background: radial-gradient(circle, var(--accent-500) 0%, transparent 70%);
-    opacity: 0.08;
-    pointer-events: none;
-}
 
 .loans-hero-content {
     text-align: center;
@@ -2660,33 +2656,33 @@ p:last-child {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: var(--space-6);
+    gap: var(--space-4);
     flex-wrap: wrap;
 }
 
-.stat-item {
+.loans-hero .stat-item {
     text-align: center;
+    flex: 1 1 auto;
+    min-width: 100px;
 }
 
-.stat-number {
+.loans-hero .stat-number {
     display: block;
-    font-size: var(--text-3xl);
+    font-size: var(--text-2xl);
     font-weight: 700;
-    color: var(--accent-500);
+    color: var(--white);
     font-family: var(--font-heading);
 }
 
-.stat-label {
+.loans-hero .stat-label {
     display: block;
-    font-size: var(--text-sm);
+    font-size: var(--text-xs);
     color: var(--white-80);
     margin-top: var(--space-1);
 }
 
-.stat-divider {
-    width: 1px;
-    height: 40px;
-    background: var(--white-30);
+.loans-hero .stat-divider {
+    display: none;
 }
 
 @media (min-width: 768px) {
@@ -2700,10 +2696,22 @@ p:last-child {
 
     .loans-hero-stats {
         gap: var(--space-10);
+        flex-wrap: nowrap;
     }
 
-    .stat-number {
+    .loans-hero .stat-number {
         font-size: var(--text-4xl);
+    }
+
+    .loans-hero .stat-label {
+        font-size: var(--text-sm);
+    }
+
+    .loans-hero .stat-divider {
+        display: block;
+        width: 1px;
+        height: 40px;
+        background: var(--white-30);
     }
 }
 

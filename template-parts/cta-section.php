@@ -58,6 +58,17 @@ $apply_url = $args['apply_url'] ?? home_url('/apply');
                         </a>
                     <?php endif; ?>
                 </div>
+                <div style="display: flex; align-items: center; justify-content: center; gap: var(--space-6); margin-top: var(--space-8); flex-wrap: wrap;">
+                    <span style="color: var(--white-80); font-size: var(--text-sm);"><?php esc_html_e('Licensed by ASIC', 'finance-theme'); ?> · <?php esc_html_e('Member of AFCA', 'finance-theme'); ?></span>
+                    <div style="display: flex; gap: var(--space-4); align-items: center;">
+                        <a href="https://asic.gov.au" target="_blank" rel="noopener noreferrer" style="display: flex; background: var(--white); padding: var(--space-2) var(--space-3); border-radius: var(--radius-md);">
+                            <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/asic-logo.png'); ?>" alt="ASIC" style="height: 28px; width: auto;">
+                        </a>
+                        <a href="https://afca.org.au" target="_blank" rel="noopener noreferrer" style="display: flex; background: var(--white); padding: var(--space-2) var(--space-3); border-radius: var(--radius-md);">
+                            <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/afca-logo.png'); ?>" alt="AFCA" style="height: 28px; width: auto;">
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -81,6 +92,17 @@ $apply_url = $args['apply_url'] ?? home_url('/apply');
                         <?php esc_html_e('Call Us', 'finance-theme'); ?>
                     </a>
                 <?php endif; ?>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: center; gap: var(--space-6); margin-top: var(--space-8); flex-wrap: wrap;">
+                <span style="color: var(--white-80); font-size: var(--text-sm);"><?php esc_html_e('Licensed by ASIC', 'finance-theme'); ?> · <?php esc_html_e('Member of AFCA', 'finance-theme'); ?></span>
+                <div style="display: flex; gap: var(--space-4); align-items: center;">
+                    <a href="https://asic.gov.au" target="_blank" rel="noopener noreferrer" style="display: flex; background: var(--white); padding: var(--space-2) var(--space-3); border-radius: var(--radius-md);">
+                        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/asic-logo.png'); ?>" alt="ASIC" style="height: 28px; width: auto;">
+                    </a>
+                    <a href="https://afca.org.au" target="_blank" rel="noopener noreferrer" style="display: flex; background: var(--white); padding: var(--space-2) var(--space-3); border-radius: var(--radius-md);">
+                        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/afca-logo.png'); ?>" alt="AFCA" style="height: 28px; width: auto;">
+                    </a>
+                </div>
             </div>
         </div>
     </section>

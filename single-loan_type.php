@@ -93,48 +93,83 @@ while (have_posts()):
         $subtitle = get_the_excerpt();
     }
 
-    // Get dynamic stats
-    $stats = [];
 
-    // Stat 1
-    $stat_1_num = get_post_meta($post_id, '_loan_stat_1_number', true);
-    $stat_1_label = get_post_meta($post_id, '_loan_stat_1_label', true);
-    if ($stat_1_num && $stat_1_label) {
-        $stats[] = ['number' => $stat_1_num, 'label' => $stat_1_label];
-    } else {
-        // Fallback default
-        $stats[] = ['number' => '$50k', 'label' => __('Max Loan Amount', 'finance-theme')];
-    }
+    ?>
 
-    // Stat 2
-    $stat_2_num = get_post_meta($post_id, '_loan_stat_2_number', true);
-    $stat_2_label = get_post_meta($post_id, '_loan_stat_2_label', true);
-    if ($stat_2_num && $stat_2_label) {
-        $stats[] = ['number' => $stat_2_num, 'label' => $stat_2_label];
-    } else {
-        // Fallback default
-        $stats[] = ['number' => '60 min*', 'label' => __('Fast Funding', 'finance-theme')];
-    }
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <!-- Left Content -->
+                <div class="hero-left">
+                    <h1 class="hero-title">
+                        <?php echo esc_html(get_the_title()); ?>
+                    </h1>
+                    <p class="hero-subtitle">
+                        <?php echo esc_html($subtitle ?: __('Get up to $50,000 paid within 60 min*', 'finance-theme')); ?>
+                    </p>
 
-    // Stat 3
-    $stat_3_num = get_post_meta($post_id, '_loan_stat_3_number', true);
-    $stat_3_label = get_post_meta($post_id, '_loan_stat_3_label', true);
-    if ($stat_3_num && $stat_3_label) {
-        $stats[] = ['number' => $stat_3_num, 'label' => $stat_3_label];
-    } else {
-        // Fallback default
-        $stats[] = ['number' => '100%', 'label' => __('Online Process', 'finance-theme')];
-    }
+                    <ul class="hero-features">
+                        <li>
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            <span><?php esc_html_e('Borrow from $2,000 to $50,000', 'finance-theme'); ?></span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            <span><?php esc_html_e('Digital & Paperless Journey', 'finance-theme'); ?></span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            <span><?php esc_html_e('Proudly Australian Lender', 'finance-theme'); ?></span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            <span><?php esc_html_e('Instant Decisions and Same-Day Cash', 'finance-theme'); ?></span>
+                        </li>
+                    </ul>
+                </div>
 
-    // Page Hero
-    get_template_part('template-parts/page-hero', null, [
-        'badge' => __('Personal Loan', 'finance-theme'),
-        'title' => get_the_title(),
-        'subtitle' => $subtitle,
-        'show_stats' => true,
-        'stats' => $stats
-    ]);
+                <!-- Right Calculator Card -->
+                <div class="hero-right">
+                    <div class="calculator-card">
+                        <h3 class="calculator-title"><?php esc_html_e("I'd like to borrow", 'finance-theme'); ?></h3>
 
+                        <div class="calculator-amount" id="loan-amount-display">$5,000</div>
+
+                        <div class="calculator-slider-wrap">
+                            <input type="range" id="loan-amount-slider" class="calculator-slider" min="2000" max="50000"
+                                step="500" value="5000">
+                            <div class="slider-labels">
+                                <span>$2,000</span>
+                                <span>$50,000</span>
+                            </div>
+                        </div>
+
+                        <a href="<?php echo esc_url(add_query_arg('loan_type', get_post_field('post_name', get_post()), home_url('/apply'))); ?>"
+                            class="btn btn-primary btn-block">
+                            <?php esc_html_e('Apply Now', 'finance-theme'); ?>
+                        </a>
+                    </div>
+
+                    <p class="hero-note"><?php esc_html_e('Online application in minutes!', 'finance-theme'); ?></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <?php
     // Features Row (Site-wide benefits)
     get_template_part('template-parts/features-row');
     ?>

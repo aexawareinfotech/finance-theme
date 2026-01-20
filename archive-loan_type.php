@@ -12,160 +12,6 @@ if (!defined('ABSPATH')) {
 }
 
 get_header();
-
-// Loan Categories Data
-$loan_categories = [
-    [
-        'title' => 'Emergency Loans',
-        'slug' => 'emergency-loans',
-        'description' => 'When unexpected expenses arise, our emergency loans provide fast access to funds when you need them most. Get up to $10,000 deposited into your account within 60 minutes* of approval.',
-        'image' => get_template_directory_uri() . '/assets/images/loans/emergency-loan.webp',
-        'amount' => '$500 - $10,000',
-        'term' => '16 days - 24 months',
-        'features' => [
-            'Same-day approval available',
-            'No hidden fees',
-            'Flexible repayment options',
-            'Bad credit considered'
-        ],
-        'color' => 'var(--accent-500)'
-    ],
-    [
-        'title' => 'Wedding Loans',
-        'slug' => 'wedding-loans',
-        'description' => 'Make your special day unforgettable without the financial stress. Our wedding loans help you spread the cost of your dream wedding with manageable repayments.',
-        'image' => get_template_directory_uri() . '/assets/images/loans/wedding.webp',
-        'amount' => '$2,000 - $25,000',
-        'term' => '12 - 36 months',
-        'features' => [
-            'Cover venue, catering & more',
-            'Competitive interest rates',
-            'Quick online application',
-            'Predictable monthly payments'
-        ],
-        'color' => '#e75480'
-    ],
-    [
-        'title' => 'Education Loans',
-        'slug' => 'education-loans',
-        'description' => 'Invest in your future with our education financing options. Cover tuition, books, equipment, or any study-related expenses with our flexible education loans.',
-        'image' => get_template_directory_uri() . '/assets/images/loans/education.webp',
-        'amount' => '$1,000 - $20,000',
-        'term' => '12 - 48 months',
-        'features' => [
-            'Fund courses & certifications',
-            'Equipment & supplies included',
-            'Deferred payment options',
-            'No early repayment fees'
-        ],
-        'color' => '#3498db'
-    ],
-    [
-        'title' => 'Travel Loans',
-        'slug' => 'travel-loans',
-        'description' => 'Turn your travel dreams into reality. Whether it\'s a family vacation, honeymoon, or adventure trip, our travel loans make it possible without depleting your savings.',
-        'image' => get_template_directory_uri() . '/assets/images/loans/online.webp',
-        'amount' => '$1,000 - $15,000',
-        'term' => '6 - 24 months',
-        'features' => [
-            'Book now, pay later',
-            'Cover flights, hotels & tours',
-            'Quick approval process',
-            'Flexible terms available'
-        ],
-        'color' => '#27ae60'
-    ],
-    [
-        'title' => 'Bond Loans',
-        'slug' => 'bond-loans',
-        'description' => 'Moving to a new place? Our bond loans help you cover rental bond deposits quickly, so you can secure your new home without stress.',
-        'image' => get_template_directory_uri() . '/assets/images/loans/bond-loan.webp',
-        'amount' => '$500 - $5,000',
-        'term' => '21 days - 12 months',
-        'features' => [
-            '21 days interest-free option',
-            'Fast approval for renters',
-            'Cover bond & moving costs',
-            'Simple application process'
-        ],
-        'color' => '#9b59b6'
-    ],
-    [
-        'title' => 'Car Repair Loans',
-        'slug' => 'car-repairs',
-        'description' => 'Don\'t let car troubles keep you off the road. Our car repair loans provide quick funding for mechanical repairs, servicing, and maintenance.',
-        'image' => get_template_directory_uri() . '/assets/images/loans/car-repairs.webp',
-        'amount' => '$500 - $8,000',
-        'term' => '6 - 18 months',
-        'features' => [
-            'Cover any repair costs',
-            'Same-day funding available',
-            'Work with any mechanic',
-            'Affordable repayments'
-        ],
-        'color' => '#e67e22'
-    ],
-    [
-        'title' => 'Vet Loans',
-        'slug' => 'vet-loans',
-        'description' => 'Your furry family members deserve the best care. Our vet loans help cover unexpected veterinary bills, surgeries, and ongoing treatments.',
-        'image' => get_template_directory_uri() . '/assets/images/loans/vet-loans.webp',
-        'amount' => '$500 - $10,000',
-        'term' => '6 - 24 months',
-        'features' => [
-            'Emergency vet care covered',
-            'Surgery & treatments included',
-            'Quick decisions made',
-            'No upfront payments'
-        ],
-        'color' => '#1abc9c'
-    ],
-    [
-        'title' => 'Cosmetic Loans',
-        'slug' => 'cosmetic-loans',
-        'description' => 'Finance your cosmetic procedures with confidence. From dental work to aesthetic treatments, our cosmetic loans help you look and feel your best.',
-        'image' => get_template_directory_uri() . '/assets/images/loans/cosmetic-surgery.webp',
-        'amount' => '$2,000 - $30,000',
-        'term' => '12 - 48 months',
-        'features' => [
-            'All procedures covered',
-            'Work with any provider',
-            'Discreet application',
-            'Flexible payment plans'
-        ],
-        'color' => '#e74c3c'
-    ],
-    [
-        'title' => 'Medium Loans',
-        'slug' => 'medium-loans',
-        'description' => 'For those mid-sized expenses that require a bit more flexibility. Our medium loans offer competitive rates for amounts between $2,001 and $5,000.',
-        'image' => get_template_directory_uri() . '/assets/images/loans/medium-loans.webp',
-        'amount' => '$2,001 - $5,000',
-        'term' => '9 weeks - 24 months',
-        'features' => [
-            'Competitive interest rates',
-            'Flexible repayment schedules',
-            'No hidden charges',
-            'Quick approval process'
-        ],
-        'color' => '#2980b9'
-    ],
-    [
-        'title' => 'Large Loans',
-        'slug' => 'large-loans',
-        'description' => 'For significant expenses and major life events. Our large loans provide access to up to $50,000 with flexible terms tailored to your needs.',
-        'image' => get_template_directory_uri() . '/assets/images/loans/large-loans.webp',
-        'amount' => '$5,001 - $50,000',
-        'term' => '12 - 60 months',
-        'features' => [
-            'Higher loan amounts',
-            'Longer repayment terms',
-            'Personalised rates',
-            'Dedicated support'
-        ],
-        'color' => '#34495e'
-    ]
-];
 ?>
 
 <!-- Page Hero Section -->
@@ -212,104 +58,134 @@ $loan_categories = [
     </div>
 </section>
 
+<?php
+// Fetch loan types from WordPress
+$loan_posts = get_posts([
+    'post_type' => 'loan_type',
+    'posts_per_page' => -1,
+    'orderby' => 'menu_order',
+    'order' => 'ASC',
+]);
+?>
+
 <!-- Quick Navigation -->
-<section class="loans-quick-nav">
-    <div class="container">
-        <div class="quick-nav-wrapper">
-            <span class="quick-nav-label">
-                <?php esc_html_e('Jump to:', 'finance-theme'); ?>
-            </span>
-            <div class="quick-nav-pills">
-                <?php foreach ($loan_categories as $index => $loan): ?>
-                    <a href="#<?php echo esc_attr($loan['slug']); ?>" class="nav-pill">
-                        <?php echo esc_html($loan['title']); ?>
-                    </a>
-                <?php endforeach; ?>
+<?php if (!empty($loan_posts)): ?>
+    <section class="loans-quick-nav">
+        <div class="container">
+            <div class="quick-nav-wrapper">
+                <span class="quick-nav-label">
+                    <?php esc_html_e('Jump to:', 'finance-theme'); ?>
+                </span>
+                <div class="quick-nav-pills">
+                    <?php foreach ($loan_posts as $loan_post): ?>
+                        <a href="#<?php echo esc_attr($loan_post->post_name); ?>" class="nav-pill">
+                            <?php echo esc_html(get_the_title($loan_post)); ?>
+                        </a>
+                    <?php endforeach; ?>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+<?php endif; ?>
 
 <!-- Loan Categories Grid -->
 <section class="section loans-grid-section">
     <div class="container">
-        <?php foreach ($loan_categories as $index => $loan): ?>
-            <div class="loan-category-card <?php echo $index % 2 === 0 ? '' : 'reversed'; ?>"
-                id="<?php echo esc_attr($loan['slug']); ?>">
-                <div class="loan-category-image">
-                    <img src="<?php echo esc_url($loan['image']); ?>" alt="<?php echo esc_attr($loan['title']); ?>"
-                        loading="lazy">
-                    <div class="loan-amount-badge" style="background: <?php echo esc_attr($loan['color']); ?>">
-                        <?php echo esc_html($loan['amount']); ?>
-                    </div>
-                </div>
-                <div class="loan-category-content">
-                    <h2>
-                        <?php echo esc_html($loan['title']); ?>
-                    </h2>
-                    <p class="loan-description">
-                        <?php echo esc_html($loan['description']); ?>
-                    </p>
-
-                    <div class="loan-details">
-                        <div class="loan-detail-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10" />
-                                <path d="M12 6v6l4 2" />
-                            </svg>
-                            <div>
-                                <span class="detail-label">
-                                    <?php esc_html_e('Loan Term', 'finance-theme'); ?>
-                                </span>
-                                <span class="detail-value">
-                                    <?php echo esc_html($loan['term']); ?>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="loan-detail-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
-                            </svg>
-                            <div>
-                                <span class="detail-label">
-                                    <?php esc_html_e('Loan Amount', 'finance-theme'); ?>
-                                </span>
-                                <span class="detail-value">
-                                    <?php echo esc_html($loan['amount']); ?>
-                                </span>
-                            </div>
+        <?php if (!empty($loan_posts)): ?>
+            <?php foreach ($loan_posts as $index => $loan_post):
+                $post_id = $loan_post->ID;
+                $image = get_the_post_thumbnail_url($loan_post, 'large') ?: get_template_directory_uri() . '/assets/images/loans/default.webp';
+                $subtitle = get_post_meta($post_id, '_loan_subtitle', true) ?: get_the_excerpt($loan_post);
+                $amount = get_post_meta($post_id, '_loan_amount', true) ?: '$500 - $50,000';
+                $term = get_post_meta($post_id, '_loan_term', true) ?: '6 - 60 months';
+                $features_raw = get_post_meta($post_id, '_loan_features', true);
+                $features = !empty($features_raw) ? array_filter(explode("\n", $features_raw)) : ['Fast approval', 'Flexible terms', 'No hidden fees', 'Bad credit OK'];
+                $color = get_post_meta($post_id, '_loan_color', true) ?: 'var(--accent-500)';
+                $loan_url = get_permalink($loan_post);
+                ?>
+                <div class="loan-category-card <?php echo $index % 2 === 0 ? '' : 'reversed'; ?>"
+                    id="<?php echo esc_attr($loan_post->post_name); ?>">
+                    <div class="loan-category-image">
+                        <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr(get_the_title($loan_post)); ?>"
+                            loading="lazy">
+                        <div class="loan-amount-badge" style="background: <?php echo esc_attr($color); ?>">
+                            <?php echo esc_html($amount); ?>
                         </div>
                     </div>
+                    <div class="loan-category-content">
+                        <h2>
+                            <?php echo esc_html(get_the_title($loan_post)); ?>
+                        </h2>
+                        <p class="loan-description">
+                            <?php echo esc_html($subtitle); ?>
+                        </p>
 
-                    <ul class="loan-features">
-                        <?php foreach ($loan['features'] as $feature): ?>
-                            <li>
-                                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent-500)"
-                                    stroke-width="2.5">
-                                    <polyline points="20 6 9 17 4 12" />
+                        <div class="loan-details">
+                            <div class="loan-detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 6v6l4 2" />
                                 </svg>
-                                <span>
-                                    <?php echo esc_html($feature); ?>
-                                </span>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
+                                <div>
+                                    <span class="detail-label">
+                                        <?php esc_html_e('Loan Term', 'finance-theme'); ?>
+                                    </span>
+                                    <span class="detail-value">
+                                        <?php echo esc_html($term); ?>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="loan-detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+                                </svg>
+                                <div>
+                                    <span class="detail-label">
+                                        <?php esc_html_e('Loan Amount', 'finance-theme'); ?>
+                                    </span>
+                                    <span class="detail-value">
+                                        <?php echo esc_html($amount); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
 
-                    <div class="loan-actions">
-                        <a href="<?php echo esc_url(home_url('/apply')); ?>" class="btn btn-primary">
-                            <?php esc_html_e('Apply Now', 'finance-theme'); ?>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7" />
-                            </svg>
-                        </a>
-                        <a href="<?php echo esc_url(home_url('/calculator')); ?>" class="btn btn-secondary">
-                            <?php esc_html_e('Calculate Repayments', 'finance-theme'); ?>
-                        </a>
+                        <ul class="loan-features">
+                            <?php foreach ($features as $feature): ?>
+                                <li>
+                                    <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent-500)"
+                                        stroke-width="2.5">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg>
+                                    <span>
+                                        <?php echo esc_html(trim($feature)); ?>
+                                    </span>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+
+                        <div class="loan-actions">
+                            <a href="<?php echo esc_url($loan_url); ?>" class="btn btn-primary">
+                                <?php esc_html_e('Learn More', 'finance-theme'); ?>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                            <a href="<?php echo esc_url(home_url('/calculator')); ?>" class="btn btn-secondary">
+                                <?php esc_html_e('Calculate Repayments', 'finance-theme'); ?>
+                            </a>
+                        </div>
                     </div>
                 </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div style="text-align: center; padding: var(--space-16);">
+                <p style="color: var(--gray-600); font-size: var(--text-lg);">
+                    <?php esc_html_e('No loan types found. Please add some loan types in the WordPress admin.', 'finance-theme'); ?>
+                </p>
             </div>
-        <?php endforeach; ?>
+        <?php endif; ?>
     </div>
 </section>
 
@@ -389,36 +265,5 @@ $loan_categories = [
     </div>
 </section>
 
-<!-- CTA Section -->
-<section class="section loans-cta-section">
-    <div class="container">
-        <div class="loans-cta-card">
-            <div class="cta-content">
-                <h2>
-                    <?php esc_html_e('Ready to Get Started?', 'finance-theme'); ?>
-                </h2>
-                <p>
-                    <?php esc_html_e('Apply in just 6 minutes and get your funds the same day. It\'s quick, easy, and 100% online.', 'finance-theme'); ?>
-                </p>
-            </div>
-            <div class="cta-actions">
-                <a href="<?php echo esc_url(home_url('/apply')); ?>" class="btn btn-primary btn-lg">
-                    <?php esc_html_e('Apply Now', 'finance-theme'); ?>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                </a>
-                <a href="tel:<?php echo esc_attr(get_theme_mod('flavor_phone', '1300XXXXXX')); ?>"
-                    class="btn btn-outline btn-lg">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path
-                            d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
-                    </svg>
-                    <?php esc_html_e('Call Us', 'finance-theme'); ?>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
 
 <?php get_footer(); ?>

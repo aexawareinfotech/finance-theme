@@ -54,13 +54,7 @@ class Flavor_Loan_Metaboxes
         $icon = get_post_meta($post->ID, '_loan_icon', true);
         $features = get_post_meta($post->ID, '_loan_features', true);
 
-        // Stats
-        $stat_1_number = get_post_meta($post->ID, '_loan_stat_1_number', true);
-        $stat_1_label = get_post_meta($post->ID, '_loan_stat_1_label', true);
-        $stat_2_number = get_post_meta($post->ID, '_loan_stat_2_number', true);
-        $stat_2_label = get_post_meta($post->ID, '_loan_stat_2_label', true);
-        $stat_3_number = get_post_meta($post->ID, '_loan_stat_3_number', true);
-        $stat_3_label = get_post_meta($post->ID, '_loan_stat_3_label', true);
+
 
         // Icons list
         $icons = [
@@ -169,46 +163,15 @@ class Flavor_Loan_Metaboxes
                 </div>
             </div>
 
-            <hr>
-            <h3>
-                <?php _e('Hero Statistics', 'finance-theme'); ?>
-            </h3>
-            <div class="flavor-stats-grid">
-                <div>
-                    <label>
-                        <?php _e('Stat 1', 'finance-theme'); ?>
-                    </label>
-                    <input type="text" name="loan_stat_1_number" value="<?php echo esc_attr($stat_1_number); ?>"
-                        placeholder="Value (e.g. $50k)" style="margin-bottom: 5px;">
-                    <input type="text" name="loan_stat_1_label" value="<?php echo esc_attr($stat_1_label); ?>"
-                        placeholder="Label (e.g. Max Amount)">
-                </div>
-                <div>
-                    <label>
-                        <?php _e('Stat 2', 'finance-theme'); ?>
-                    </label>
-                    <input type="text" name="loan_stat_2_number" value="<?php echo esc_attr($stat_2_number); ?>"
-                        placeholder="Value (e.g. 60 min*)" style="margin-bottom: 5px;">
-                    <input type="text" name="loan_stat_2_label" value="<?php echo esc_attr($stat_2_label); ?>"
-                        placeholder="Label (e.g. Fast Funding)">
-                </div>
-                <div>
-                    <label>
-                        <?php _e('Stat 3', 'finance-theme'); ?>
-                    </label>
-                    <input type="text" name="loan_stat_3_number" value="<?php echo esc_attr($stat_3_number); ?>"
-                        placeholder="Value (e.g. 100%)" style="margin-bottom: 5px;">
-                    <input type="text" name="loan_stat_3_label" value="<?php echo esc_attr($stat_3_label); ?>"
-                        placeholder="Label (e.g. Online Process)">
-                </div>
-            </div>
+
 
             <hr>
             <h3>
                 <?php _e('Example Loan Costs', 'finance-theme'); ?>
             </h3>
             <p class="description">
-                        <?php _e('Configure the example loan cost cards shown on single loan pages.', 'finance-theme'); ?></p>
+                <?php _e('Configure the example loan cost cards shown on single loan pages.', 'finance-theme'); ?>
+            </p>
 
             <?php
             // Get loan cost examples
@@ -292,12 +255,7 @@ class Flavor_Loan_Metaboxes
             'loan_color',
             'loan_icon',
             'loan_features',
-            'loan_stat_1_number',
-            'loan_stat_1_label',
-            'loan_stat_2_number',
-            'loan_stat_2_label',
-            'loan_stat_3_number',
-            'loan_stat_3_label',
+
             // Loan Cost Examples
             'loan_cost_1_amount',
             'loan_cost_1_term',
