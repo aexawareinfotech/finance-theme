@@ -120,6 +120,25 @@ function finance_theme_create_essential_pages(): void
     // Define essential pages with their templates
     $essential_pages = [
         [
+            'title' => 'Home',
+            'slug' => 'home',
+            'content' => '',
+            'template' => '', // front-page.php is used via WordPress hierarchy
+            'is_front_page' => true,
+        ],
+        [
+            'title' => 'About',
+            'slug' => 'about',
+            'content' => '',
+            'template' => '', // page-about.php is auto-applied via slug
+        ],
+        [
+            'title' => 'Contact',
+            'slug' => 'contact',
+            'content' => '',
+            'template' => '', // page-contact.php is auto-applied via slug
+        ],
+        [
             'title' => 'Loans',
             'slug' => 'loans',
             'content' => '',
@@ -151,11 +170,15 @@ function finance_theme_create_essential_pages(): void
         ],
     ];
 
+    $front_page_id = null;
+
     foreach ($essential_pages as $page_data) {
         // Check if page with this slug already exists
         $existing_page = get_page_by_path($page_data['slug']);
 
-        if (!$existing_page) {
+        if ($existing_page) {
+            $page_id = $existing_page->ID;
+        } else {
             // Create the page
             $page_id = wp_insert_post([
                 'post_title' => $page_data['title'],
@@ -171,6 +194,17 @@ function finance_theme_create_essential_pages(): void
                 update_post_meta($page_id, '_wp_page_template', $page_data['template']);
             }
         }
+
+        // Track the front page ID
+        if (!empty($page_data['is_front_page']) && $page_id && !is_wp_error($page_id)) {
+            $front_page_id = $page_id;
+        }
+    }
+
+    // Set the front page if we have a home page
+    if ($front_page_id) {
+        update_option('show_on_front', 'page');
+        update_option('page_on_front', $front_page_id);
     }
 
     // Flush rewrite rules to ensure new pages are accessible
@@ -248,6 +282,37 @@ function finance_theme_clear_default_widgets(): void
     }
 }
 add_action('after_switch_theme', 'finance_theme_clear_default_widgets');
+
+/**
+ * Auto-import demo content on theme activation
+ * 
+ * Uses a transient to ensure demo content is only imported once.
+ * After import, users can still modify content via admin panel.
+ */
+function finance_theme_auto_import_demo_content(): void
+{
+    // Check if demo content has already been imported
+    $already_imported = get_option('finance_theme_demo_imported', false);
+
+    if ($already_imported) {
+        return;
+    }
+
+    // Check if we have the demo importer class
+    if (!class_exists('Finance_Theme_Demo_Importer')) {
+        return;
+    }
+
+    // Create an instance and import demo content
+    $importer = new Finance_Theme_Demo_Importer();
+    $count = $importer->auto_import_all();
+
+    // Mark as imported to prevent running again
+    if ($count > 0) {
+        update_option('finance_theme_demo_imported', true);
+    }
+}
+add_action('after_switch_theme', 'finance_theme_auto_import_demo_content', 20); // Priority 20 to run after pages are created
 
 /**
  * Enqueue scripts and styles

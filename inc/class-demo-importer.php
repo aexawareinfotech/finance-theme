@@ -399,6 +399,56 @@ class Finance_Theme_Demo_Importer
     }
 
     /**
+     * Auto-import all demo content (for theme activation)
+     * 
+     * This method can be called programmatically to import demo content
+     * without going through the admin panel.
+     * 
+     * @return int Number of items imported/updated
+     */
+    public function auto_import_all(): int
+    {
+        $count = 0;
+
+        // Import Loan Types
+        foreach ($this->loan_types as $loan) {
+            $post_id = $this->ensure_post_exists($loan['title'], $loan['description'], 'loan_type');
+
+            if ($post_id) {
+                if (isset($loan['meta']) && is_array($loan['meta'])) {
+                    foreach ($loan['meta'] as $key => $value) {
+                        update_post_meta($post_id, $key, $value);
+                    }
+                }
+                $this->sideload_image($post_id, $loan['image']);
+                $count++;
+            }
+        }
+
+        // Import Testimonials
+        foreach ($this->testimonials as $testimonial) {
+            $post_id = $this->ensure_post_exists($testimonial['title'], $testimonial['content'], 'testimonial');
+            if ($post_id) {
+                update_post_meta($post_id, '_testimonial_rating', $testimonial['rating']);
+                update_post_meta($post_id, '_testimonial_loan_type', $testimonial['loan_type']);
+                $count++;
+            }
+        }
+
+        // Import FAQs
+        foreach ($this->faqs as $faq) {
+            if ($this->ensure_post_exists($faq['title'], $faq['content'], 'faq')) {
+                $count++;
+            }
+        }
+
+        // Download template assets
+        $this->download_template_assets();
+
+        return $count;
+    }
+
+    /**
      * Download template assets from URLs
      */
     private function download_template_assets()
