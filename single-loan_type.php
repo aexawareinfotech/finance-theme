@@ -175,7 +175,7 @@ while (have_posts()):
     ?>
 
     <!-- Why Choose This Loan Section -->
-    <section class="section why-choose-loan-section" style="background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);">
+    <section class="section why-choose-loan-section" style="background: linear-gradient(135deg, var(--accent-300) 0%, var(--accent-400) 100%);">
         <div class="container">
             <div class="why-choose-loan-grid"
                 style="display: grid; grid-template-columns: 1fr 1.2fr; gap: var(--space-12); align-items: center;">
@@ -337,7 +337,7 @@ while (have_posts()):
     </section>
 
     <!-- How to Apply Section -->
-    <section class="section how-to-apply-section" style="background: #f5f0eb;">
+    <section class="section how-to-apply-section" style="background: var(--gray-100);">
         <div class="container">
             <div class="how-to-apply-grid"
                 style="display: grid; grid-template-columns: 1fr 1.5fr; gap: var(--space-12); align-items: flex-start;">
