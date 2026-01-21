@@ -1573,12 +1573,24 @@ p:last-child {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-6);
+    width: 100%;
 }
 
 @media (min-width: 768px) {
     .comparison-tables {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
+}
+
+@media (min-width: 1024px) {
+    .comparison-tables {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Override comparison-grid when tables are full width */
+.comparison-grid>.comparison-tables[style*="grid-column"] {
+    grid-column: 1 / -1;
 }
 
 .loan-table {
@@ -1586,11 +1598,14 @@ p:last-child {
     border-radius: var(--radius-xl);
     overflow: hidden;
     box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
 }
 
 .loan-table-header {
     padding: var(--space-5);
     color: var(--white);
+    min-height: 140px;
 }
 
 .loan-table-header h4 {
@@ -1603,7 +1618,12 @@ p:last-child {
 .loan-table-header p {
     font-size: var(--text-xs);
     opacity: 0.9;
-    line-height: 1.5;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.loan-table-body {
+    flex: 1;
 }
 
 .loan-table-header-small {
@@ -1612,6 +1632,10 @@ p:last-child {
 
 .loan-table-header-medium {
     background: linear-gradient(135deg, var(--primary-900) 0%, var(--primary-700) 100%);
+}
+
+.loan-table-header-large {
+    background: linear-gradient(135deg, #1976d2 0%, #0d47a1 100%);
 }
 
 .loan-table-body {
@@ -1682,6 +1706,10 @@ p:last-child {
 
 .weekly-repayment-medium {
     background: linear-gradient(135deg, var(--primary-700) 0%, var(--primary-900) 100%);
+}
+
+.weekly-repayment-large {
+    background: linear-gradient(135deg, #1976d2 0%, #0d47a1 100%);
 }
 
 /* ============================================

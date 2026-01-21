@@ -297,46 +297,8 @@ $latest_posts = flavor_get_latest_posts(3);
         </h2>
 
         <div class="comparison-grid">
-            <!-- Left: Phone Mockup + Benefits -->
-            <div class="comparison-phone">
-                <div class="phone-wrapper">
-                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/phone-mockup.png'); ?>"
-                        alt="<?php esc_attr_e('Fair Go Finance App', 'finance-theme'); ?>" loading="lazy">
-                </div>
-                <ul class="comparison-benefits">
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            <circle cx="12" cy="12" r="10" />
-                            <path d="M9 12l2 2 4-4" />
-                        </svg>
-                        <?php esc_html_e('Borrow between $500 to $5,000', 'finance-theme'); ?>
-                    </li>
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            <circle cx="12" cy="12" r="10" />
-                            <path d="M9 12l2 2 4-4" />
-                        </svg>
-                        <?php esc_html_e('Flexible payment terms', 'finance-theme'); ?>
-                    </li>
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            <circle cx="12" cy="12" r="10" />
-                            <path d="M9 12l2 2 4-4" />
-                        </svg>
-                        <?php esc_html_e('No hidden fees payout early to reduce total repayment amount', 'finance-theme'); ?>
-                    </li>
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            <circle cx="12" cy="12" r="10" />
-                            <path d="M9 12l2 2 4-4" />
-                        </svg>
-                        <?php esc_html_e('Money in 60 minutes* of contract acceptance', 'finance-theme'); ?>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Right: Loan Tables -->
-            <div class="comparison-tables">
+            <!-- Loan Tables Only - Benefits List Removed -->
+            <div class="comparison-tables" style="grid-column: 1 / -1;">
                 <!-- Small Loan -->
                 <div class="loan-table">
                     <div class="loan-table-header loan-table-header-small">
@@ -417,6 +379,48 @@ $latest_posts = flavor_get_latest_posts(3);
                         <div class="weekly-repayment weekly-repayment-medium">
                             <span><?php esc_html_e('Weekly repayment', 'finance-theme'); ?></span>
                             <strong>$117.67</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Large Loan -->
+                <div class="loan-table">
+                    <div class="loan-table-header loan-table-header-large">
+                        <h4><?php esc_html_e('Large Loan', 'finance-theme'); ?></h4>
+                        <p><?php esc_html_e('Loan amount: $5,001 – $50,000 | Loan term: 12 weeks – 60 months | Fees: up to $990 establishment fee | Interest: up to 47.80% p.a| Other fees and charges may apply.', 'finance-theme'); ?>
+                        </p>
+                    </div>
+                    <div class="loan-table-body">
+                        <h5><?php esc_html_e('Example', 'finance-theme'); ?></h5>
+                        <table>
+                            <tr>
+                                <td><?php esc_html_e('Repayments', 'finance-theme'); ?></td>
+                                <td><strong><?php esc_html_e('Weekly', 'finance-theme'); ?></strong></td>
+                            </tr>
+                            <tr>
+                                <td><?php esc_html_e('Loan Amount', 'finance-theme'); ?></td>
+                                <td><strong>$10,000</strong></td>
+                            </tr>
+                            <tr>
+                                <td><?php esc_html_e('Term', 'finance-theme'); ?></td>
+                                <td><strong><?php esc_html_e('52 Weeks', 'finance-theme'); ?></strong></td>
+                            </tr>
+                            <tr>
+                                <td><?php esc_html_e('Establishment fee', 'finance-theme'); ?></td>
+                                <td><strong>$990</strong></td>
+                            </tr>
+                            <tr>
+                                <td><?php esc_html_e('Total interest', 'finance-theme'); ?></td>
+                                <td><strong>$2,145.00</strong></td>
+                            </tr>
+                            <tr class="total-row">
+                                <td><?php esc_html_e('Total repayable', 'finance-theme'); ?></td>
+                                <td><strong>$13,135</strong></td>
+                            </tr>
+                        </table>
+                        <div class="weekly-repayment weekly-repayment-large">
+                            <span><?php esc_html_e('Weekly repayment', 'finance-theme'); ?></span>
+                            <strong>$250.00</strong>
                         </div>
                     </div>
                 </div>
