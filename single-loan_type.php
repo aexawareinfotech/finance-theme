@@ -129,6 +129,26 @@ while (have_posts()):
     $testimonials_description = get_post_meta($post_id, '_testimonials_description', true) ?: "Don't just take our word for it - hear from real customers who got a fair go.";
     $faqs_heading = get_post_meta($post_id, '_faqs_heading', true) ?: 'Frequently Asked Questions';
 
+    // Section Visibility Settings
+    $section_order = get_post_meta($post_id, '_section_order', true);
+    if (empty($section_order)) {
+        // Default: all sections visible
+        $section_order = [
+            'why_choose' => ['enabled' => 1, 'order' => 1],
+            'main_content' => ['enabled' => 1, 'order' => 2],
+            'eligibility' => ['enabled' => 1, 'order' => 3],
+            'how_to_apply' => ['enabled' => 1, 'order' => 4],
+            'loan_examples' => ['enabled' => 1, 'order' => 5],
+            'testimonials' => ['enabled' => 1, 'order' => 6],
+            'faqs' => ['enabled' => 1, 'order' => 7],
+        ];
+    }
+    
+    // Helper function to check if section is visible
+    $is_section_visible = function($section_key) use ($section_order) {
+        return !empty($section_order[$section_key]['enabled']);
+    };
+
     ?>
 
     <!-- Hero Section -->
@@ -193,6 +213,7 @@ while (have_posts()):
     ?>
 
     <!-- Why Choose This Loan Section -->
+    <?php if ($is_section_visible('why_choose')): ?>
     <section class="section why-choose-loan-section">
         <div class="container">
             <div class="why-choose-loan-grid">
@@ -236,10 +257,12 @@ while (have_posts()):
             </div>
         </div>
     </section>
+    <?php endif; ?>
 
 
 
     <!-- Main Content -->
+    <?php if ($is_section_visible('main_content')): ?>
     <section class="section loan-content-section" style="padding-top: var(--space-12);">
         <div class="container" style="max-width: 900px;">
             <div class="entry-content" style="font-size: var(--text-lg); line-height: 1.8;">
@@ -247,8 +270,10 @@ while (have_posts()):
             </div>
         </div>
     </section>
+    <?php endif; ?>
 
     <!-- Eligibility Section -->
+    <?php if ($is_section_visible('eligibility')): ?>
     <section class="section eligibility-section" style="background: #fff;">
         <div class="container">
             <div class="eligibility-grid">
@@ -293,8 +318,10 @@ while (have_posts()):
             </div>
         </div>
     </section>
+    <?php endif; ?>
 
     <!-- How to Apply Section -->
+    <?php if ($is_section_visible('how_to_apply')): ?>
     <section class="section how-to-apply-section" style="background: var(--gray-100);">
         <div class="container">
             <div class="how-to-apply-grid">
@@ -341,8 +368,10 @@ while (have_posts()):
             </div>
         </div>
     </section>
+    <?php endif; ?>
 
     <!-- Loan Comparison Section -->
+    <?php if ($is_section_visible('loan_examples')): ?>
     <section class="section comparison-section" id="loan-examples">
         <div class="container">
             <h2 class="comparison-title">
@@ -534,8 +563,10 @@ while (have_posts()):
             </div>
         </div>
     </section>
+    <?php endif; ?>
 
     <!-- Testimonials Section -->
+    <?php if ($is_section_visible('testimonials')): ?>
     <section class="section testimonials-section" id="testimonials">
         <div class="container">
             <div class="section-header">
@@ -594,8 +625,10 @@ while (have_posts()):
             </div>
         </div>
     </section>
+    <?php endif; ?>
 
     <!-- FAQs Section -->
+    <?php if ($is_section_visible('faqs')): ?>
     <section class="section faqs-section" style="background: #fff;">
         <div class="container" style="max-width: 800px;">
             <div class="section-header" style="text-align: center; margin-bottom: var(--space-10);">
@@ -706,6 +739,7 @@ while (have_posts()):
             <?php endif; ?>
         </div>
     </section>
+    <?php endif; ?>
 
 
     <?php
