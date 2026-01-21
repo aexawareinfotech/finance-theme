@@ -27,7 +27,7 @@ $instagram = get_theme_mod('flavor_instagram', '');
     <div class="container">
         <div style="max-width: 700px; margin: 0 auto;">
             <h3 style="color: var(--primary-900); font-size: var(--text-lg); font-weight: 600; margin-bottom: var(--space-6); text-align: center;">
-                <?php esc_html_e('Licensed by ASIC · Member of AFCA', 'finance-theme'); ?>
+                <?php echo esc_html(get_theme_mod('flavor_license_title', 'Licensed by ASIC · Member of AFCA')); ?>
             </h3>
             <div style="display: flex; justify-content: center; align-items: center; gap: var(--space-10); flex-wrap: wrap;">
                 <a href="https://asic.gov.au" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center;">
@@ -50,18 +50,18 @@ $instagram = get_theme_mod('flavor_instagram', '');
     style="background: linear-gradient(135deg, var(--primary-900), var(--primary-700)); text-align: center; color: var(--white);">
     <div class="container">
         <h2 style="color: var(--white); margin-bottom: var(--space-4);">
-            <?php esc_html_e('Ready to Get Started?', 'finance-theme'); ?>
+            <?php echo esc_html(get_theme_mod('flavor_footer_cta_title', 'Ready to Get Started?')); ?>
         </h2>
         <p style="color: var(--white-80); max-width: 600px; margin: 0 auto var(--space-8);">
-            <?php esc_html_e('Apply in just 6 minutes and get your funds the same day. No hidden fees, no surprises.', 'finance-theme'); ?>
+            <?php echo esc_html(get_theme_mod('flavor_footer_cta_description', 'Apply in just 6 minutes and get your funds the same day. No hidden fees, no surprises.')); ?>
         </p>
         <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
-            <a href="<?php echo esc_url(home_url('/apply')); ?>" class="btn btn-primary btn-lg">
-                <?php esc_html_e('Apply Now', 'finance-theme'); ?>
+            <a href="<?php echo esc_url(get_theme_mod('flavor_footer_cta_button_url', home_url('/apply'))); ?>" class="btn btn-primary btn-lg">
+                <?php echo esc_html(get_theme_mod('flavor_footer_cta_button_text', 'Apply Now')); ?>
             </a>
-            <a href="tel:<?php echo esc_attr(get_theme_mod('flavor_phone', '1300XXXXXX')); ?>"
+            <a href="tel:<?php echo esc_attr(preg_replace('/[^0-9+]/', '', $phone)); ?>"
                 class="btn btn-outline btn-lg">
-                <?php esc_html_e('Call Us', 'finance-theme'); ?>
+                <?php echo esc_html(get_theme_mod('flavor_footer_cta_secondary_text', 'Call Us')); ?>
             </a>
         </div>
     </div>
@@ -144,7 +144,7 @@ $instagram = get_theme_mod('flavor_instagram', '');
                 <!-- Quick Links -->
                 <div class="footer-column">
                     <h4>
-                        <?php esc_html_e('Quick Links', 'finance-theme'); ?>
+                        <?php echo esc_html(get_theme_mod('flavor_footer_col1_title', 'Quick Links')); ?>
                     </h4>
                     <ul>
                         <li><a href="<?php echo esc_url(home_url('/')); ?>">
@@ -168,7 +168,7 @@ $instagram = get_theme_mod('flavor_instagram', '');
                 <!-- Loan Types -->
                 <div class="footer-column">
                     <h4>
-                        <?php esc_html_e('Our Loans', 'finance-theme'); ?>
+                        <?php echo esc_html(get_theme_mod('flavor_footer_col2_title', 'Our Loans')); ?>
                     </h4>
                     <ul>
                         <li><a href="<?php echo esc_url(home_url('/loans/personal')); ?>">
@@ -192,7 +192,7 @@ $instagram = get_theme_mod('flavor_instagram', '');
                 <!-- Contact -->
                 <div class="footer-column">
                     <h4>
-                        <?php esc_html_e('Contact Us', 'finance-theme'); ?>
+                        <?php echo esc_html(get_theme_mod('flavor_footer_col3_title', 'Contact Us')); ?>
                     </h4>
                     <ul class="footer-contact">
                         <?php if ($phone && $phone !== '1300 XXX XXX'): ?>

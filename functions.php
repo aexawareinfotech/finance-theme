@@ -556,6 +556,105 @@ function flavor_customize_register($wp_customize): void
         'description' => __('Legal disclaimer text that appears at the very bottom of the page.', 'finance-theme'),
     ]);
 
+    // License Section Title
+    $wp_customize->add_setting('flavor_license_title', [
+        'default' => 'Licensed by ASIC · Member of AFCA',
+        'sanitize_callback' => 'sanitize_text_field',
+    ]);
+    $wp_customize->add_control('flavor_license_title', [
+        'label' => __('License Section Title', 'finance-theme'),
+        'section' => 'flavor_footer_settings',
+        'type' => 'text',
+    ]);
+
+    // Footer CTA Headline
+    $wp_customize->add_setting('flavor_footer_cta_title', [
+        'default' => 'Ready to Get Started?',
+        'sanitize_callback' => 'sanitize_text_field',
+    ]);
+    $wp_customize->add_control('flavor_footer_cta_title', [
+        'label' => __('Footer CTA Headline', 'finance-theme'),
+        'section' => 'flavor_footer_settings',
+        'type' => 'text',
+    ]);
+
+    // Footer CTA Description
+    $wp_customize->add_setting('flavor_footer_cta_description', [
+        'default' => 'Apply in just 6 minutes and get your funds the same day. No hidden fees, no surprises.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ]);
+    $wp_customize->add_control('flavor_footer_cta_description', [
+        'label' => __('Footer CTA Description', 'finance-theme'),
+        'section' => 'flavor_footer_settings',
+        'type' => 'textarea',
+    ]);
+
+    // Footer CTA Primary Button Text
+    $wp_customize->add_setting('flavor_footer_cta_button_text', [
+        'default' => 'Apply Now',
+        'sanitize_callback' => 'sanitize_text_field',
+    ]);
+    $wp_customize->add_control('flavor_footer_cta_button_text', [
+        'label' => __('Footer CTA Primary Button Text', 'finance-theme'),
+        'section' => 'flavor_footer_settings',
+        'type' => 'text',
+    ]);
+
+    // Footer CTA Primary Button URL
+    $wp_customize->add_setting('flavor_footer_cta_button_url', [
+        'default' => '/apply',
+        'sanitize_callback' => 'esc_url_raw',
+    ]);
+    $wp_customize->add_control('flavor_footer_cta_button_url', [
+        'label' => __('Footer CTA Primary Button URL', 'finance-theme'),
+        'section' => 'flavor_footer_settings',
+        'type' => 'url',
+    ]);
+
+    // Footer CTA Secondary Button Text
+    $wp_customize->add_setting('flavor_footer_cta_secondary_text', [
+        'default' => 'Call Us',
+        'sanitize_callback' => 'sanitize_text_field',
+    ]);
+    $wp_customize->add_control('flavor_footer_cta_secondary_text', [
+        'label' => __('Footer CTA Secondary Button Text', 'finance-theme'),
+        'section' => 'flavor_footer_settings',
+        'type' => 'text',
+    ]);
+
+    // Footer Column 1 Title (Quick Links)
+    $wp_customize->add_setting('flavor_footer_col1_title', [
+        'default' => 'Quick Links',
+        'sanitize_callback' => 'sanitize_text_field',
+    ]);
+    $wp_customize->add_control('flavor_footer_col1_title', [
+        'label' => __('Footer Column 1 Title', 'finance-theme'),
+        'section' => 'flavor_footer_settings',
+        'type' => 'text',
+    ]);
+
+    // Footer Column 2 Title (Our Loans)
+    $wp_customize->add_setting('flavor_footer_col2_title', [
+        'default' => 'Our Loans',
+        'sanitize_callback' => 'sanitize_text_field',
+    ]);
+    $wp_customize->add_control('flavor_footer_col2_title', [
+        'label' => __('Footer Column 2 Title', 'finance-theme'),
+        'section' => 'flavor_footer_settings',
+        'type' => 'text',
+    ]);
+
+    // Footer Column 3 Title (Contact Us)
+    $wp_customize->add_setting('flavor_footer_col3_title', [
+        'default' => 'Contact Us',
+        'sanitize_callback' => 'sanitize_text_field',
+    ]);
+    $wp_customize->add_control('flavor_footer_col3_title', [
+        'label' => __('Footer Column 3 Title', 'finance-theme'),
+        'section' => 'flavor_footer_settings',
+        'type' => 'text',
+    ]);
+
     // ========================================
     // COMPANY INFO SECTION
     // ========================================
