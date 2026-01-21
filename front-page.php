@@ -16,6 +16,18 @@ $loan_types = flavor_get_loan_types();
 $testimonials = flavor_get_testimonials();
 $faqs = flavor_get_faqs();
 $latest_posts = flavor_get_latest_posts(3);
+
+// Get Customizer values for Hero
+$hero_title = get_theme_mod('homepage_hero_title', 'Need');
+$hero_title_accent = get_theme_mod('homepage_hero_title_accent', 'Money?');
+$hero_subtitle = get_theme_mod('homepage_hero_subtitle', 'Get up to $50,000 paid within 60 min*');
+$hero_features_raw = get_theme_mod('homepage_hero_features', "Borrow from \$2,000 to \$50,000\nDigital & Paperless Journey\nProudly Australian Lender\nInstant Decisions and Same-Day Cash");
+$hero_features = array_filter(array_map('trim', explode("\n", $hero_features_raw)));
+$calculator_heading = get_theme_mod('homepage_calculator_heading', "I'd like to borrow");
+$calculator_min = get_theme_mod('homepage_calculator_min', 2000);
+$calculator_max = get_theme_mod('homepage_calculator_max', 50000);
+$calculator_button = get_theme_mod('homepage_calculator_button', 'Apply Now');
+$calculator_note = get_theme_mod('homepage_calculator_note', 'Online application in minutes!');
 ?>
 
 <!-- Hero Section -->
@@ -25,11 +37,11 @@ $latest_posts = flavor_get_latest_posts(3);
             <!-- Left Content -->
             <div class="hero-left">
                 <h1 class="hero-title">
-                    <?php esc_html_e('Need', 'finance-theme'); ?>
-                    <span class="text-accent"><?php esc_html_e('Money?', 'finance-theme'); ?></span>
+                    <?php echo esc_html($hero_title); ?>
+                    <span class="text-accent"><?php echo esc_html($hero_title_accent); ?></span>
                 </h1>
                 <p class="hero-subtitle">
-                    <?php esc_html_e('Get up to $50,000 paid within 60 min*', 'finance-theme'); ?>
+                    <?php echo esc_html($hero_subtitle); ?>
                 </p>
 
             </div>
@@ -37,69 +49,57 @@ $latest_posts = flavor_get_latest_posts(3);
             <!-- Right Calculator Card -->
             <div class="hero-right">
                 <div class="calculator-card">
-                    <h3 class="calculator-title"><?php esc_html_e("I'd like to borrow", 'finance-theme'); ?></h3>
+                    <h3 class="calculator-title"><?php echo esc_html($calculator_heading); ?></h3>
 
-                    <div class="calculator-amount" id="loan-amount-display">$5,000</div>
+                    <div class="calculator-amount" id="loan-amount-display">$<?php echo number_format($calculator_min + (($calculator_max - $calculator_min) / 2)); ?></div>
 
                     <div class="calculator-slider-wrap">
-                        <input type="range" id="loan-amount-slider" class="calculator-slider" min="2000" max="50000"
-                            step="500" value="5000">
+                        <input type="range" id="loan-amount-slider" class="calculator-slider" min="<?php echo esc_attr($calculator_min); ?>" max="<?php echo esc_attr($calculator_max); ?>"
+                            step="500" value="<?php echo esc_attr($calculator_min + (($calculator_max - $calculator_min) / 2)); ?>">
                         <div class="slider-labels">
-                            <span>$2,000</span>
-                            <span>$50,000</span>
+                            <span>$<?php echo number_format($calculator_min); ?></span>
+                            <span>$<?php echo number_format($calculator_max); ?></span>
                         </div>
                     </div>
 
                     <a href="<?php echo esc_url(home_url('/apply')); ?>" class="btn btn-primary btn-block">
-                        <?php esc_html_e('Apply Now', 'finance-theme'); ?>
+                        <?php echo esc_html($calculator_button); ?>
                     </a>
                 </div>
 
-                <p class="hero-note"><?php esc_html_e('Online application in minutes!', 'finance-theme'); ?></p>
+                <p class="hero-note"><?php echo esc_html($calculator_note); ?></p>
             </div>
 
             <!-- Hero Features (Moved for mobile layout) -->
             <ul class="hero-features">
+                <?php foreach ($hero_features as $feature): ?>
                 <li>
                     <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                         <polyline points="22 4 12 14.01 9 11.01" />
                     </svg>
-                    <span><?php esc_html_e('Borrow from $2,000 to $50,000', 'finance-theme'); ?></span>
+                    <span><?php echo esc_html($feature); ?></span>
                 </li>
-                <li>
-                    <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                        <polyline points="22 4 12 14.01 9 11.01" />
-                    </svg>
-                    <span><?php esc_html_e('Digital & Paperless Journey', 'finance-theme'); ?></span>
-                </li>
-                <li>
-                    <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                        <polyline points="22 4 12 14.01 9 11.01" />
-                    </svg>
-                    <span><?php esc_html_e('Proudly Australian Lender', 'finance-theme'); ?></span>
-                </li>
-                <li>
-                    <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                        <polyline points="22 4 12 14.01 9 11.01" />
-                    </svg>
-                    <span><?php esc_html_e('Instant Decisions and Same-Day Cash', 'finance-theme'); ?></span>
-                </li>
+                <?php endforeach; ?>
             </ul>
         </div>
     </div>
 </section>
 
+<?php
+// Loan Types Section customizer values
+$loans_title = get_theme_mod('homepage_loans_title', "Online Loans for all Life's Moments");
+$loans_button_text = get_theme_mod('homepage_loans_button_text', 'View All Personal Loans');
+$loans_button_url = get_theme_mod('homepage_loans_button_url', '/loans');
+?>
+
 <!-- Loan Types Slider Section -->
 <section class="section loan-types-section" id="loans">
     <div class="container">
         <div class="loan-types-header">
-            <h2><?php esc_html_e("Online Loans for all Life's Moments", 'finance-theme'); ?></h2>
-            <a href="<?php echo esc_url(home_url('/loans')); ?>" class="btn btn-outline-dark">
-                <?php esc_html_e('View All Personal Loans', 'finance-theme'); ?>
+            <h2><?php echo esc_html($loans_title); ?></h2>
+            <a href="<?php echo esc_url(home_url($loans_button_url)); ?>" class="btn btn-outline-dark">
+                <?php echo esc_html($loans_button_text); ?>
             </a>
         </div>
 
@@ -177,6 +177,35 @@ $latest_posts = flavor_get_latest_posts(3);
     </div>
 </section>
 
+<?php
+// Process Section customizer values
+$process_label = get_theme_mod('homepage_process_label', 'Our Process');
+$process_title = get_theme_mod('homepage_process_title', 'How Fair Go Finance works');
+$process_description = get_theme_mod('homepage_process_description', "Our personal loan rates are customised to you and your circumstances. And we've got loans for just about anything you need. Learn how much you could borrow and what the repayments could be.");
+$process_btn1_text = get_theme_mod('homepage_process_btn1_text', 'How it works');
+$process_btn2_text = get_theme_mod('homepage_process_btn2_text', 'Calculate Repayments');
+$process_btn2_url = get_theme_mod('homepage_process_btn2_url', '/calculator');
+
+$process_steps = [
+    1 => [
+        'title' => get_theme_mod('homepage_process_step1_title', 'Apply now'),
+        'desc' => get_theme_mod('homepage_process_step1_desc', 'Our online application takes just six minutes to complete.'),
+    ],
+    2 => [
+        'title' => get_theme_mod('homepage_process_step2_title', 'Accept our offer'),
+        'desc' => get_theme_mod('homepage_process_step2_desc', "We send you the loan terms. You accept with a secure SMS code. It couldn't be easier."),
+    ],
+    3 => [
+        'title' => get_theme_mod('homepage_process_step3_title', 'Get your funds'),
+        'desc' => get_theme_mod('homepage_process_step3_desc', 'Our real-time funding means your funds are in your account on the same day.'),
+    ],
+    4 => [
+        'title' => get_theme_mod('homepage_process_step4_title', 'Stay supported'),
+        'desc' => get_theme_mod('homepage_process_step4_desc', 'We stick around to help with repayments, questions and credit score boosts.'),
+    ],
+];
+?>
+
 <!-- Process Section -->
 <section class="section process-section" id="process">
     <div class="container">
@@ -184,7 +213,7 @@ $latest_posts = flavor_get_latest_posts(3);
             <!-- Left: Image -->
             <div class="process-image-wrapper">
                 <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/process-image.webp'); ?>"
-                    alt="<?php esc_attr_e('How Fair Go Finance works', 'finance-theme'); ?>" loading="lazy">
+                    alt="<?php echo esc_attr($process_title); ?>" loading="lazy">
             </div>
 
             <!-- Right: Content -->
@@ -193,19 +222,19 @@ $latest_posts = flavor_get_latest_posts(3);
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                     </svg>
-                    <?php esc_html_e('Our Process', 'finance-theme'); ?>
+                    <?php echo esc_html($process_label); ?>
                 </span>
                 <h2 class="process-title">
-                    <?php esc_html_e('How Fair Go Finance works', 'finance-theme'); ?>
+                    <?php echo esc_html($process_title); ?>
                 </h2>
                 <p class="process-description">
-                    <?php esc_html_e('Our personal loan rates are customised to you and your circumstances. And we\'ve got loans for just about anything you need. Learn how much you could borrow and what the repayments could be.', 'finance-theme'); ?>
+                    <?php echo esc_html($process_description); ?>
                 </p>
                 <div class="process-buttons">
                     <a href="#process-steps" class="btn btn-outline">
-                        <?php esc_html_e('How it works', 'finance-theme'); ?>
+                        <?php echo esc_html($process_btn1_text); ?>
                     </a>
-                    <a href="<?php echo esc_url(home_url('/calculator')); ?>" class="btn btn-outline">
+                    <a href="<?php echo esc_url(home_url($process_btn2_url)); ?>" class="btn btn-outline">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
                             <rect x="4" y="2" width="16" height="20" rx="2" />
@@ -214,7 +243,7 @@ $latest_posts = flavor_get_latest_posts(3);
                             <line x1="8" y1="14" x2="12" y2="14" />
                             <line x1="8" y1="18" x2="12" y2="18" />
                         </svg>
-                        <?php esc_html_e('Calculate Repayments', 'finance-theme'); ?>
+                        <?php echo esc_html($process_btn2_text); ?>
                     </a>
                 </div>
             </div>
@@ -222,78 +251,74 @@ $latest_posts = flavor_get_latest_posts(3);
 
         <!-- Process Steps Grid -->
         <div class="process-grid" id="process-steps">
-            <!-- Step 1 -->
+            <?php 
+            $icons = [
+                1 => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /><path d="M12 5l7 7-7 7" /></svg>',
+                2 => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" /></svg>',
+                3 => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /><path d="M8 3v2M16 3v2" /></svg>',
+                4 => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>',
+            ];
+            
+            foreach ($process_steps as $i => $step): ?>
             <div class="process-step">
-                <div class="process-icon process-icon-1">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M5 12h14" />
-                        <path d="M12 5l7 7-7 7" />
-                    </svg>
+                <div class="process-icon process-icon-<?php echo $i; ?>">
+                    <?php echo $icons[$i]; ?>
                 </div>
                 <div class="process-step-content">
-                    <h3><?php esc_html_e('Apply now', 'finance-theme'); ?></h3>
-                    <p><?php esc_html_e('Our online application takes just six minutes to complete.', 'finance-theme'); ?>
-                    </p>
+                    <h3><?php echo esc_html($step['title']); ?></h3>
+                    <p><?php echo esc_html($step['desc']); ?></p>
                 </div>
             </div>
-
-            <!-- Step 2 -->
-            <div class="process-step">
-                <div class="process-icon process-icon-2">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M9 11l3 3L22 4" />
-                        <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
-                    </svg>
-                </div>
-                <div class="process-step-content">
-                    <h3><?php esc_html_e('Accept our offer', 'finance-theme'); ?></h3>
-                    <p><?php esc_html_e('We send you the loan terms. You accept with a secure SMS code. It couldn\'t be easier.', 'finance-theme'); ?>
-                    </p>
-                </div>
-            </div>
-
-            <!-- Step 3 -->
-            <div class="process-step">
-                <div class="process-icon process-icon-3">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10" />
-                        <path d="M12 6v6l4 2" />
-                        <path d="M8 3v2M16 3v2" />
-                    </svg>
-                </div>
-                <div class="process-step-content">
-                    <h3><?php esc_html_e('Get your funds', 'finance-theme'); ?></h3>
-                    <p><?php esc_html_e('Our real-time funding means your funds are in your account on the same day.', 'finance-theme'); ?>
-                    </p>
-                </div>
-            </div>
-
-            <!-- Step 4 -->
-            <div class="process-step">
-                <div class="process-icon process-icon-4">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-                        <polyline points="9 22 9 12 15 12 15 22" />
-                    </svg>
-                </div>
-                <div class="process-step-content">
-                    <h3><?php esc_html_e('Stay supported', 'finance-theme'); ?></h3>
-                    <p><?php esc_html_e('We stick around to help with repayments, questions and credit score boosts.', 'finance-theme'); ?>
-                    </p>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
 </section>
+
+<?php
+// Loan Comparison Section customizer values
+$comparison_title = get_theme_mod('homepage_comparison_title', 'Fair Go Loans Examples');
+
+// Small Loan
+$small_tier_title = get_theme_mod('homepage_loan_small_tier_title', 'Small Loan');
+$small_amount_range = get_theme_mod('homepage_loan_small_amount_range', 'Loan amount: $500 – $2,000');
+$small_term_range = get_theme_mod('homepage_loan_small_term_range', 'Loan term: 16 days – 12 months');
+$small_fees = get_theme_mod('homepage_loan_small_fees', 'Fees: 20% establishment + 4% monthly (flat) | Other fees and charges may apply.');
+$small_example_amount = get_theme_mod('homepage_loan_small_example_amount', '$1,000');
+$small_example_term = get_theme_mod('homepage_loan_small_example_term', '28 weeks');
+$small_est_fee = get_theme_mod('homepage_loan_small_est_fee', '$200');
+$small_monthly_fee = get_theme_mod('homepage_loan_small_monthly_fee', '$280');
+$small_total = get_theme_mod('homepage_loan_small_total', '$1,480');
+$small_weekly = get_theme_mod('homepage_loan_small_weekly', '$70.00');
+
+// Medium Loan
+$medium_tier_title = get_theme_mod('homepage_loan_medium_tier_title', 'Medium Loan');
+$medium_amount_range = get_theme_mod('homepage_loan_medium_amount_range', 'Loan amount: $2,001 – $5,000');
+$medium_term_range = get_theme_mod('homepage_loan_medium_term_range', 'Loan term: 9 weeks – 24 months');
+$medium_fees = get_theme_mod('homepage_loan_medium_fees', 'Fees: up to $400 establishment fee | Interest: up to 47.80% p.a| Other fees and charges may apply.');
+$medium_example_amount = get_theme_mod('homepage_loan_medium_example_amount', '$2,500');
+$medium_example_term = get_theme_mod('homepage_loan_medium_example_term', '28 Weeks');
+$medium_est_fee = get_theme_mod('homepage_loan_medium_est_fee', '$400');
+$medium_interest = get_theme_mod('homepage_loan_medium_interest', '$394.74');
+$medium_total = get_theme_mod('homepage_loan_medium_total', '$3,289');
+$medium_weekly = get_theme_mod('homepage_loan_medium_weekly', '$117.67');
+
+// Large Loan
+$large_tier_title = get_theme_mod('homepage_loan_large_tier_title', 'Large Loan');
+$large_amount_range = get_theme_mod('homepage_loan_large_amount_range', 'Loan amount: $5,001 – $50,000');
+$large_term_range = get_theme_mod('homepage_loan_large_term_range', 'Loan term: 12 weeks – 60 months');
+$large_fees = get_theme_mod('homepage_loan_large_fees', 'Fees: up to $990 establishment fee | Interest: up to 47.80% p.a| Other fees and charges may apply.');
+$large_example_amount = get_theme_mod('homepage_loan_large_example_amount', '$10,000');
+$large_example_term = get_theme_mod('homepage_loan_large_example_term', '52 Weeks');
+$large_est_fee = get_theme_mod('homepage_loan_large_est_fee', '$990');
+$large_interest = get_theme_mod('homepage_loan_large_interest', '$2,145.00');
+$large_total = get_theme_mod('homepage_loan_large_total', '$13,135');
+$large_weekly = get_theme_mod('homepage_loan_large_weekly', '$250.00');
+?>
 
 <!-- Loan Comparison Section -->
 <section class="section comparison-section" id="loan-examples">
     <div class="container">
         <h2 class="comparison-title">
-            <?php esc_html_e('Fair Go Loans Examples', 'finance-theme'); ?><sup>2</sup>
+            <?php echo esc_html($comparison_title); ?><sup>2</sup>
         </h2>
 
         <div class="comparison-grid">
@@ -302,9 +327,8 @@ $latest_posts = flavor_get_latest_posts(3);
                 <!-- Small Loan -->
                 <div class="loan-table">
                     <div class="loan-table-header loan-table-header-small">
-                        <h4><?php esc_html_e('Small Loan', 'finance-theme'); ?></h4>
-                        <p><?php esc_html_e('Loan amount: $500 – $2,000 | Loan term: 16 days – 12 months | Fees: 20% establishment + 4% monthly (flat) | Other fees and charges may apply.', 'finance-theme'); ?>
-                        </p>
+                        <h4><?php echo esc_html($small_tier_title); ?></h4>
+                        <p><?php echo esc_html($small_amount_range . ' | ' . $small_term_range . ' | ' . $small_fees); ?></p>
                     </div>
                     <div class="loan-table-body">
                         <h5><?php esc_html_e('Example', 'finance-theme'); ?></h5>
@@ -315,28 +339,28 @@ $latest_posts = flavor_get_latest_posts(3);
                             </tr>
                             <tr>
                                 <td><?php esc_html_e('Loan Amount', 'finance-theme'); ?></td>
-                                <td><strong>$1,000</strong></td>
+                                <td><strong><?php echo esc_html($small_example_amount); ?></strong></td>
                             </tr>
                             <tr>
                                 <td><?php esc_html_e('Term', 'finance-theme'); ?></td>
-                                <td><strong><?php esc_html_e('28 weeks', 'finance-theme'); ?></strong></td>
+                                <td><strong><?php echo esc_html($small_example_term); ?></strong></td>
                             </tr>
                             <tr>
                                 <td><?php esc_html_e('Establishment fee', 'finance-theme'); ?></td>
-                                <td><strong>$200</strong></td>
+                                <td><strong><?php echo esc_html($small_est_fee); ?></strong></td>
                             </tr>
                             <tr>
-                                <td><?php esc_html_e('Total monthly fee (over 28 weeks)', 'finance-theme'); ?></td>
-                                <td><strong>$280</strong></td>
+                                <td><?php esc_html_e('Total monthly fee', 'finance-theme'); ?></td>
+                                <td><strong><?php echo esc_html($small_monthly_fee); ?></strong></td>
                             </tr>
                             <tr class="total-row">
                                 <td><?php esc_html_e('Total repayable', 'finance-theme'); ?></td>
-                                <td><strong>$1,480</strong></td>
+                                <td><strong><?php echo esc_html($small_total); ?></strong></td>
                             </tr>
                         </table>
                         <div class="weekly-repayment weekly-repayment-small">
                             <span><?php esc_html_e('Weekly repayment', 'finance-theme'); ?></span>
-                            <strong>$70.00</strong>
+                            <strong><?php echo esc_html($small_weekly); ?></strong>
                         </div>
                     </div>
                 </div>
@@ -344,9 +368,8 @@ $latest_posts = flavor_get_latest_posts(3);
                 <!-- Medium Loan -->
                 <div class="loan-table">
                     <div class="loan-table-header loan-table-header-medium">
-                        <h4><?php esc_html_e('Medium Loan', 'finance-theme'); ?></h4>
-                        <p><?php esc_html_e('Loan amount: $2,001 – $5,000 | Loan term: 9 weeks – 24 months | Fees: up to $400 establishment fee | Interest: up to 47.80% p.a| Other fees and charges may apply.', 'finance-theme'); ?>
-                        </p>
+                        <h4><?php echo esc_html($medium_tier_title); ?></h4>
+                        <p><?php echo esc_html($medium_amount_range . ' | ' . $medium_term_range . ' | ' . $medium_fees); ?></p>
                     </div>
                     <div class="loan-table-body">
                         <h5><?php esc_html_e('Example', 'finance-theme'); ?></h5>
@@ -357,28 +380,28 @@ $latest_posts = flavor_get_latest_posts(3);
                             </tr>
                             <tr>
                                 <td><?php esc_html_e('Loan Amount', 'finance-theme'); ?></td>
-                                <td><strong>$2,500</strong></td>
+                                <td><strong><?php echo esc_html($medium_example_amount); ?></strong></td>
                             </tr>
                             <tr>
                                 <td><?php esc_html_e('Term', 'finance-theme'); ?></td>
-                                <td><strong><?php esc_html_e('28 Weeks', 'finance-theme'); ?></strong></td>
+                                <td><strong><?php echo esc_html($medium_example_term); ?></strong></td>
                             </tr>
                             <tr>
                                 <td><?php esc_html_e('Establishment fee', 'finance-theme'); ?></td>
-                                <td><strong>$400</strong></td>
+                                <td><strong><?php echo esc_html($medium_est_fee); ?></strong></td>
                             </tr>
                             <tr>
-                                <td><?php esc_html_e('Total interest (over 28 weeks)', 'finance-theme'); ?></td>
-                                <td><strong>$394.74</strong></td>
+                                <td><?php esc_html_e('Total interest', 'finance-theme'); ?></td>
+                                <td><strong><?php echo esc_html($medium_interest); ?></strong></td>
                             </tr>
                             <tr class="total-row">
                                 <td><?php esc_html_e('Total repayable', 'finance-theme'); ?></td>
-                                <td><strong>$3,289</strong></td>
+                                <td><strong><?php echo esc_html($medium_total); ?></strong></td>
                             </tr>
                         </table>
                         <div class="weekly-repayment weekly-repayment-medium">
                             <span><?php esc_html_e('Weekly repayment', 'finance-theme'); ?></span>
-                            <strong>$117.67</strong>
+                            <strong><?php echo esc_html($medium_weekly); ?></strong>
                         </div>
                     </div>
                 </div>
@@ -386,9 +409,8 @@ $latest_posts = flavor_get_latest_posts(3);
                 <!-- Large Loan -->
                 <div class="loan-table">
                     <div class="loan-table-header loan-table-header-large">
-                        <h4><?php esc_html_e('Large Loan', 'finance-theme'); ?></h4>
-                        <p><?php esc_html_e('Loan amount: $5,001 – $50,000 | Loan term: 12 weeks – 60 months | Fees: up to $990 establishment fee | Interest: up to 47.80% p.a| Other fees and charges may apply.', 'finance-theme'); ?>
-                        </p>
+                        <h4><?php echo esc_html($large_tier_title); ?></h4>
+                        <p><?php echo esc_html($large_amount_range . ' | ' . $large_term_range . ' | ' . $large_fees); ?></p>
                     </div>
                     <div class="loan-table-body">
                         <h5><?php esc_html_e('Example', 'finance-theme'); ?></h5>
@@ -399,28 +421,28 @@ $latest_posts = flavor_get_latest_posts(3);
                             </tr>
                             <tr>
                                 <td><?php esc_html_e('Loan Amount', 'finance-theme'); ?></td>
-                                <td><strong>$10,000</strong></td>
+                                <td><strong><?php echo esc_html($large_example_amount); ?></strong></td>
                             </tr>
                             <tr>
                                 <td><?php esc_html_e('Term', 'finance-theme'); ?></td>
-                                <td><strong><?php esc_html_e('52 Weeks', 'finance-theme'); ?></strong></td>
+                                <td><strong><?php echo esc_html($large_example_term); ?></strong></td>
                             </tr>
                             <tr>
                                 <td><?php esc_html_e('Establishment fee', 'finance-theme'); ?></td>
-                                <td><strong>$990</strong></td>
+                                <td><strong><?php echo esc_html($large_est_fee); ?></strong></td>
                             </tr>
                             <tr>
                                 <td><?php esc_html_e('Total interest', 'finance-theme'); ?></td>
-                                <td><strong>$2,145.00</strong></td>
+                                <td><strong><?php echo esc_html($large_interest); ?></strong></td>
                             </tr>
                             <tr class="total-row">
                                 <td><?php esc_html_e('Total repayable', 'finance-theme'); ?></td>
-                                <td><strong>$13,135</strong></td>
+                                <td><strong><?php echo esc_html($large_total); ?></strong></td>
                             </tr>
                         </table>
                         <div class="weekly-repayment weekly-repayment-large">
                             <span><?php esc_html_e('Weekly repayment', 'finance-theme'); ?></span>
-                            <strong>$250.00</strong>
+                            <strong><?php echo esc_html($large_weekly); ?></strong>
                         </div>
                     </div>
                 </div>
@@ -429,24 +451,41 @@ $latest_posts = flavor_get_latest_posts(3);
     </div>
 </section>
 
+<?php
+// Australia Section customizer values
+$australia_title = get_theme_mod('homepage_australia_title', 'Trusted by Australians');
+$australia_intro_template = get_theme_mod('homepage_australia_intro', '');
+$australia_feature1 = get_theme_mod('homepage_australia_feature1', '100% Australian owned');
+$australia_feature2 = get_theme_mod('homepage_australia_feature2', 'Bad Credit? No Problem.');
+$australia_feature3 = get_theme_mod('homepage_australia_feature3', '100% Secure Process');
+$australia_button = get_theme_mod('homepage_australia_button', 'Apply Now');
+$australia_note = get_theme_mod('homepage_australia_note', 'Safe and Secure. 5 min application*');
+
+$company_name = get_bloginfo('name');
+$asic_number = get_theme_mod('flavor_asic_number', 'XXXXXX');
+$afca_number = get_theme_mod('flavor_afca_number', 'XXXXXX');
+
+// Build intro text - use template if set, otherwise use default
+if (empty($australia_intro_template)) {
+    $australia_intro = sprintf(
+        '%s holds Australian Credit Licence %s and is a member of AFCA (%s). We provide straightforward loan options that put transparency, security, and responsible lending first.',
+        $company_name,
+        $asic_number,
+        $afca_number
+    );
+} else {
+    $australia_intro = sprintf($australia_intro_template, $company_name, $asic_number, $afca_number);
+}
+?>
+
 <!-- Trusted by Australians Section -->
 <section class="section australia-section" id="about">
     <div class="container">
         <div class="australia-grid">
             <div class="australia-content">
-                <h2><?php esc_html_e('Trusted by Australians', 'finance-theme'); ?></h2>
+                <h2><?php echo esc_html($australia_title); ?></h2>
                 <p class="australia-intro">
-                    <?php
-                    $company_name = get_bloginfo('name');
-                    $asic_number = get_theme_mod('flavor_asic_number', 'XXXXXX');
-                    $afca_number = get_theme_mod('flavor_afca_number', 'XXXXXX');
-                    printf(
-                        esc_html__('%s holds Australian Credit Licence %s and is a member of AFCA (%s). We provide straightforward loan options that put transparency, security, and responsible lending first.', 'finance-theme'),
-                        esc_html($company_name),
-                        esc_html($asic_number),
-                        esc_html($afca_number)
-                    );
-                    ?>
+                    <?php echo esc_html($australia_intro); ?>
                 </p>
 
                 <ul class="australia-features">
@@ -455,55 +494,55 @@ $latest_posts = flavor_get_latest_posts(3);
                             stroke-width="2.5">
                             <polyline points=" 20 6 9 17 4 12" />
                         </svg>
-                        <span><?php esc_html_e('100% Australian owned', 'finance-theme'); ?></span>
+                        <span><?php echo esc_html($australia_feature1); ?></span>
                     </li>
                     <li>
                         <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2.5">
                             <polyline points="20 6 9 17 4 12" />
                         </svg>
-                        <span><?php esc_html_e('Bad Credit? No Problem.', 'finance-theme'); ?></span>
+                        <span><?php echo esc_html($australia_feature2); ?></span>
                     </li>
                     <li>
                         <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2.5">
                             <polyline points="20 6 9 17 4 12" />
                         </svg>
-                        <span>
-                            <?php esc_html_e('100% Secure Process', 'finance-theme'); ?>
-                        </span>
+                        <span><?php echo esc_html($australia_feature3); ?></span>
                     </li>
                 </ul>
 
                 <a href="<?php echo esc_url(home_url('/apply')); ?>" class="btn btn-australia">
-                    <?php esc_html_e('Apply Now', 'finance-theme'); ?>
+                    <?php echo esc_html($australia_button); ?>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
                 </a>
                 <p class="australia-note">
-                    <?php esc_html_e('Safe and Secure. 5 min application*', 'finance-theme'); ?>
+                    <?php echo esc_html($australia_note); ?>
                 </p>
             </div>
 
             <div class="australia-image">
                 <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/australia-people.png'); ?>"
-                    alt="<?php esc_attr_e('Australia made of people', 'finance-theme'); ?>" loading="lazy">
+                    alt="<?php echo esc_attr($australia_title); ?>" loading="lazy">
             </div>
         </div>
     </div>
 </section>
 
+<?php
+// Testimonials Section customizer values
+$testimonials_title = get_theme_mod('homepage_testimonials_title', 'What Our Customers Say');
+$testimonials_subtitle = get_theme_mod('homepage_testimonials_subtitle', "Don't just take our word for it - hear from real customers who got a fair go.");
+?>
+
 <!-- Testimonials Section -->
 <section class="section testimonials-section" id="testimonials">
     <div class="container">
         <div class="section-header">
-            <h2>
-                <?php esc_html_e('What Our Customers Say', 'finance-theme'); ?>
-            </h2>
-            <p>
-                <?php esc_html_e('Don\'t just take our word for it - hear from real customers who got a fair go.', 'finance-theme'); ?>
-            </p>
+            <h2><?php echo esc_html($testimonials_title); ?></h2>
+            <p><?php echo esc_html($testimonials_subtitle); ?></p>
         </div>
 
         <div class="testimonials-grid" id="testimonials-slider-track">
@@ -552,17 +591,18 @@ $latest_posts = flavor_get_latest_posts(3);
     </div>
 </section>
 
+<?php
+// FAQ Section customizer values
+$faq_title = get_theme_mod('homepage_faq_title', 'Frequently Asked Questions');
+$faq_subtitle = get_theme_mod('homepage_faq_subtitle', "Got questions? We've got answers.");
+?>
 
 <!-- FAQ Section -->
 <section class="section faq-section" id="faq">
     <div class="container">
         <div class="section-header">
-            <h2>
-                <?php esc_html_e('Frequently Asked Questions', 'finance-theme'); ?>
-            </h2>
-            <p>
-                <?php esc_html_e('Got questions? We\'ve got answers.', 'finance-theme'); ?>
-            </p>
+            <h2><?php echo esc_html($faq_title); ?></h2>
+            <p><?php echo esc_html($faq_subtitle); ?></p>
         </div>
 
         <div class="faq-list">
@@ -588,16 +628,19 @@ $latest_posts = flavor_get_latest_posts(3);
     </div>
 </section>
 
+<?php
+// Blog Section customizer values
+$blog_title = get_theme_mod('homepage_blog_title', 'Latest from Our Blog');
+$blog_subtitle = get_theme_mod('homepage_blog_subtitle', 'Tips, insights, and news about personal finance in Australia.');
+$blog_button = get_theme_mod('homepage_blog_button', 'View All Posts');
+?>
+
 <!-- Latest Blogs Section -->
 <section class="section blog-section" id="blog">
     <div class="container">
         <div class="section-header">
-            <h2>
-                <?php esc_html_e('Latest from Our Blog', 'finance-theme'); ?>
-            </h2>
-            <p>
-                <?php esc_html_e('Tips, insights, and news about personal finance in Australia.', 'finance-theme'); ?>
-            </p>
+            <h2><?php echo esc_html($blog_title); ?></h2>
+            <p><?php echo esc_html($blog_subtitle); ?></p>
         </div>
 
         <div class="blog-grid">
@@ -693,7 +736,7 @@ $latest_posts = flavor_get_latest_posts(3);
 
         <div class="text-center" style="margin-top: var(--space-10);">
             <a href="<?php echo esc_url(home_url('/blog')); ?>" class="btn btn-secondary">
-                <?php esc_html_e('View All Posts', 'finance-theme'); ?>
+                <?php echo esc_html($blog_button); ?>
             </a>
         </div>
     </div>
