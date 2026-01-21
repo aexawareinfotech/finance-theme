@@ -195,6 +195,7 @@ $instagram = get_theme_mod('flavor_instagram', '');
                         <?php esc_html_e('Contact Us', 'finance-theme'); ?>
                     </h4>
                     <ul class="footer-contact">
+                        <?php if ($phone && $phone !== '1300 XXX XXX'): ?>
                         <li>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
@@ -206,6 +207,7 @@ $instagram = get_theme_mod('flavor_instagram', '');
                                 <?php echo esc_html($phone); ?>
                             </a>
                         </li>
+                        <?php endif; ?>
                         <li>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
@@ -290,6 +292,18 @@ $instagram = get_theme_mod('flavor_instagram', '');
         </div>
     </div>
 </footer>
+
+<!-- Disclaimer Section -->
+<div class="footer-disclaimer" style="background: var(--gray-900); color: var(--gray-400); padding: var(--space-6) 0; font-size: var(--text-xs); line-height: 1.6;">
+    <div class="container">
+        <p style="max-width: 100%; margin: 0; text-align: center;">
+            <?php 
+            $disclaimer = get_theme_mod('flavor_footer_disclaimer', 'Copyright © urgentloans.com.au (Credit Representative Number 574854) is an Introducer Appointed Credit Representative of Needy Loans Pty Ltd (ACN 676 095 846), ACL 558796, we are not a lender or broker, does not provide any credit assistance, and does not advise on or recommend any particular lender or credit product, and we act solely as a referral service by providing general options based on the information you provide, any enquiry you submit may be referred to Needy Loans Pty Ltd in its capacity as a credit provider and/or to independent third-party lenders or credit providers who may contact you directly to assess your circumstances and, if appropriate, outline their interest rates, fees, charges and full terms and conditions and provide all required disclosures.');
+            echo esc_html($disclaimer);
+            ?>
+        </p>
+    </div>
+</div>
 
 <?php wp_footer(); ?>
 </body>

@@ -544,6 +544,18 @@ function flavor_customize_register($wp_customize): void
         'type' => 'checkbox',
     ]);
 
+    // Footer Disclaimer Text
+    $wp_customize->add_setting('flavor_footer_disclaimer', [
+        'default' => 'Copyright © urgentloans.com.au (Credit Representative Number 574854) is an Introducer Appointed Credit Representative of Needy Loans Pty Ltd (ACN 676 095 846), ACL 558796, we are not a lender or broker, does not provide any credit assistance, and does not advise on or recommend any particular lender or credit product, and we act solely as a referral service by providing general options based on the information you provide, any enquiry you submit may be referred to Needy Loans Pty Ltd in its capacity as a credit provider and/or to independent third-party lenders or credit providers who may contact you directly to assess your circumstances and, if appropriate, outline their interest rates, fees, charges and full terms and conditions and provide all required disclosures.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ]);
+    $wp_customize->add_control('flavor_footer_disclaimer', [
+        'label' => __('Footer Disclaimer Text', 'finance-theme'),
+        'section' => 'flavor_footer_settings',
+        'type' => 'textarea',
+        'description' => __('Legal disclaimer text that appears at the very bottom of the page.', 'finance-theme'),
+    ]);
+
     // ========================================
     // COMPANY INFO SECTION
     // ========================================
