@@ -35,6 +35,7 @@ class Finance_Theme_Homepage_Customizer
         ]);
 
         // Register all sections
+        $this->register_section_order($wp_customize); // First - so it appears at top
         $this->register_hero_section($wp_customize);
         $this->register_loan_types_section($wp_customize);
         $this->register_process_section($wp_customize);
@@ -43,6 +44,60 @@ class Finance_Theme_Homepage_Customizer
         $this->register_testimonials_section($wp_customize);
         $this->register_faq_section($wp_customize);
         $this->register_blog_section($wp_customize);
+    }
+
+    /**
+     * Section Order & Visibility Settings
+     */
+    private function register_section_order($wp_customize)
+    {
+        $wp_customize->add_section('homepage_section_order', [
+            'title' => __('🔀 Section Order & Visibility', 'finance-theme'),
+            'panel' => 'homepage_settings',
+            'priority' => 5,
+            'description' => __('Control which sections appear and in what order. Lower numbers appear first. Uncheck to hide a section.', 'finance-theme'),
+        ]);
+
+        // Define all sections with defaults
+        $sections = [
+            'hero' => ['label' => 'Hero Section', 'order' => 1],
+            'loans' => ['label' => 'Loan Types Slider', 'order' => 2],
+            'process' => ['label' => 'Process Section', 'order' => 3],
+            'comparison' => ['label' => 'Loan Comparison', 'order' => 4],
+            'australia' => ['label' => 'Trusted by Australians', 'order' => 5],
+            'testimonials' => ['label' => 'Testimonials', 'order' => 6],
+            'faq' => ['label' => 'FAQ Section', 'order' => 7],
+            'blog' => ['label' => 'Blog Section', 'order' => 8],
+        ];
+
+        foreach ($sections as $key => $section) {
+            // Visibility toggle
+            $wp_customize->add_setting("homepage_section_{$key}_visible", [
+                'default' => true,
+                'sanitize_callback' => 'wp_validate_boolean',
+            ]);
+            $wp_customize->add_control("homepage_section_{$key}_visible", [
+                'label' => sprintf(__('Show %s', 'finance-theme'), $section['label']),
+                'section' => 'homepage_section_order',
+                'type' => 'checkbox',
+            ]);
+
+            // Order number
+            $wp_customize->add_setting("homepage_section_{$key}_order", [
+                'default' => $section['order'],
+                'sanitize_callback' => 'absint',
+            ]);
+            $wp_customize->add_control("homepage_section_{$key}_order", [
+                'label' => sprintf(__('%s Order', 'finance-theme'), $section['label']),
+                'section' => 'homepage_section_order',
+                'type' => 'number',
+                'input_attrs' => [
+                    'min' => 1,
+                    'max' => 10,
+                    'step' => 1,
+                ],
+            ]);
+        }
     }
 
     /**
