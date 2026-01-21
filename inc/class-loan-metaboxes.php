@@ -165,62 +165,94 @@ class Flavor_Loan_Metaboxes
 
 
 
-            <hr>
             <h3>
-                <?php esc_html_e('Example Loan Costs', 'finance-theme'); ?>
+                <?php esc_html_e('Loan Comparison Examples', 'finance-theme'); ?>
             </h3>
             <p class="description">
-                <?php esc_html_e('Configure the example loan cost cards shown on single loan pages.', 'finance-theme'); ?>
+                <?php esc_html_e('Configure the Small and Medium loan examples shown on the single loan page.', 'finance-theme'); ?>
             </p>
 
             <?php
-            // Get loan cost examples
-            $cost_1_amount = get_post_meta($post->ID, '_loan_cost_1_amount', true) ?: '$1,000';
-            $cost_1_term = get_post_meta($post->ID, '_loan_cost_1_term', true) ?: 'Over 12 months';
-            $cost_1_repayment = get_post_meta($post->ID, '_loan_cost_1_repayment', true) ?: '$95/fortnight*';
+            // Small Loan Defaults
+            $small_amount = get_post_meta($post->ID, '_loan_small_amount', true) ?: '$500 – $2,000';
+            $small_term = get_post_meta($post->ID, '_loan_small_term', true) ?: '16 days – 12 months';
+            $small_fees = get_post_meta($post->ID, '_loan_small_fees', true) ?: '20% establishment + 4% monthly (flat) | Other fees and charges may apply.';
+            $small_repayment = get_post_meta($post->ID, '_loan_small_repayment', true) ?: '$70.00';
+            
+            $small_table_amount = get_post_meta($post->ID, '_loan_small_table_amount', true) ?: '$1,000';
+            $small_table_term = get_post_meta($post->ID, '_loan_small_table_term', true) ?: '28 weeks';
+            $small_table_fee = get_post_meta($post->ID, '_loan_small_table_fee', true) ?: '$200';
+            $small_table_monthly = get_post_meta($post->ID, '_loan_small_table_monthly', true) ?: '$280';
+            $small_table_total = get_post_meta($post->ID, '_loan_small_table_total', true) ?: '$1,480';
 
-            $cost_2_amount = get_post_meta($post->ID, '_loan_cost_2_amount', true) ?: '$3,000';
-            $cost_2_term = get_post_meta($post->ID, '_loan_cost_2_term', true) ?: 'Over 24 months';
-            $cost_2_repayment = get_post_meta($post->ID, '_loan_cost_2_repayment', true) ?: '$75/fortnight*';
+            // Medium Loan Defaults
+            $medium_amount = get_post_meta($post->ID, '_loan_medium_amount', true) ?: '$2,001 – $5,000';
+            $medium_term = get_post_meta($post->ID, '_loan_medium_term', true) ?: '9 weeks – 24 months';
+            $medium_fees = get_post_meta($post->ID, '_loan_medium_fees', true) ?: 'up to $400 establishment fee | Interest: up to 47.80% p.a| Other fees and charges may apply.';
+            $medium_repayment = get_post_meta($post->ID, '_loan_medium_repayment', true) ?: '$117.67';
 
-            $cost_3_amount = get_post_meta($post->ID, '_loan_cost_3_amount', true) ?: '$5,000';
-            $cost_3_term = get_post_meta($post->ID, '_loan_cost_3_term', true) ?: 'Over 36 months';
-            $cost_3_repayment = get_post_meta($post->ID, '_loan_cost_3_repayment', true) ?: '$85/fortnight*';
+            $medium_table_amount = get_post_meta($post->ID, '_loan_medium_table_amount', true) ?: '$2,500';
+            $medium_table_term = get_post_meta($post->ID, '_loan_medium_table_term', true) ?: '28 Weeks';
+            $medium_table_fee = get_post_meta($post->ID, '_loan_medium_table_fee', true) ?: '$400';
+            $medium_table_interest = get_post_meta($post->ID, '_loan_medium_table_interest', true) ?: '$394.74';
+            $medium_table_total = get_post_meta($post->ID, '_loan_medium_table_total', true) ?: '$3,289';
             ?>
 
-            <div class="flavor-stats-grid" style="margin-top: 15px;">
+            <div class="flavor-stats-grid" style="grid-template-columns: 1fr 1fr; margin-top: 15px;">
+                <!-- Small Loan -->
                 <div style="background: #f9f9f9; padding: 15px; border-radius: 8px;">
-                    <label style="display: block; margin-bottom: 10px; font-weight: bold;">
-                        <?php esc_html_e('Example 1', 'finance-theme'); ?>
+                    <label style="display: block; margin-bottom: 10px; font-weight: bold; font-size: 1.1em; color: #2c3e50;">
+                        <?php esc_html_e('Small Loan', 'finance-theme'); ?>
                     </label>
-                    <input type="text" name="loan_cost_1_amount" value="<?php echo esc_attr($cost_1_amount); ?>"
-                        placeholder="Amount (e.g. $1,000)" style="margin-bottom: 5px;">
-                    <input type="text" name="loan_cost_1_term" value="<?php echo esc_attr($cost_1_term); ?>"
-                        placeholder="Term (e.g. Over 12 months)" style="margin-bottom: 5px;">
-                    <input type="text" name="loan_cost_1_repayment" value="<?php echo esc_attr($cost_1_repayment); ?>"
-                        placeholder="Repayment (e.g. $95/fortnight*)">
+                    
+                    <!-- Header Info -->
+                    <div style="margin-bottom: 15px; border-bottom: 1px solid #ddd; padding-bottom: 10px;">
+                        <label style="font-weight: 600;">Header Details</label>
+                        <input type="text" name="loan_small_amount" value="<?php echo esc_attr($small_amount); ?>" placeholder="Loan Amount Range" style="margin-bottom: 5px; width: 100%;">
+                        <input type="text" name="loan_small_term" value="<?php echo esc_attr($small_term); ?>" placeholder="Loan Term Range" style="margin-bottom: 5px; width: 100%;">
+                        <textarea name="loan_small_fees" rows="2" placeholder="Fees Description" style="width: 100%;"><?php echo esc_textarea($small_fees); ?></textarea>
+                    </div>
+
+                    <!-- Table Data -->
+                    <div>
+                        <label style="font-weight: 600;">Table Example Data</label>
+                        <input type="text" name="loan_small_table_amount" value="<?php echo esc_attr($small_table_amount); ?>" placeholder="Example Amount ($1,000)" style="margin-bottom: 5px;">
+                        <input type="text" name="loan_small_table_term" value="<?php echo esc_attr($small_table_term); ?>" placeholder="Example Term (28 weeks)" style="margin-bottom: 5px;">
+                        <input type="text" name="loan_small_table_fee" value="<?php echo esc_attr($small_table_fee); ?>" placeholder="Est. Fee ($200)" style="margin-bottom: 5px;">
+                        <input type="text" name="loan_small_table_monthly" value="<?php echo esc_attr($small_table_monthly); ?>" placeholder="Monthly Fee ($280)" style="margin-bottom: 5px;">
+                        <input type="text" name="loan_small_table_total" value="<?php echo esc_attr($small_table_total); ?>" placeholder="Total Repayable ($1,480)" style="margin-bottom: 5px;">
+                        <hr style="margin: 10px 0;">
+                        <label>Weekly Repayment:</label>
+                        <input type="text" name="loan_small_repayment" value="<?php echo esc_attr($small_repayment); ?>" placeholder="$70.00">
+                    </div>
                 </div>
-                <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; border: 2px solid #4caf50;">
-                    <label style="display: block; margin-bottom: 10px; font-weight: bold;">
-                        <?php esc_html_e('Example 2 (Popular)', 'finance-theme'); ?>
+
+                <!-- Medium Loan -->
+                <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; border: 1px solid #4caf50;">
+                    <label style="display: block; margin-bottom: 10px; font-weight: bold; font-size: 1.1em; color: #2c3e50;">
+                        <?php esc_html_e('Medium Loan', 'finance-theme'); ?>
                     </label>
-                    <input type="text" name="loan_cost_2_amount" value="<?php echo esc_attr($cost_2_amount); ?>"
-                        placeholder="Amount (e.g. $3,000)" style="margin-bottom: 5px;">
-                    <input type="text" name="loan_cost_2_term" value="<?php echo esc_attr($cost_2_term); ?>"
-                        placeholder="Term (e.g. Over 24 months)" style="margin-bottom: 5px;">
-                    <input type="text" name="loan_cost_2_repayment" value="<?php echo esc_attr($cost_2_repayment); ?>"
-                        placeholder="Repayment (e.g. $75/fortnight*)">
-                </div>
-                <div style="background: #f9f9f9; padding: 15px; border-radius: 8px;">
-                    <label style="display: block; margin-bottom: 10px; font-weight: bold;">
-                        <?php esc_html_e('Example 3', 'finance-theme'); ?>
-                    </label>
-                    <input type="text" name="loan_cost_3_amount" value="<?php echo esc_attr($cost_3_amount); ?>"
-                        placeholder="Amount (e.g. $5,000)" style="margin-bottom: 5px;">
-                    <input type="text" name="loan_cost_3_term" value="<?php echo esc_attr($cost_3_term); ?>"
-                        placeholder="Term (e.g. Over 36 months)" style="margin-bottom: 5px;">
-                    <input type="text" name="loan_cost_3_repayment" value="<?php echo esc_attr($cost_3_repayment); ?>"
-                        placeholder="Repayment (e.g. $85/fortnight*)">
+
+                    <!-- Header Info -->
+                    <div style="margin-bottom: 15px; border-bottom: 1px solid #a5d6a7; padding-bottom: 10px;">
+                        <label style="font-weight: 600;">Header Details</label>
+                        <input type="text" name="loan_medium_amount" value="<?php echo esc_attr($medium_amount); ?>" placeholder="Loan Amount Range" style="margin-bottom: 5px; width: 100%;">
+                        <input type="text" name="loan_medium_term" value="<?php echo esc_attr($medium_term); ?>" placeholder="Loan Term Range" style="margin-bottom: 5px; width: 100%;">
+                        <textarea name="loan_medium_fees" rows="2" placeholder="Fees Description" style="width: 100%;"><?php echo esc_textarea($medium_fees); ?></textarea>
+                    </div>
+
+                    <!-- Table Data -->
+                    <div>
+                        <label style="font-weight: 600;">Table Example Data</label>
+                        <input type="text" name="loan_medium_table_amount" value="<?php echo esc_attr($medium_table_amount); ?>" placeholder="Example Amount ($2,500)" style="margin-bottom: 5px;">
+                        <input type="text" name="loan_medium_table_term" value="<?php echo esc_attr($medium_table_term); ?>" placeholder="Example Term (28 Weeks)" style="margin-bottom: 5px;">
+                        <input type="text" name="loan_medium_table_fee" value="<?php echo esc_attr($medium_table_fee); ?>" placeholder="Est. Fee ($400)" style="margin-bottom: 5px;">
+                        <input type="text" name="loan_medium_table_interest" value="<?php echo esc_attr($medium_table_interest); ?>" placeholder="Total Interest ($394.74)" style="margin-bottom: 5px;">
+                        <input type="text" name="loan_medium_table_total" value="<?php echo esc_attr($medium_table_total); ?>" placeholder="Total Repayable ($3,289)" style="margin-bottom: 5px;">
+                        <hr style="margin: 10px 0; border-color: #a5d6a7;">
+                        <label>Weekly Repayment:</label>
+                        <input type="text" name="loan_medium_repayment" value="<?php echo esc_attr($medium_repayment); ?>" placeholder="$117.67">
+                    </div>
                 </div>
             </div>
         </div>
@@ -256,16 +288,32 @@ class Flavor_Loan_Metaboxes
             'loan_icon',
             'loan_features',
 
-            // Loan Cost Examples
-            'loan_cost_1_amount',
-            'loan_cost_1_term',
-            'loan_cost_1_repayment',
-            'loan_cost_2_amount',
-            'loan_cost_2_term',
-            'loan_cost_2_repayment',
-            'loan_cost_3_amount',
-            'loan_cost_3_term',
-            'loan_cost_3_repayment',
+            // Small Loan Example
+            'loan_small_amount',
+            'loan_small_term',
+            'loan_small_fees',
+            'loan_small_repayment', // Weekly repayment
+
+            // Small Table Details
+            'loan_small_table_amount',
+            'loan_small_table_term',
+            'loan_small_table_fee', // Establishment fee
+            'loan_small_table_monthly', // Monthly fee
+            'loan_small_table_total', // Total repayable
+
+            // Medium Loan Example
+            'loan_medium_amount',
+            'loan_medium_term',
+            'loan_medium_fees',
+            'loan_medium_repayment', // Weekly repayment
+
+            // Medium Table Details
+            'loan_medium_table_amount',
+            'loan_medium_table_term',
+            'loan_medium_table_fee', // Establishment fee
+            'loan_medium_table_interest', // Total interest
+            'loan_medium_table_total', // Total repayable
+
         ];
 
         foreach ($fields as $field) {

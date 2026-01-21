@@ -3613,9 +3613,24 @@ p:last-child {
 /* Eligibility Section */
 .eligibility-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-12);
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
     align-items: center;
+}
+
+@media (min-width: 768px) {
+    .eligibility-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-12);
+    }
+
+    .eligibility-grid .eligibility-image {
+        order: 2;
+    }
+
+    .eligibility-grid .eligibility-content {
+        order: 1;
+    }
 }
 
 .eligibility-content h2 {
@@ -3664,21 +3679,29 @@ p:last-child {
 }
 
 .how-to-apply-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: var(--space-12);
-    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+}
+
+@media (min-width: 768px) {
+    .how-to-apply-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: var(--space-12);
+        align-items: flex-start;
+    }
 }
 
 .how-to-apply-intro h2 {
     font-size: var(--text-3xl);
     font-weight: 700;
-    color: var(--gray-900);
+    color: var(--primary-900);
     margin-bottom: var(--space-4);
 }
 
 .how-to-apply-intro p {
-    color: var(--gray-700);
+    color: var(--primary-700);
     margin-bottom: var(--space-6);
 }
 
@@ -3883,28 +3906,6 @@ p:last-child {
 
     .why-choose-loan-grid .why-choose-content {
         order: 1;
-    }
-
-    /* Eligibility Section - image on top */
-    .eligibility-grid {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .eligibility-grid .eligibility-image {
-        order: -1;
-        margin-bottom: var(--space-6);
-    }
-
-    .eligibility-grid .eligibility-content {
-        order: 1;
-    }
-
-    /* How to Apply Section */
-    .how-to-apply-grid {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-8);
     }
 
     /* Loan Costs Grid */
